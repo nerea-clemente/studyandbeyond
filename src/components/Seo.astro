@@ -1,0 +1,39 @@
+---
+// Metadatos por página, escritos a mano (no generados por plantilla).
+import { SITIO } from '@/config/sitio';
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  // Ruta canónica relativa, p. ej. "/grados/". Por defecto la actual.
+  canonical?: string;
+  // Imagen OG relativa a la raíz del sitio.
+  imagenOg?: string;
+  noindex?: boolean;
+}
+
+const { titulo, descripcion, canonical, imagenOg, noindex = false } = Astro.props;
+
+const urlCanonica = new URL(canonical ?? Astro.url.pathname, SITIO.dominio).href;
+const og = new URL(imagenOg ?? '/og/default.png', SITIO.dominio).href;
+const tituloCompleto =
+  titulo === SITIO.nombre ? titulo : `${titulo} · ${SITIO.nombre}`;
+---
+
+<title>{tituloCompleto}</title>
+<meta name="description" content={descripcion} />
+<link rel="canonical" href={urlCanonica} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={SITIO.nombre} />
+<meta property="og:title" content={tituloCompleto} />
+<meta property="og:description" content={descripcion} />
+<meta property="og:url" content={urlCanonica} />
+<meta property="og:image" content={og} />
+<meta property="og:locale" content="es_ES" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={tituloCompleto} />
+<meta name="twitter:description" content={descripcion} />
+<meta name="twitter:image" content={og} />

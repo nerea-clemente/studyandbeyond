@@ -1,0 +1,26 @@
+---
+import Base from '@/layouts/Base.astro';
+import { SITIO } from '@/config/sitio';
+---
+
+<Base
+  titulo={SITIO.nombre}
+  descripcion="Estudia un grado en Dinamarca: matrícula gratuita para la UE, clases en inglés y acompañamiento real desde España hasta tu llegada al país."
+>
+  <section class="contenedor py-20">
+    <p class="text-sm font-semibold uppercase tracking-wide text-cian">Estudiar en Dinamarca</p>
+    <h1 class="mt-3 text-display-lg font-semibold text-tinta">
+      Un grado en Dinamarca, sin perderte en el proceso.
+    </h1>
+    <p class="prosa mt-5">
+      Orientación académica, gestión completa de la admisión, alojamiento y
+      acompañamiento durante tus primeros meses en el país. Nació en {SITIO.anioFundacion},
+      en {SITIO.ciudadOrigen}, de la experiencia real de una estudiante española.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/grados/" class="cta">Explora los grados</a>
+      <a href="/estudiar-en-dinamarca/" class="cta-secundario">Cómo funciona</a>
+    </div>
+    <!-- Esqueleto inicial. Home completa en la fase de páginas de marca. -->
+  </section>
+</Base>

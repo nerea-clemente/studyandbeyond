@@ -1,0 +1,35 @@
+---
+import '@/styles/global.css';
+import Seo from '@/components/Seo.astro';
+import Encabezado from '@/components/Encabezado.astro';
+import PieDePagina from '@/components/PieDePagina.astro';
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  canonical?: string;
+  imagenOg?: string;
+  noindex?: boolean;
+}
+
+const { titulo, descripcion, canonical, imagenOg, noindex } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <Seo {titulo} {descripcion} {canonical} {imagenOg} {noindex} />
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a href="#contenido" class="saltar-contenido">Saltar al contenido</a>
+    <Encabezado />
+    <main id="contenido" class="flex-1">
+      <slot />
+    </main>
+    <PieDePagina />
+  </body>
+</html>

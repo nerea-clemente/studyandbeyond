@@ -1,0 +1,33 @@
+// Constantes compartidas del sitio. Un solo sitio donde editar datos de marca.
+// Los datos marcados TODO están pendientes de confirmar (ver PENDIENTE.md).
+
+export const SITIO = {
+  nombre: 'Study and Beyond',
+  // Entidad legal: empresa DANESA (ApS), no española. Ver PENDIENTE.md.
+  entidadLegal: 'Study and Beyond ApS',
+  cvr: '43172794',
+  // TODO(legal): confirmar si se publica esta dirección o se usa otra.
+  domicilio: 'Karen Blixens Boulevard 10, 8220 Brabrand, Aarhus (Dinamarca)',
+  dominio: 'https://studyandbeyond.es',
+  descripcion:
+    'Orientación y gestión completa para estudiar un grado en Dinamarca: admisión, alojamiento y acompañamiento en el país.',
+  telefono: '+34 635 369 915',
+  telefonoPlano: '635369915',
+  email: 'info@studyandbeyond.es',
+  // Precio actual del servicio (confirmado por el cliente, 2026-08).
+  precioServicio: 1900,
+  // Beca SU: cifra vigente. Presentar SIEMPRE con su condición.
+  suImporteMensualDKK: 7426,
+  ciudadOrigen: 'Aarhus',
+  anioFundacion: 2020,
+} as const;
+
+// Navegación principal.
+export const NAV = [
+  { texto: 'Estudiar en Dinamarca', href: '/estudiar-en-dinamarca/' },
+  { texto: 'Grados', href: '/grados/' },
+  { texto: 'Servicios', href: '/servicios/' },
+  { texto: 'Sobre nosotros', href: '/sobre-nosotros/' },
+  { texto: 'Blog', href: '/blog/' },
+  { texto: 'Contacto', href: '/contacto/' },
+] as const;
