@@ -74,6 +74,29 @@
     @apply not-sr-only fixed left-4 top-4 z-50 rounded bg-tinta px-4 py-2 text-white;
   }
 
+  /* Estilos del contenido MDX (guías y blog). Sin plugin de typography. */
+  .contenido-mdx {
+    @apply max-w-prosa text-[1.05rem] leading-relaxed text-tinta;
+  }
+  .contenido-mdx > * + * { @apply mt-4; }
+  .contenido-mdx h2 { @apply mt-10 font-display text-2xl font-semibold text-tinta; }
+  .contenido-mdx h3 { @apply mt-8 font-display text-xl font-semibold text-tinta; }
+  .contenido-mdx p { @apply text-tinta; }
+  .contenido-mdx a { @apply text-cian underline underline-offset-2 hover:text-cian-600; }
+  .contenido-mdx ul { @apply list-disc space-y-1 pl-5; }
+  .contenido-mdx ol { @apply list-decimal space-y-1 pl-5; }
+  .contenido-mdx strong { @apply font-semibold text-tinta; }
+  .contenido-mdx blockquote {
+    @apply border-l-4 border-cian bg-hielo/60 px-4 py-2 text-pizarra;
+  }
+  .contenido-mdx table { @apply my-6 w-full border-collapse text-left text-sm tabular; }
+  .contenido-mdx th { @apply border-b border-hielo bg-hielo/60 p-3 font-semibold text-tinta; }
+  .contenido-mdx td { @apply border-b border-hielo p-3 align-top; }
+  /* Aviso destacado dentro de una guía (p. ej. la condición de la beca SU). */
+  .aviso-condicion {
+    @apply my-6 rounded-xl border-l-4 border-ambar bg-ambar-100/60 px-5 py-4 text-tinta;
+  }
+
   /* CTA cálido, con avaricia. */
   .cta {
     @apply inline-flex items-center justify-center gap-2 rounded-lg bg-ambar px-5 py-3

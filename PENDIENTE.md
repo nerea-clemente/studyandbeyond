@@ -62,6 +62,10 @@ servicios a clientes en España. Implicaciones a resolver con criterio legal:
 - ¿Se publica la dirección de Aarhus en el aviso legal o se usa otra?
 - Logo: **el cliente se plantea cambiarlo** → wordmark provisional swappable.
 - Datos oficiales por grado (universidad/ciudad/url/cuota/plazo) — v-futura.
+- **Coste de vida**: cifras reales por partida (comida, transporte, ocio). Solo
+  tenemos alojamiento (300-550 €). La guía las deja como "por confirmar".
+- **Salario de facto** por sector para la guía de trabajar-estudiando (no hay
+  salario mínimo legal en Dinamarca; falta el dato orientativo por convenio).
 
 ### Hoja de ruta futura (fuera de v1, indicado por el cliente)
 

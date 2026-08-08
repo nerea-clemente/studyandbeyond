@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+
+const guias = (await getCollection('guias', ({ data }) => !data.borrador))
+  .sort((a, b) => a.data.orden - b.data.orden);
+---
+
+<Base
+  titulo="Estudiar en Dinamarca: guías paso a paso"
+  descripcion="Admisión, beca SU, alojamiento, coste de vida, trabajo y primeros pasos. Las guías que explican, sin letra pequeña escondida, cómo funciona estudiar un grado en Dinamarca."
+>
+  <section class="contenedor py-10 lg:py-14">
+    <p class="text-sm font-semibold uppercase tracking-wide text-cian">Estudiar en Dinamarca</p>
+    <h1 class="mt-3 text-display font-semibold text-tinta">
+      Todo lo que necesitas entender, explicado sin humo
+    </h1>
+    <p class="prosa mt-4">
+      Cómo funciona la admisión, qué es de verdad la beca SU, cuánto cuesta vivir
+      y qué papeles necesitas al llegar. Sin promesas fáciles: los requisitos y
+      las condiciones, tal cual son.
+    </p>
+
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+      {guias.map((g) => (
+        <li>
+          <a
+            href={`/estudiar-en-dinamarca/${g.id}/`}
+            class="flex h-full flex-col rounded-2xl border border-hielo bg-white p-6 transition-colors hover:border-cian"
+          >
+            <h2 class="font-display text-xl font-semibold text-tinta">{g.data.titulo}</h2>
+            <p class="mt-2 text-sm text-pizarra">{g.data.descripcion}</p>
+            <span class="mt-4 text-sm font-semibold text-cian">Leer la guía →</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
