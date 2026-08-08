@@ -108,7 +108,27 @@ terceros ni pone cookies, así que no muestra banner. Para activarla:
 Entonces aparece el banner de consentimiento y la analítica solo se carga si el
 visitante acepta.
 
-## Despliegue (GitHub + Netlify)
+## Ver una vista previa en GitHub Pages
+
+Hay un workflow (`.github/workflows/deploy-pages.yml`) que construye el sitio y
+lo publica en GitHub Pages con la base `/studyandbeyond`. Para activarlo, **una
+vez**:
+
+1. En GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+2. Cada push a la rama de trabajo (o a `main`) dispara el despliegue. También
+   puedes lanzarlo a mano en **Actions → Desplegar en GitHub Pages → Run workflow**.
+3. La URL de vista previa será
+   `https://nerea-clemente.github.io/studyandbeyond/`.
+
+> Si GitHub avisa de que la rama no puede desplegar por reglas del entorno
+> `github-pages`, permite esa rama en **Settings → Environments → github-pages**,
+> o haz merge a `main`.
+
+Nota: en GitHub Pages el **formulario de contacto no procesa envíos** (eso lo
+hace Netlify Forms). Pages sirve solo para ver el sitio. El despliegue de
+producción va en Netlify (siguiente sección).
+
+## Despliegue en producción (GitHub + Netlify)
 
 1. Sube el repositorio a GitHub.
 2. En Netlify, **New site from Git** → elige el repositorio.

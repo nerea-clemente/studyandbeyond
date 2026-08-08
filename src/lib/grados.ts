@@ -1,5 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
 import { SITIO } from '@/config/sitio';
+import { ruta } from '@/lib/ruta';
 
 export type Grado = CollectionEntry<'grados'>;
 
@@ -75,7 +76,7 @@ export function aIndice(grado: Grado): GradoIndice {
     duracion: formatoDuracion(d.duracion_anios),
     ects: d.ects,
     ingles: resumenIngles(d.requisitos.ingles),
-    url: `/grados/${grado.id}/`,
+    url: ruta(`/grados/${grado.id}/`),
   };
 }
 

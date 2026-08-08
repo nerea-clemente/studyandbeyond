@@ -1,5 +1,6 @@
 ---
 import Base from '@/layouts/Base.astro';
+import { ruta } from '@/lib/ruta';
 import { SITIO } from '@/config/sitio';
 ---
 
@@ -26,7 +27,7 @@ import { SITIO } from '@/config/sitio';
           method="POST"
           data-netlify="true"
           netlify-honeypot="bot-field"
-          action="/contacto/gracias/"
+          action={ruta("/contacto/gracias/")}
           class="mt-8 grid max-w-xl gap-4"
         >
           <input type="hidden" name="form-name" value="asesoramiento" />
@@ -70,7 +71,7 @@ import { SITIO } from '@/config/sitio';
           <label class="flex items-start gap-3 text-sm text-pizarra">
             <input required type="checkbox" name="consentimiento" value="si" class="mt-1" />
             <span>
-              He leído y acepto la <a href="/privacidad/" class="text-cian underline underline-offset-2">política de privacidad</a>
+              He leído y acepto la <a href={ruta("/privacidad/")} class="text-cian underline underline-offset-2">política de privacidad</a>
               y consiento que {SITIO.entidadLegal} trate mis datos con la única
               finalidad de responder a esta solicitud de asesoramiento. *
             </span>

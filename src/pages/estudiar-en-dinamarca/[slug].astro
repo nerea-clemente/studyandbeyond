@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { ruta } from '@/lib/ruta';
 import Base from '@/layouts/Base.astro';
 import JsonLd from '@/components/JsonLd.astro';
 import { SITIO } from '@/config/sitio';
@@ -35,7 +36,7 @@ const todas = (await getCollection('guias', ({ data }) => !data.borrador))
 
   <article class="contenedor py-10 lg:py-14">
     <nav aria-label="Migas de pan" class="mb-6 text-sm text-pizarra">
-      <a href="/estudiar-en-dinamarca/" class="hover:text-tinta">Estudiar en Dinamarca</a>
+      <a href={ruta("/estudiar-en-dinamarca/")} class="hover:text-tinta">Estudiar en Dinamarca</a>
     </nav>
 
     <header class="max-w-prosa">
@@ -75,7 +76,7 @@ const todas = (await getCollection('guias', ({ data }) => !data.borrador))
             {todas.map((g) => (
               <li>
                 <a
-                  href={`/estudiar-en-dinamarca/${g.id}/`}
+                  href={ruta(`/estudiar-en-dinamarca/${g.id}/`)}
                   aria-current={g.id === guia.id ? 'page' : undefined}
                   class:list={[
                     'block rounded px-3 py-2',
@@ -87,7 +88,7 @@ const todas = (await getCollection('guias', ({ data }) => !data.borrador))
           </ul>
           <div class="mt-6 rounded-xl bg-tinta p-5 text-white">
             <p class="text-sm text-white/80">¿Dudas con tu caso concreto?</p>
-            <a href="/contacto/" class="cta mt-3 w-full text-sm">Habla con nosotros</a>
+            <a href={ruta("/contacto/")} class="cta mt-3 w-full text-sm">Habla con nosotros</a>
           </div>
         </nav>
       </aside>

@@ -7,6 +7,7 @@
 // Los plazos exactos por grado están por confirmar; estas son las fechas de
 // referencia del sistema danés (optagelse.dk). Se muestra la fuente y una
 // nota de verificación.
+import { ruta } from '@/lib/ruta';
 
 interface Props {
   // Nota opcional para contextualizar (p. ej. en una ficha concreta).
@@ -68,6 +69,6 @@ const hitos = [
 
   <p class="mt-2 text-xs text-pizarra">
     {nota ?? 'El plazo exacto depende de la cuota de tu solicitud. Confírmalo antes de solicitar.'}
-    {' '}<a href="/estudiar-en-dinamarca/proceso-de-admision/" class="text-cian underline underline-offset-2">Cómo funciona la admisión</a>.
+    {' '}<a href={ruta("/estudiar-en-dinamarca/proceso-de-admision/")} class="text-cian underline underline-offset-2">Cómo funciona la admisión</a>.
   </p>
 </figure>

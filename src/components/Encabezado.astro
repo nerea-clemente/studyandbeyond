@@ -1,13 +1,15 @@
 ---
 import { NAV } from '@/config/sitio';
+import { ruta } from '@/lib/ruta';
 const rutaActual = Astro.url.pathname;
+// Compara ignorando la base para marcar el enlace activo.
 const activo = (href: string) =>
-  href === '/' ? rutaActual === '/' : rutaActual.startsWith(href);
+  href === '/' ? rutaActual === ruta('/') : rutaActual.startsWith(ruta(href));
 ---
 
 <header class="border-b border-hielo bg-blanco-frio/95 backdrop-blur supports-[backdrop-filter]:bg-blanco-frio/80 sticky top-0 z-40">
   <div class="contenedor flex h-16 items-center justify-between gap-4">
-    <a href="/" class="flex items-center gap-2">
+    <a href={ruta("/")} class="flex items-center gap-2">
       <!-- Wordmark provisional (el logo definitivo está por decidir). -->
       <span class="font-display text-xl font-semibold tracking-tight text-tinta">
         Study<span class="text-cian">and</span>Beyond
@@ -17,7 +19,7 @@ const activo = (href: string) =>
     <nav aria-label="Principal" class="hidden items-center gap-1 md:flex">
       {NAV.map((item) => (
         <a
-          href={item.href}
+          href={ruta(item.href)}
           aria-current={activo(item.href) ? 'page' : undefined}
           class:list={[
             'rounded px-3 py-2 text-sm font-medium transition-colors',
@@ -31,7 +33,7 @@ const activo = (href: string) =>
       ))}
     </nav>
 
-    <a href="/contacto/" class="hidden md:inline-flex cta py-2 text-sm">Reserva tu sesión</a>
+    <a href={ruta("/contacto/")} class="hidden md:inline-flex cta py-2 text-sm">Reserva tu sesión</a>
 
     <!-- Menú móvil: <details> nativo, cero JS. -->
     <details class="md:hidden">
@@ -47,7 +49,7 @@ const activo = (href: string) =>
         <nav aria-label="Móvil" class="flex flex-col gap-1">
           {NAV.map((item) => (
             <a
-              href={item.href}
+              href={ruta(item.href)}
               aria-current={activo(item.href) ? 'page' : undefined}
               class:list={[
                 'rounded px-3 py-3 text-base font-medium',
@@ -57,7 +59,7 @@ const activo = (href: string) =>
               {item.texto}
             </a>
           ))}
-          <a href="/contacto/" class="cta mt-2">Reserva tu sesión</a>
+          <a href={ruta("/contacto/")} class="cta mt-2">Reserva tu sesión</a>
         </nav>
       </div>
     </details>

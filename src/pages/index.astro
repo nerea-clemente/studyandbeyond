@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { ruta } from '@/lib/ruta';
 import Base from '@/layouts/Base.astro';
 import JsonLd from '@/components/JsonLd.astro';
 import { SITIO } from '@/config/sitio';
@@ -42,8 +43,8 @@ const organizationLd = {
       llegó sin ninguna referencia.
     </p>
     <div class="mt-8 flex flex-wrap gap-3">
-      <a href="/grados/" class="cta">Explora los {total} grados</a>
-      <a href="/estudiar-en-dinamarca/" class="cta-secundario">Cómo funciona</a>
+      <a href={ruta("/grados/")} class="cta">Explora los {total} grados</a>
+      <a href={ruta("/estudiar-en-dinamarca/")} class="cta-secundario">Cómo funciona</a>
     </div>
   </section>
 
@@ -69,7 +70,7 @@ const organizationLd = {
         <p class="font-display text-lg font-semibold text-tinta">Beca SU, con condiciones</p>
         <p class="mt-2 text-sm text-pizarra">
           El Estado danés ayuda a los estudiantes que acreditan estatus de
-          trabajador. <a href="/estudiar-en-dinamarca/su-beca-estudiantes/" class="text-cian underline underline-offset-2">Cómo funciona de verdad</a>.
+          trabajador. <a href={ruta("/estudiar-en-dinamarca/su-beca-estudiantes/")} class="text-cian underline underline-offset-2">Cómo funciona de verdad</a>.
         </p>
       </div>
     </div>
@@ -79,12 +80,12 @@ const organizationLd = {
   <section class="contenedor py-10" aria-labelledby="destacados">
     <div class="flex items-end justify-between gap-4">
       <h2 id="destacados" class="text-2xl font-semibold text-tinta">Algunos grados</h2>
-      <a href="/grados/" class="text-sm font-semibold text-cian">Ver todos →</a>
+      <a href={ruta("/grados/")} class="text-sm font-semibold text-cian">Ver todos →</a>
     </div>
     <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {destacados.map((g) => (
         <li>
-          <a href={`/grados/${g.id}/`} class="flex h-full flex-col rounded-2xl border border-hielo bg-white p-5 transition-colors hover:border-cian">
+          <a href={ruta(`/grados/${g.id}/`)} class="flex h-full flex-col rounded-2xl border border-hielo bg-white p-5 transition-colors hover:border-cian">
             <div class="flex flex-wrap gap-2">
               <span class="rounded-full bg-hielo px-2.5 py-0.5 text-xs font-semibold text-tinta">{ETIQUETA_NIVEL[g.data.nivel]}</span>
               <span class="rounded-full bg-hielo px-2.5 py-0.5 text-xs font-semibold text-tinta">{ETIQUETA_AREA[g.data.area]}</span>
@@ -105,7 +106,7 @@ const organizationLd = {
         Admisión, beca SU, alojamiento, coste de vida, trabajo y primeros pasos.
         Sin promesas fáciles: las condiciones, tal cual son.
       </p>
-      <a href="/estudiar-en-dinamarca/" class="cta-secundario mt-6">Leer las guías</a>
+      <a href={ruta("/estudiar-en-dinamarca/")} class="cta-secundario mt-6">Leer las guías</a>
     </div>
   </section>
 
@@ -117,7 +118,7 @@ const organizationLd = {
         Te contamos qué opciones tienes según tu perfil y cómo sería tu proceso.
         Sin coste hasta que decidas seguir.
       </p>
-      <a href="/contacto/" class="cta mt-6">Reserva tu sesión</a>
+      <a href={ruta("/contacto/")} class="cta mt-6">Reserva tu sesión</a>
     </div>
   </section>
 </Base>

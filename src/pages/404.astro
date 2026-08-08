@@ -1,5 +1,6 @@
 ---
 import Base from '@/layouts/Base.astro';
+import { ruta } from '@/lib/ruta';
 ---
 
 <Base
@@ -14,8 +15,8 @@ import Base from '@/layouts/Base.astro';
       Puede que el enlace esté roto o que la página se haya movido. Sigue desde aquí:
     </p>
     <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a href="/" class="cta">Ir al inicio</a>
-      <a href="/grados/" class="cta-secundario">Ver los grados</a>
+      <a href={ruta("/")} class="cta">Ir al inicio</a>
+      <a href={ruta("/grados/")} class="cta-secundario">Ver los grados</a>
     </div>
   </section>
 </Base>

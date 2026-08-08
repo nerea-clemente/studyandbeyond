@@ -1,5 +1,6 @@
 ---
 import Base from '@/layouts/Base.astro';
+import { ruta } from '@/lib/ruta';
 ---
 
 <Base
@@ -14,8 +15,8 @@ import Base from '@/layouts/Base.astro';
       de asesoramiento. Mientras tanto, puedes seguir explorando los grados y las guías.
     </p>
     <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a href="/grados/" class="cta">Explora los grados</a>
-      <a href="/estudiar-en-dinamarca/" class="cta-secundario">Lee las guías</a>
+      <a href={ruta("/grados/")} class="cta">Explora los grados</a>
+      <a href={ruta("/estudiar-en-dinamarca/")} class="cta-secundario">Lee las guías</a>
     </div>
   </section>
 </Base>

@@ -55,13 +55,22 @@ servicios a clientes en España. Implicaciones a resolver con criterio legal:
   privacidad.
 - Datos de **menores potenciales** (17 años): base legal y consentimiento.
 
-### Sigue pendiente (no bloquea el esqueleto)
+### Decisiones adicionales (2026-08-08, segunda ronda)
 
-- Texto y permiso de los 3 testimonios (Nuria, Javi, Helena).
-- Analítica concreta (cookieless para evitar/￼simplificar banner). Confirmar.
-- ¿Se publica la dirección de Aarhus en el aviso legal o se usa otra?
+- **Universidad y ciudad**: **no se muestran en ninguna parte** de la web (ni en
+  la ficha ni en el buscador). Los campos siguen en el esquema para uso interno
+  y v-futura, pero no se renderizan.
+- **Dirección postal de Aarhus**: **no se publica**. En los legales solo aparece
+  ciudad/país y «dirección postal por confirmar».
+- **Testimonios**: redactados a partir de las indicaciones del cliente (Nuria —
+  Ingeniería General, DTU, Copenhague; Javier — Economía y ADE, Aarhus, Erasmus
+  Canadá; Helena — IB en internado). Ya publicados en «Sobre nosotros».
+
+### Sigue pendiente (no bloquea)
+
+- Analítica concreta (cookieless). Confirmar proveedor y activar.
 - Logo: **el cliente se plantea cambiarlo** → wordmark provisional swappable.
-- Datos oficiales por grado (universidad/ciudad/url/cuota/plazo) — v-futura.
+- Datos oficiales por grado (universidad/ciudad/url/cuota/plazo) — uso interno.
 - **Coste de vida**: cifras reales por partida (comida, transporte, ocio). Solo
   tenemos alojamiento (300-550 €). La guía las deja como "por confirmar".
 - **Salario de facto** por sector para la guía de trabajar-estudiando (no hay

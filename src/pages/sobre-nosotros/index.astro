@@ -1,12 +1,27 @@
 ---
 import Base from '@/layouts/Base.astro';
+import { ruta } from '@/lib/ruta';
 import { SITIO } from '@/config/sitio';
 
-// Testimonios: tenemos los nombres, falta el texto y el permiso (ver PENDIENTE).
 const testimonios = [
-  { nombre: 'Nuria', texto: null },
-  { nombre: 'Javi', texto: null },
-  { nombre: 'Helena', texto: null },
+  {
+    nombre: 'Nuria',
+    perfil: 'Ingeniería General · vive en Copenhague',
+    cita:
+      'Estudio en una de las mejores universidades del mundo, la DTU. Dinamarca me ha dado la oportunidad de estudiar muchísimo, trabajar en algo relacionado con mi carrera y ser económicamente independiente de mis padres. Acabo de graduarme y este año empiezo el máster. Y la gente es majísima: he acabado formando una comunidad increíble.',
+  },
+  {
+    nombre: 'Javier',
+    perfil: 'Economía y Administración de Empresas · Aarhus',
+    cita:
+      'Desde el primer año trabajé en casos reales con empresas. Uno de esos proyectos acabó en un trabajo a tiempo parcial en una de ellas, y además me fui de Erasmus a Canadá. La carrera no se queda en la teoría: te pone delante de problemas de verdad.',
+  },
+  {
+    nombre: 'Helena',
+    perfil: 'Bachillerato Internacional (IB) en un internado',
+    cita:
+      'Venía de cursar el IB en un internado, así que estaba acostumbrada a estudiar en inglés y lejos de casa. El IB me eximió del examen de idioma y me facilitó muchísimo la admisión. Dar el salto a Dinamarca fue el siguiente paso natural, y no me sentí sola en ningún momento del proceso.',
+  },
 ];
 ---
 
@@ -38,13 +53,12 @@ const testimonios = [
       <h2 id="testimonios" class="text-2xl font-semibold text-tinta">Quién ha pasado por aquí</h2>
       <ul class="mt-6 grid gap-4 sm:grid-cols-3">
         {testimonios.map((t) => (
-          <li class="rounded-2xl border border-hielo bg-white p-6">
-            <p class="font-display text-lg font-semibold text-tinta">{t.nombre}</p>
-            {t.texto ? (
-              <blockquote class="mt-2 text-sm text-pizarra">{t.texto}</blockquote>
-            ) : (
-              <p class="mt-2 text-sm italic text-pizarra-400">Testimonio pendiente de publicar.</p>
-            )}
+          <li class="flex h-full flex-col rounded-2xl border border-hielo bg-white p-6">
+            <blockquote class="text-sm text-tinta">«{t.cita}»</blockquote>
+            <div class="mt-4">
+              <p class="font-display text-lg font-semibold text-tinta">{t.nombre}</p>
+              <p class="text-xs text-pizarra">{t.perfil}</p>
+            </div>
           </li>
         ))}
       </ul>
@@ -63,7 +77,7 @@ const testimonios = [
     <div class="mt-14 rounded-3xl bg-tinta p-8 text-white lg:p-12">
       <h2 class="text-2xl font-semibold">¿Hablamos de tu caso?</h2>
       <p class="mt-3 max-w-prosa text-white/80">La primera sesión es gratuita y sin compromiso.</p>
-      <a href="/contacto/" class="cta mt-6">Reserva tu sesión</a>
+      <a href={ruta("/contacto/")} class="cta mt-6">Reserva tu sesión</a>
     </div>
   </section>
 </Base>

@@ -6,8 +6,9 @@ export const SITIO = {
   // Entidad legal: empresa DANESA (ApS), no española. Ver PENDIENTE.md.
   entidadLegal: 'Study and Beyond ApS',
   cvr: '43172794',
-  // TODO(legal): confirmar si se publica esta dirección o se usa otra.
-  domicilio: 'Karen Blixens Boulevard 10, 8220 Brabrand, Aarhus (Dinamarca)',
+  // No se publica la dirección postal (decisión del cliente). Solo ciudad/país;
+  // la dirección completa se define en la revisión legal. Ver PENDIENTE.md.
+  domicilio: 'Aarhus (Dinamarca) — dirección postal por confirmar',
   dominio: 'https://studyandbeyond.es',
   descripcion:
     'Orientación y gestión completa para estudiar un grado en Dinamarca: admisión, alojamiento y acompañamiento en el país.',

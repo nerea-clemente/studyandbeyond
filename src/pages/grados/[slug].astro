@@ -1,12 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
+import { ruta } from '@/lib/ruta';
 import Base from '@/layouts/Base.astro';
 import JsonLd from '@/components/JsonLd.astro';
 import CarrilAdmision from '@/components/CarrilAdmision.astro';
 import { SITIO } from '@/config/sitio';
 import {
-  ETIQUETA_AREA, ETIQUETA_NIVEL, formatoDuracion,
-  ciudadTexto, universidadTexto, jsonLdCurso,
+  ETIQUETA_AREA, ETIQUETA_NIVEL, formatoDuracion, jsonLdCurso,
 } from '@/lib/grados';
 
 export async function getStaticPaths() {
@@ -38,9 +38,9 @@ const descripcionMeta = d.descripcion ??
   <article class="contenedor py-10 lg:py-14">
     <!-- Migas -->
     <nav aria-label="Migas de pan" class="mb-6 text-sm text-pizarra">
-      <a href="/grados/" class="hover:text-tinta">Grados</a>
+      <a href={ruta("/grados/")} class="hover:text-tinta">Grados</a>
       <span aria-hidden="true"> / </span>
-      <a href={`/grados/?area=${d.area}`} class="hover:text-tinta">{ETIQUETA_AREA[d.area]}</a>
+      <a href={ruta(`/grados/?area=${d.area}`)} class="hover:text-tinta">{ETIQUETA_AREA[d.area]}</a>
     </nav>
 
     <div class="grid gap-10 lg:grid-cols-[1fr_20rem] lg:items-start">
@@ -139,8 +139,6 @@ const descripcionMeta = d.descripcion ??
           <div class="flex justify-between gap-4"><dt class="text-pizarra">Créditos</dt><dd class="font-semibold text-tinta">{d.ects} ECTS</dd></div>
           <div class="flex justify-between gap-4"><dt class="text-pizarra">Idioma</dt><dd class="font-semibold text-tinta">{d.idioma}</dd></div>
           <div class="flex justify-between gap-4"><dt class="text-pizarra">Comienzo</dt><dd class="font-semibold text-tinta">{d.comienzo}</dd></div>
-          <div class="flex justify-between gap-4"><dt class="text-pizarra">Universidad</dt><dd class="text-right font-semibold text-tinta">{universidadTexto(d.universidad)}</dd></div>
-          <div class="flex justify-between gap-4"><dt class="text-pizarra">Ciudad</dt><dd class="font-semibold text-tinta">{ciudadTexto(d.ciudad)}</dd></div>
         </dl>
 
         {d.url_oficial ? (
@@ -154,7 +152,7 @@ const descripcionMeta = d.descripcion ??
         <div class="mt-6 rounded-xl bg-tinta p-5 text-white">
           <p class="font-semibold">¿Encaja contigo?</p>
           <p class="mt-1 text-sm text-white/80">Lo vemos en una sesión de asesoramiento, sin compromiso.</p>
-          <a href="/contacto/" class="cta mt-4 w-full text-sm">Reserva tu sesión</a>
+          <a href={ruta("/contacto/")} class="cta mt-4 w-full text-sm">Reserva tu sesión</a>
         </div>
 
         <p class="mt-4 text-xs text-pizarra">Última verificación: {d.ultima_verificacion}.</p>

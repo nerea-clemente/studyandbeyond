@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { ruta } from '@/lib/ruta';
 import Base from '@/layouts/Base.astro';
 
 const guias = (await getCollection('guias', ({ data }) => !data.borrador))
@@ -25,7 +26,7 @@ const guias = (await getCollection('guias', ({ data }) => !data.borrador))
       {guias.map((g) => (
         <li>
           <a
-            href={`/estudiar-en-dinamarca/${g.id}/`}
+            href={ruta(`/estudiar-en-dinamarca/${g.id}/`)}
             class="flex h-full flex-col rounded-2xl border border-hielo bg-white p-6 transition-colors hover:border-cian"
           >
             <h2 class="font-display text-xl font-semibold text-tinta">{g.data.titulo}</h2>

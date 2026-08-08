@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { ruta } from '@/lib/ruta';
 import Base from '@/layouts/Base.astro';
 import JsonLd from '@/components/JsonLd.astro';
 import { SITIO } from '@/config/sitio';
@@ -35,7 +36,7 @@ const articleLd = {
 
   <article class="contenedor py-10 lg:py-14">
     <nav aria-label="Migas de pan" class="mb-6 text-sm text-pizarra">
-      <a href="/blog/" class="hover:text-tinta">Blog</a>
+      <a href={ruta("/blog/")} class="hover:text-tinta">Blog</a>
     </nav>
     <header class="max-w-prosa">
       <time datetime={d.fecha} class="text-xs font-semibold uppercase tracking-wide text-pizarra">{fechaLarga}</time>
