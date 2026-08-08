@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import BuscadorGrados from '@/components/BuscadorGrados.tsx';
+import JsonLd from '@/components/JsonLd.astro';
+import { aIndice } from '@/lib/grados';
+import { SITIO } from '@/config/sitio';
+
+const grados = await getCollection('grados');
+const indice = grados
+  .map(aIndice)
+  .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+
+// JSON-LD: lista de cursos.
+const itemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Grados en Dinamarca',
+  numberOfItems: indice.length,
+  itemListElement: indice.map((g, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `${SITIO.dominio}${g.url}`,
+    name: g.nombre,
+  })),
+};
+---
+
+<Base
+  titulo="Grados en Dinamarca"
+  descripcion={`Busca entre ${indice.length} grados universitarios en Dinamarca en inglés: filtra por área y nivel, con requisitos, duración y salidas de cada uno.`}
+>
+  <JsonLd slot="head" datos={itemList} />
+
+  <section class="contenedor py-10 lg:py-14">
+    <p class="text-sm font-semibold uppercase tracking-wide text-cian">Buscador de grados</p>
+    <h1 class="mt-3 text-display font-semibold text-tinta">
+      {indice.length} grados en Dinamarca, en inglés
+    </h1>
+    <p class="prosa mt-4">
+      Filtra por área y nivel. Cada ficha reúne requisitos, duración, ramas de
+      especialización y salidas laborales, con la fecha de la última verificación.
+    </p>
+    <p class="mt-3 rounded-lg bg-hielo px-4 py-3 text-sm text-pizarra">
+      La universidad y la ciudad de cada grado están por confirmar en esta
+      versión; las incorporamos en cuanto estén verificadas.
+    </p>
+
+    <div class="mt-8">
+      <BuscadorGrados grados={indice} client:load />
+    </div>
+  </section>
+</Base>

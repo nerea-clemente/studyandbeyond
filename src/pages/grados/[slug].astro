@@ -1,0 +1,164 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import CarrilAdmision from '@/components/CarrilAdmision.astro';
+import { SITIO } from '@/config/sitio';
+import {
+  ETIQUETA_AREA, ETIQUETA_NIVEL, formatoDuracion,
+  ciudadTexto, universidadTexto, jsonLdCurso,
+} from '@/lib/grados';
+
+export async function getStaticPaths() {
+  const grados = await getCollection('grados');
+  return grados.map((grado) => ({ params: { slug: grado.id }, props: { grado } }));
+}
+
+const { grado } = Astro.props;
+const d = grado.data;
+
+const ingles = d.requisitos.ingles;
+const filasIngles = [
+  ingles.toefl && ['TOEFL', `mínimo ${ingles.toefl}, con menos de dos años de antigüedad`],
+  ingles.ielts && ['IELTS', `mínimo ${String(ingles.ielts).replace('.', ',')}, con menos de dos años de antigüedad`],
+  ingles.cambridge && ['Cambridge', ingles.cambridge],
+  ingles.exenciones && ['Exenciones', ingles.exenciones],
+].filter(Boolean) as [string, string][];
+
+const descripcionMeta = d.descripcion ??
+  `${d.nombre_es} en Dinamarca: requisitos, duración, ramas y salidas.`;
+---
+
+<Base
+  titulo={d.nombre_es}
+  descripcion={descripcionMeta.slice(0, 155)}
+>
+  <JsonLd slot="head" datos={jsonLdCurso(grado)} />
+
+  <article class="contenedor py-10 lg:py-14">
+    <!-- Migas -->
+    <nav aria-label="Migas de pan" class="mb-6 text-sm text-pizarra">
+      <a href="/grados/" class="hover:text-tinta">Grados</a>
+      <span aria-hidden="true"> / </span>
+      <a href={`/grados/?area=${d.area}`} class="hover:text-tinta">{ETIQUETA_AREA[d.area]}</a>
+    </nav>
+
+    <div class="grid gap-10 lg:grid-cols-[1fr_20rem] lg:items-start">
+      <!-- Columna principal -->
+      <div class="min-w-0">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="rounded-full bg-hielo px-3 py-1 text-xs font-semibold text-tinta">{ETIQUETA_NIVEL[d.nivel]}</span>
+          <span class="rounded-full bg-hielo px-3 py-1 text-xs font-semibold text-tinta">{ETIQUETA_AREA[d.area]}</span>
+          <span class="rounded-full bg-hielo px-3 py-1 text-xs font-semibold text-tinta">{d.idioma}</span>
+        </div>
+
+        <h1 class="mt-4 text-display font-semibold text-tinta">{d.nombre_es}</h1>
+
+        {d.descripcion && <p class="prosa mt-4">{d.descripcion}</p>}
+
+        <CarrilAdmision />
+
+        <!-- Requisitos -->
+        <section aria-labelledby="requisitos" class="mt-10">
+          <h2 id="requisitos" class="text-xl font-semibold text-tinta">Requisitos de acceso</h2>
+
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full border-collapse text-left text-sm">
+              <caption class="sr-only">Requisitos de acceso de {d.nombre_es}</caption>
+              <tbody class="tabular">
+                <tr class="border-b border-hielo bg-hielo/50">
+                  <th scope="row" class="w-40 p-3 align-top font-semibold text-tinta">Nivel de inglés</th>
+                  <td class="p-3">
+                    <ul class="space-y-1">
+                      {filasIngles.map(([k, v]) => (<li><span class="font-semibold">{k}:</span> {v}</li>))}
+                    </ul>
+                  </td>
+                </tr>
+                {d.requisitos.asignaturas.map((asg) => (
+                  <tr class="border-b border-hielo">
+                    <th scope="row" class="p-3 align-top font-semibold text-tinta">{asg.materia}</th>
+                    <td class="p-3">
+                      {asg.horas_minimas ? `${asg.horas_minimas} horas mínimo` : 'Requisito previo'}
+                      {asg.antiguedad ? `, ${asg.antiguedad}` : ''}
+                    </td>
+                  </tr>
+                ))}
+                {d.requisitos.nota_media_minima && (
+                  <tr class="border-b border-hielo">
+                    <th scope="row" class="p-3 align-top font-semibold text-tinta">Nota media</th>
+                    <td class="p-3">{d.requisitos.nota_media_minima}</td>
+                  </tr>
+                )}
+                <tr class="border-b border-hielo">
+                  <th scope="row" class="p-3 align-top font-semibold text-tinta">Examen de admisión</th>
+                  <td class="p-3">{d.requisitos.examen_admision ? 'Sí, forma parte de la selección' : 'No obligatorio'}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Ramas -->
+        {d.ramas_especializacion.length > 0 && (
+          <section aria-labelledby="ramas" class="mt-10">
+            <h2 id="ramas" class="text-xl font-semibold text-tinta">Ramas de especialización</h2>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {d.ramas_especializacion.map((r) => (
+                <li class="rounded-lg border border-hielo px-3 py-2 text-sm text-tinta">{r}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <!-- Salidas -->
+        {d.salidas_laborales.length > 0 && (
+          <section aria-labelledby="salidas" class="mt-10">
+            <h2 id="salidas" class="text-xl font-semibold text-tinta">Salidas laborales</h2>
+            <ul class="prosa mt-4 list-disc space-y-1 pl-5">
+              {d.salidas_laborales.map((s) => (<li>{s}</li>))}
+            </ul>
+          </section>
+        )}
+
+        <!-- Másteres afines -->
+        {d.masteres_afines.length > 0 && (
+          <section aria-labelledby="masteres" class="mt-10">
+            <h2 id="masteres" class="text-xl font-semibold text-tinta">Continúa con un máster</h2>
+            <p class="prosa mt-3 text-sm">
+              Áreas de máster relacionadas: {d.masteres_afines.join(', ')}.
+            </p>
+          </section>
+        )}
+      </div>
+
+      <!-- Barra lateral de datos -->
+      <aside class="rounded-2xl border border-hielo bg-white p-6 lg:sticky lg:top-24">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-cian">Datos del grado</h2>
+        <dl class="mt-4 space-y-3 text-sm tabular">
+          <div class="flex justify-between gap-4"><dt class="text-pizarra">Duración</dt><dd class="font-semibold text-tinta">{formatoDuracion(d.duracion_anios)}</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-pizarra">Créditos</dt><dd class="font-semibold text-tinta">{d.ects} ECTS</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-pizarra">Idioma</dt><dd class="font-semibold text-tinta">{d.idioma}</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-pizarra">Comienzo</dt><dd class="font-semibold text-tinta">{d.comienzo}</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-pizarra">Universidad</dt><dd class="text-right font-semibold text-tinta">{universidadTexto(d.universidad)}</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-pizarra">Ciudad</dt><dd class="font-semibold text-tinta">{ciudadTexto(d.ciudad)}</dd></div>
+        </dl>
+
+        {d.url_oficial ? (
+          <a href={d.url_oficial} rel="noopener" class="cta-secundario mt-6 w-full text-sm">Web oficial</a>
+        ) : (
+          <p class="mt-6 rounded-lg bg-hielo p-3 text-xs text-pizarra">
+            Enlace oficial por confirmar. Te lo facilitamos en la sesión de asesoramiento.
+          </p>
+        )}
+
+        <div class="mt-6 rounded-xl bg-tinta p-5 text-white">
+          <p class="font-semibold">¿Encaja contigo?</p>
+          <p class="mt-1 text-sm text-white/80">Lo vemos en una sesión de asesoramiento, sin compromiso.</p>
+          <a href="/contacto/" class="cta mt-4 w-full text-sm">Reserva tu sesión</a>
+        </div>
+
+        <p class="mt-4 text-xs text-pizarra">Última verificación: {d.ultima_verificacion}.</p>
+      </aside>
+    </div>
+  </article>
+</Base>

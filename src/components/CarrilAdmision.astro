@@ -1,0 +1,73 @@
+---
+// EL CARRIL DE ADMISIÓN — elemento firma (ver DISENO.md).
+// Banda-calendario del proceso de admisión danés. Marca en ámbar las dos
+// fechas límite (las dos cuotas) y en cian el inicio de curso. Sin JS,
+// respeta prefers-reduced-motion.
+//
+// Los plazos exactos por grado están por confirmar; estas son las fechas de
+// referencia del sistema danés (optagelse.dk). Se muestra la fuente y una
+// nota de verificación.
+
+interface Props {
+  // Nota opcional para contextualizar (p. ej. en una ficha concreta).
+  nota?: string;
+  compacto?: boolean;
+}
+const { nota, compacto = false } = Astro.props;
+
+// Hitos en orden, con posición aproximada (%). No se implica precisión de día.
+const hitos = [
+  { pos: 6, etiqueta: 'Otoño', detalle: 'Preparar documentación', tipo: 'inicio' },
+  { pos: 34, etiqueta: '15 marzo', detalle: 'Cuota 2 · fecha límite', tipo: 'plazo' },
+  { pos: 66, etiqueta: '5 julio', detalle: 'Cuota 1 · fecha límite', tipo: 'plazo' },
+  { pos: 82, etiqueta: 'Finales de julio', detalle: 'Respuesta de admisión', tipo: 'hito' },
+  { pos: 96, etiqueta: 'Agosto', detalle: 'Inicio de curso', tipo: 'curso' },
+] as const;
+---
+
+<figure class:list={['not-prose', compacto ? 'my-4' : 'my-8']}>
+  <figcaption class="mb-4 flex items-baseline justify-between gap-3">
+    <span class="text-sm font-semibold uppercase tracking-wide text-cian">
+      Calendario de admisión
+    </span>
+    <span class="text-xs text-pizarra">Referencia · sistema danés</span>
+  </figcaption>
+
+  <div class="overflow-x-auto">
+    <div class="relative min-w-[560px] pb-16 pt-8">
+      <!-- Raíl -->
+      <div class="absolute left-0 right-0 top-10 h-0.5 bg-hielo" aria-hidden="true"></div>
+
+      <ol class="relative">
+        {hitos.map((h) => (
+          <li class="absolute -translate-x-1/2" style={`left:${h.pos}%`}>
+            <div class="flex flex-col items-center text-center">
+              {/* Marca. El plazo va en ámbar (el acento cálido, con avaricia). */}
+              <span
+                class:list={[
+                  'z-10 mt-[6px] block rounded-full ring-4 ring-blanco-frio',
+                  h.tipo === 'plazo' ? 'h-4 w-4 bg-ambar' :
+                  h.tipo === 'curso' ? 'h-4 w-4 bg-cian' :
+                  'h-3 w-3 bg-pizarra-400',
+                ]}
+                aria-hidden="true"
+              ></span>
+              <span
+                class:list={[
+                  'mt-3 whitespace-nowrap text-sm font-semibold tabular',
+                  h.tipo === 'plazo' ? 'text-ambar-700' : 'text-tinta',
+                ]}
+              >{h.etiqueta}</span>
+              <span class="mt-0.5 max-w-[9rem] text-xs leading-tight text-pizarra">{h.detalle}</span>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+
+  <p class="mt-2 text-xs text-pizarra">
+    {nota ?? 'El plazo exacto depende de la cuota de tu solicitud. Confírmalo antes de solicitar.'}
+    {' '}<a href="/estudiar-en-dinamarca/proceso-de-admision/" class="text-cian underline underline-offset-2">Cómo funciona la admisión</a>.
+  </p>
+</figure>
