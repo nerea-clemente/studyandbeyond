@@ -13,7 +13,12 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     mdx(),
-    sitemap(),
+    sitemap({
+      // Fuera del sitemap las páginas noindex (legales, gracias, stub).
+      filter: (page) =>
+        !/\/(aviso-legal|privacidad|cookies|universidades)\/$/.test(page) &&
+        !page.endsWith('/contacto/gracias/'),
+    }),
     tailwind({ applyBaseStyles: false }),
     preact(),
   ],
