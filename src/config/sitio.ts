@@ -20,6 +20,14 @@ export const SITIO = {
   suImporteMensualDKK: 7426,
   ciudadOrigen: 'Aarhus',
   anioFundacion: 2020,
+  // Analítica respetuosa (sin cookies). Mientras esté deshabilitada, el sitio
+  // no carga scripts de terceros ni muestra banner (no hay nada que consentir).
+  // Al configurar Plausible, poner habilitada: true. Ver README.
+  analitica: {
+    habilitada: false,
+    dominio: 'studyandbeyond.es',
+    script: 'https://plausible.io/js/script.js',
+  },
 } as const;
 
 // Navegación principal.

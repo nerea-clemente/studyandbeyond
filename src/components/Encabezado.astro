@@ -1,5 +1,5 @@
 ---
-import { NAV, SITIO } from '@/config/sitio';
+import { NAV } from '@/config/sitio';
 const rutaActual = Astro.url.pathname;
 const activo = (href: string) =>
   href === '/' ? rutaActual === '/' : rutaActual.startsWith(href);
@@ -7,7 +7,7 @@ const activo = (href: string) =>
 
 <header class="border-b border-hielo bg-blanco-frio/95 backdrop-blur supports-[backdrop-filter]:bg-blanco-frio/80 sticky top-0 z-40">
   <div class="contenedor flex h-16 items-center justify-between gap-4">
-    <a href="/" class="flex items-center gap-2" aria-label={`${SITIO.nombre} — inicio`}>
+    <a href="/" class="flex items-center gap-2">
       <!-- Wordmark provisional (el logo definitivo está por decidir). -->
       <span class="font-display text-xl font-semibold tracking-tight text-tinta">
         Study<span class="text-cian">and</span>Beyond

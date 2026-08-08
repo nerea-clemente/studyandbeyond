@@ -3,6 +3,7 @@ import '@/styles/global.css';
 import Seo from '@/components/Seo.astro';
 import Encabezado from '@/components/Encabezado.astro';
 import PieDePagina from '@/components/PieDePagina.astro';
+import BannerConsentimiento from '@/components/BannerConsentimiento.astro';
 
 interface Props {
   titulo: string;
@@ -21,6 +22,7 @@ const { titulo, descripcion, canonical, imagenOg, noindex } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin />
     <Seo {titulo} {descripcion} {canonical} {imagenOg} {noindex} />
     <slot name="head" />
   </head>
@@ -31,5 +33,6 @@ const { titulo, descripcion, canonical, imagenOg, noindex } = Astro.props;
       <slot />
     </main>
     <PieDePagina />
+    <BannerConsentimiento />
   </body>
 </html>

@@ -177,6 +177,7 @@ export default function BuscadorGrados({ grados }: Props) {
         </div>
       </form>
 
+      <h2 class="sr-only">Resultados</h2>
       <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {resultados.map((g) => (
           <li>

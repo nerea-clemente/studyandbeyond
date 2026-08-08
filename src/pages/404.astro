@@ -1,0 +1,21 @@
+---
+import Base from '@/layouts/Base.astro';
+---
+
+<Base
+  titulo="Página no encontrada"
+  descripcion="La página que buscas no existe o se ha movido."
+  noindex={true}
+>
+  <section class="contenedor py-24 text-center">
+    <p class="text-sm font-semibold uppercase tracking-wide text-cian">Error 404</p>
+    <h1 class="mt-3 text-display font-semibold text-tinta">Esta página no existe</h1>
+    <p class="prosa mx-auto mt-4">
+      Puede que el enlace esté roto o que la página se haya movido. Sigue desde aquí:
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="/" class="cta">Ir al inicio</a>
+      <a href="/grados/" class="cta-secundario">Ver los grados</a>
+    </div>
+  </section>
+</Base>

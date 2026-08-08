@@ -14,10 +14,12 @@ export default {
           500: '#164066',
         },
         // Cian nórdico. Enlaces, acentos fríos, estados activos.
+        // DEFAULT ajustado para superar AA (≥4.5:1) como texto sobre claros.
         cian: {
-          DEFAULT: '#1E7FA8',
-          600: '#186A8D',
+          DEFAULT: '#186A8D',
+          600: '#12556F',
           400: '#2E97C2',
+          300: '#7CC4E3',
         },
         // Azul hielo para fondos de sección y cebra de tablas.
         hielo: '#EAF2F6',
@@ -26,7 +28,8 @@ export default {
         // Único acento cálido: plazos, cuenta atrás, CTA. Usar con avaricia.
         ambar: {
           DEFAULT: '#E08A1E',
-          700: '#B96E12',
+          // 700 ajustado para superar AA como texto sobre claros (carril, etc.).
+          700: '#98590E',
           100: '#FBEBD5',
         },
         // Gris azulado para texto secundario y letra pequeña.
