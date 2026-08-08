@@ -17,15 +17,56 @@ antes de publicar. Nada de esto se inventa: o se confirma, o aparece como
   `ultima_verificacion` con la referencia del curso.
 - **Blog**: **sí** desde el día uno.
 
+### Datos verificados (2026-08-08, del contrato + cliente)
+
+- **Entidad legal**: **Study and Beyond ApS** — empresa **danesa** (ApS, no
+  española), **CVR 43172794**. Titular: Nerea Clemente Palacios. Domicilio del
+  contrato: Karen Blixens Boulevard 10, 2.º/3.º, 8220 Brabrand (Aarhus,
+  Dinamarca). ⚠️ Parece domicilio particular → **confirmar si se publica esa
+  dirección** en el aviso legal o se usa otra.
+- **Precio actual**: **1.900 €** (IVA incl.), pago **50 % / 50 %** con garantía
+  de éxito. (El contrato adjunto aún dice 1.400 € y 700+700 → contrato
+  desactualizado respecto al precio nuevo; usar 1.900 € en el sitio.)
+- **Mecánica de la garantía de éxito** (del contrato): el primer pago es a
+  fondo perdido y cubre las gestiones; el segundo solo se abona si se obtiene
+  admisión (en firme o condicionada), en 7 días hábiles desde la oferta, y es
+  debido aunque el cliente no acepte la plaza. Si no hay admisión, no se paga
+  el segundo. → base honesta para "qué pasa si no entras".
+- **Beca SU**: **7.426 DKK/mes antes de impuestos**, condicionada a trabajar
+  **10-12 h/semana** (más las condiciones de estatus de trabajador UE / 5 años
+  de residencia y revisión retroactiva). Presentar SIEMPRE con la condición.
+- **Testimonios**: existen 3 reales — **Nuria**, **Javi**, **Helena**. Falta el
+  **texto de cada testimonio** y el **permiso de uso / apellido o inicial**.
+- **Hosting/deploy**: **GitHub + Netlify** (Netlify Forms para el formulario).
+- **Servicios** (contrato): orientación individual, traducciones juradas,
+  alojamiento, consejos pre/post llegada (seguro médico, CPR, cuenta bancaria,
+  vuelos, teléfono, empleo, solicitud SU).
+
+### ⚠️ Corrección de fondo para los legales
+
+El brief asumía "empresa española". **Es una empresa danesa (ApS)** que presta
+servicios a clientes en España. Implicaciones a resolver con criterio legal:
+- El responsable del tratamiento es una entidad danesa bajo RGPD (aplica en
+  toda la UE), no necesariamente bajo LSSI-CE española. Revisar qué normativa
+  y qué textos legales corresponden.
+- Cláusula sensible del contrato: el cliente autoriza a Study and Beyond a
+  **acceder con sus credenciales** a las plataformas de las universidades para
+  verificar solicitudes. Esto debe reflejarse y revisarse en la política de
+  privacidad.
+- Datos de **menores potenciales** (17 años): base legal y consentimiento.
+
 ### Sigue pendiente (no bloquea el esqueleto)
 
-- Precio del servicio (¿sigue 1.400 €, 700+700, garantía de éxito?).
-- Testimonios reales con permiso de uso.
-- Datos legales: razón social, CIF, domicilio, forma jurídica.
-- Beca SU: cifra vigente y horas mínimas exactas.
-- Hosting, analítica y acceso al DNS de studyandbeyond.es.
-- Logo vectorial y nombre de la tipografía didone del logotipo.
-- Política de "qué pasa si no entras" para `/servicios/`.
+- Texto y permiso de los 3 testimonios (Nuria, Javi, Helena).
+- Analítica concreta (cookieless para evitar/￼simplificar banner). Confirmar.
+- ¿Se publica la dirección de Aarhus en el aviso legal o se usa otra?
+- Logo: **el cliente se plantea cambiarlo** → wordmark provisional swappable.
+- Datos oficiales por grado (universidad/ciudad/url/cuota/plazo) — v-futura.
+
+### Hoja de ruta futura (fuera de v1, indicado por el cliente)
+
+- Másters.
+- **Estudiar el bachillerato en Dinamarca** (gymnasium) como nueva línea.
 
 ---
 
