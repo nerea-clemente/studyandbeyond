@@ -1,0 +1,119 @@
+---
+import Base from '@/layouts/Base.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import { SITIO } from '@/config/sitio';
+
+// Separador de miles manual (independiente de la disponibilidad de ICU).
+const eur = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const precio = eur(SITIO.precioServicio);
+const mitad = eur(SITIO.precioServicio / 2);
+
+const servicios = [
+  { t: 'Orientación académica', d: 'Vemos tu perfil y te presentamos las opciones que encajan. Diseñamos juntos un plan de matrícula para maximizar tus posibilidades de admisión.' },
+  { t: 'Gestión de la admisión', d: 'Nos encargamos del proceso en optagelse.dk y de las traducciones juradas de tus documentos. Solicitamos a las carreras acordadas contigo.' },
+  { t: 'Alojamiento', d: 'Te explicamos el proceso ciudad por ciudad, te asesoramos sobre zonas y precios y empezamos pronto para asegurar plaza antes de que arranque el curso.' },
+  { t: 'Acompañamiento en Dinamarca', d: 'Al llegar: CPR, cuenta bancaria, seguro médico, búsqueda de empleo y solicitud de la beca SU. No te dejamos solo el primer mes.' },
+];
+
+const pasos = [
+  { n: 1, t: 'Sesión de asesoramiento', d: 'Gratuita y sin compromiso. Nos cuentas tu situación y te presentamos las opciones que encajan contigo.' },
+  { n: 2, t: 'Contrato y primer pago', d: 'Firmamos el contrato de servicios y planificamos tu proceso de admisión con un calendario claro.' },
+  { n: 3, t: 'Documentación y matrículas', d: 'Te damos la lista de documentos, gestionamos las traducciones juradas y tramitamos las matrículas.' },
+  { n: 4, t: 'Alojamiento', d: 'Buscamos alojamiento según tus preferencias de zona, precio y distancia, y te ayudamos a elegir.' },
+  { n: 5, t: 'Admisión y preparación', d: 'Al obtener plaza, preparamos el traslado: vuelos, qué llevar y qué documentos pedir antes de venir.' },
+  { n: 6, t: 'Ya en Dinamarca', d: 'Permiso de residencia, cuenta bancaria, empleo y beca SU. Seguimos a tu lado los primeros meses.' },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '¿Cuánto cuesta el servicio?',
+      acceptedAnswer: { '@type': 'Answer', text: `El precio total es de ${precio} € (IVA incluido), en dos pagos del 50 %, sujeto a la garantía de éxito.` },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Qué pasa si no me admiten en ninguna universidad?',
+      acceptedAnswer: { '@type': 'Answer', text: 'El segundo pago solo se abona si obtienes admisión, en firme o condicionada. Si no la consigues, no pagas esa parte; el primer pago cubre las gestiones ya realizadas y no se devuelve.' },
+    },
+  ],
+};
+---
+
+<Base
+  titulo="Servicios y precio"
+  descripcion={`Qué hacemos, cómo y cuánto cuesta: ${precio} € en dos pagos con garantía de éxito. Y qué pasa, con claridad, si no te admiten.`}
+>
+  <JsonLd slot="head" datos={faqLd} />
+
+  <section class="contenedor py-10 lg:py-14">
+    <p class="text-sm font-semibold uppercase tracking-wide text-cian">Servicios</p>
+    <h1 class="mt-3 text-display font-semibold text-tinta">Qué hacemos y qué cuesta</h1>
+    <p class="prosa mt-4">
+      Gestionamos todo tu proceso para que te matricules en una universidad danesa:
+      orientación, admisión, alojamiento y acompañamiento al llegar.
+    </p>
+
+    <!-- Servicios -->
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+      {servicios.map((s) => (
+        <li class="rounded-2xl border border-hielo bg-white p-6">
+          <h2 class="font-display text-lg font-semibold text-tinta">{s.t}</h2>
+          <p class="mt-2 text-sm text-pizarra">{s.d}</p>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Precio -->
+    <section aria-labelledby="precio" class="mt-14 rounded-3xl bg-hielo p-8 lg:p-12">
+      <h2 id="precio" class="text-2xl font-semibold text-tinta">Precio y garantía de éxito</h2>
+      <p class="mt-4 max-w-prosa text-tinta">
+        Un precio único, sin importar a cuántas carreras solicites plaza:
+        <strong class="tabular">{precio} €</strong> (IVA incluido),
+        en dos pagos del 50 %.
+      </p>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-xl bg-white p-5">
+          <p class="text-sm font-semibold text-cian">Primer pago</p>
+          <p class="mt-1 text-2xl font-semibold text-tinta tabular">{mitad} €</p>
+          <p class="mt-2 text-sm text-pizarra">Al firmar el contrato. Cubre las gestiones y trámites del proceso.</p>
+        </div>
+        <div class="rounded-xl bg-white p-5">
+          <p class="text-sm font-semibold text-cian">Segundo pago</p>
+          <p class="mt-1 text-2xl font-semibold text-tinta tabular">{mitad} €</p>
+          <p class="mt-2 text-sm text-pizarra">Solo si obtienes plaza, en firme o condicionada, en una de las universidades elegidas.</p>
+        </div>
+      </div>
+
+      <div class="aviso-condicion mt-6">
+        <strong>¿Qué pasa si no entras?</strong> Si no consigues admisión en
+        ninguna de las universidades elegidas, <strong>no abonas el segundo pago</strong>.
+        El primer pago no se devuelve, porque cubre las gestiones ya realizadas.
+        No prometemos una plaza garantizada: prometemos gestionar bien tu proceso
+        para maximizar tus posibilidades.
+      </div>
+    </section>
+
+    <!-- Proceso -->
+    <section aria-labelledby="proceso" class="mt-14">
+      <h2 id="proceso" class="text-2xl font-semibold text-tinta">El proceso, paso a paso</h2>
+      <ol class="mt-6 grid gap-4 sm:grid-cols-2">
+        {pasos.map((p) => (
+          <li class="rounded-2xl border border-hielo bg-white p-6">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-tinta text-sm font-semibold text-white tabular">{p.n}</span>
+            <h3 class="mt-3 font-display text-lg font-semibold text-tinta">{p.t}</h3>
+            <p class="mt-2 text-sm text-pizarra">{p.d}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <div class="mt-14 rounded-3xl bg-tinta p-8 text-white lg:p-12">
+      <h2 class="text-2xl font-semibold">Empecemos por la sesión gratuita</h2>
+      <p class="mt-3 max-w-prosa text-white/80">Sin compromiso. Te contamos si Dinamarca encaja contigo antes de nada.</p>
+      <a href="/contacto/" class="cta mt-6">Reserva tu sesión</a>
+    </div>
+  </section>
+</Base>

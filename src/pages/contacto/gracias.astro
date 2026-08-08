@@ -1,0 +1,21 @@
+---
+import Base from '@/layouts/Base.astro';
+---
+
+<Base
+  titulo="Solicitud recibida"
+  descripcion="Hemos recibido tu solicitud de sesión de asesoramiento."
+  noindex={true}
+>
+  <section class="contenedor py-20 text-center">
+    <h1 class="text-display font-semibold text-tinta">¡Gracias! Hemos recibido tu mensaje</h1>
+    <p class="prosa mx-auto mt-4">
+      Te escribiremos pronto al correo que nos has dejado para concretar tu sesión
+      de asesoramiento. Mientras tanto, puedes seguir explorando los grados y las guías.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="/grados/" class="cta">Explora los grados</a>
+      <a href="/estudiar-en-dinamarca/" class="cta-secundario">Lee las guías</a>
+    </div>
+  </section>
+</Base>
