@@ -6,6 +6,27 @@ antes de publicar. Nada de esto se inventa: o se confirma, o aparece como
 
 Última actualización: 2026-08-08 (fase 1 — inventario).
 
+## Decisiones tomadas por Nerea (2026-08-08)
+
+- **Universidades**: se publica **sin universidad/ciudad** en v1 → ambos campos
+  opcionales, se muestran como "Por confirmar". `/universidades/` queda como
+  stub sin fichas hasta tener los nombres.
+- **Alcance v1**: **solo grados** (41 programas). Los másters, a v2.
+- **Vigencia de datos**: el cliente confirma que los datos del curso 2022-2023
+  **siguen vigentes hoy**. Se publican como válidos; se conserva
+  `ultima_verificacion` con la referencia del curso.
+- **Blog**: **sí** desde el día uno.
+
+### Sigue pendiente (no bloquea el esqueleto)
+
+- Precio del servicio (¿sigue 1.400 €, 700+700, garantía de éxito?).
+- Testimonios reales con permiso de uso.
+- Datos legales: razón social, CIF, domicilio, forma jurídica.
+- Beca SU: cifra vigente y horas mínimas exactas.
+- Hosting, analítica y acceso al DNS de studyandbeyond.es.
+- Logo vectorial y nombre de la tipografía didone del logotipo.
+- Política de "qué pasa si no entras" para `/servicios/`.
+
 ---
 
 ## 1. Bloqueantes para la ficha de grado (el núcleo del sitio)
