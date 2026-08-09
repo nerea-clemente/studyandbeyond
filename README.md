@@ -110,19 +110,22 @@ visitante acepta.
 
 ## Ver una vista previa en GitHub Pages
 
-Hay un workflow (`.github/workflows/deploy-pages.yml`) que construye el sitio y
-lo publica en GitHub Pages con la base `/studyandbeyond`. Para activarlo, **una
-vez**:
+Hay un workflow (`.github/workflows/deploy-pages.yml`) que construye el sitio
+(con base `/studyandbeyond`) y publica el resultado ya compilado en una rama
+**`gh-pages`**. Para verlo, **una vez**:
 
-1. En GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-2. Cada push a la rama de trabajo (o a `main`) dispara el despliegue. También
-   puedes lanzarlo a mano en **Actions → Desplegar en GitHub Pages → Run workflow**.
-3. La URL de vista previa será
-   `https://nerea-clemente.github.io/studyandbeyond/`.
+1. Espera a que el workflow **«Desplegar en GitHub Pages»** termine en verde
+   (pestaña **Actions**). Crea/actualiza la rama `gh-pages`.
+2. En GitHub: **Settings → Pages → Build and deployment**:
+   - **Source: Deploy from a branch**
+   - **Branch: `gh-pages`** · carpeta **`/ (root)`** → **Save**.
+3. En ~1 min la vista previa estará en
+   **`https://nerea-clemente.github.io/studyandbeyond/`**.
 
-> Si GitHub avisa de que la rama no puede desplegar por reglas del entorno
-> `github-pages`, permite esa rama en **Settings → Environments → github-pages**,
-> o haz merge a `main`.
+> Importante: hay que apuntar Pages a la rama **`gh-pages`** (el sitio ya
+> construido), **no** a la rama del código fuente. Si apuntas al código fuente,
+> GitHub intenta compilarlo con Jekyll y falla (da 404), porque esto es un
+> proyecto Astro, no un sitio Jekyll.
 
 Nota: en GitHub Pages el **formulario de contacto no procesa envíos** (eso lo
 hace Netlify Forms). Pages sirve solo para ver el sitio. El despliegue de
