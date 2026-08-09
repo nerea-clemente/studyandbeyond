@@ -18,21 +18,52 @@ const fechaLarga = new Date(d.fecha + 'T00:00:00').toLocaleDateString('es-ES', {
   day: 'numeric', month: 'long', year: 'numeric',
 });
 
+const url = `${SITIO.dominio}/blog/${post.id}/`;
+
 const articleLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: d.titulo,
   description: d.descripcion,
   datePublished: d.fecha,
-  inLanguage: 'es',
-  author: { '@type': 'Organization', name: d.autor },
-  publisher: { '@type': 'Organization', name: SITIO.entidadLegal },
-  mainEntityOfPage: `${SITIO.dominio}/blog/${post.id}/`,
+  inLanguage: 'es-ES',
+  keywords: d.etiquetas.join(', '),
+  author: { '@type': 'Organization', name: d.autor, url: SITIO.dominio },
+  publisher: {
+    '@type': 'Organization',
+    name: SITIO.entidadLegal,
+    logo: { '@type': 'ImageObject', url: new URL('/og/default.png', SITIO.dominio).href },
+  },
+  mainEntityOfPage: url,
 };
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITIO.dominio + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITIO.dominio}/blog/` },
+    { '@type': 'ListItem', position: 3, name: d.titulo, item: url },
+  ],
+};
+
+const faqLd = d.faq.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: d.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.pregunta,
+        acceptedAnswer: { '@type': 'Answer', text: f.respuesta },
+      })),
+    }
+  : null;
+
+const datosLd = [articleLd, breadcrumbLd, ...(faqLd ? [faqLd] : [])];
 ---
 
-<Base titulo={d.titulo} descripcion={d.descripcion}>
-  <JsonLd slot="head" datos={articleLd} />
+<Base titulo={d.titulo} descripcion={d.descripcion} tipoOg="article">
+  <JsonLd slot="head" datos={datosLd} />
 
   <article class="contenedor py-10 lg:py-14">
     <nav aria-label="Migas de pan" class="mb-6 text-sm text-slate">

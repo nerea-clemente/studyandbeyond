@@ -116,6 +116,10 @@ const blog = defineCollection({
     fecha: z.string(),
     autor: z.string().default('Study and Beyond'),
     etiquetas: z.array(z.string()).default([]),
+    // Preguntas frecuentes del post -> JSON-LD FAQPage (SEO/GEO).
+    faq: z
+      .array(z.object({ pregunta: z.string(), respuesta: z.string() }))
+      .default([]),
     borrador: z.boolean().default(false),
   }),
 });

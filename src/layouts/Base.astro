@@ -21,9 +21,10 @@ interface Props {
   canonical?: string;
   imagenOg?: string;
   noindex?: boolean;
+  tipoOg?: 'website' | 'article';
 }
 
-const { titulo, descripcion, canonical, imagenOg, noindex } = Astro.props;
+const { titulo, descripcion, canonical, imagenOg, noindex, tipoOg } = Astro.props;
 ---
 
 <!doctype html>
@@ -35,7 +36,7 @@ const { titulo, descripcion, canonical, imagenOg, noindex } = Astro.props;
     <link rel="preload" href={jakarta} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={mono} as="font" type="font/woff2" crossorigin />
     <style is:inline set:html={fontFaces}></style>
-    <Seo {titulo} {descripcion} {canonical} {imagenOg} {noindex} />
+    <Seo {titulo} {descripcion} {canonical} {imagenOg} {noindex} {tipoOg} />
     <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col">

@@ -10,9 +10,11 @@ interface Props {
   // Imagen OG relativa a la raíz del sitio.
   imagenOg?: string;
   noindex?: boolean;
+  // Tipo Open Graph: 'website' por defecto, 'article' en el blog.
+  tipoOg?: 'website' | 'article';
 }
 
-const { titulo, descripcion, canonical, imagenOg, noindex = false } = Astro.props;
+const { titulo, descripcion, canonical, imagenOg, noindex = false, tipoOg = 'website' } = Astro.props;
 
 // Los canonical/OG deben apuntar SIEMPRE al dominio real, sin el segmento de
 // base del despliegue (p. ej. el /studyandbeyond/ de GitHub Pages).
@@ -35,9 +37,11 @@ const noIndexar = noindex || esVistaPrevia;
 <title>{tituloCompleto}</title>
 <meta name="description" content={descripcion} />
 <link rel="canonical" href={urlCanonica} />
+{!noIndexar && <link rel="alternate" hreflang="es-es" href={urlCanonica} />}
+{!noIndexar && <link rel="alternate" hreflang="x-default" href={urlCanonica} />}
 {noIndexar && <meta name="robots" content="noindex, nofollow" />}
 
-<meta property="og:type" content="website" />
+<meta property="og:type" content={tipoOg} />
 <meta property="og:site_name" content={SITIO.nombre} />
 <meta property="og:title" content={tituloCompleto} />
 <meta property="og:description" content={descripcion} />

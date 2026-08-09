@@ -20,11 +20,31 @@ const organizationLd = {
   name: SITIO.nombre,
   legalName: SITIO.entidadLegal,
   url: SITIO.dominio,
+  logo: new URL('/og/default.png', SITIO.dominio).href,
   email: SITIO.email,
   telephone: SITIO.telefono,
   description: SITIO.descripcion,
-  areaServed: 'ES',
+  areaServed: { '@type': 'Country', name: 'España' },
+  address: { '@type': 'PostalAddress', addressLocality: SITIO.ciudadOrigen, addressCountry: 'DK' },
+  knowsAbout: [
+    'Estudiar en Dinamarca',
+    'Universidades danesas',
+    'Grados universitarios en inglés',
+    'Beca SU',
+    'Admisión universitaria en Dinamarca',
+    'Matrícula gratuita para estudiantes de la UE',
+  ],
   identifier: { '@type': 'PropertyValue', propertyID: 'CVR', value: SITIO.cvr },
+};
+
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITIO.nombre,
+  url: SITIO.dominio,
+  inLanguage: 'es-ES',
+  description: SITIO.descripcion,
+  publisher: { '@type': 'Organization', name: SITIO.entidadLegal },
 };
 
 const golosos = [
@@ -42,10 +62,10 @@ const claves = [
 ---
 
 <Base
-  titulo={SITIO.nombre}
-  descripcion="Estudiar en Dinamarca es más posible de lo que crees: grados en inglés, sin matrícula y con prácticas en empresa. Te acompañamos en todo el proceso, de principio a fin."
+  titulo="Estudiar en Dinamarca desde España"
+  descripcion="Estudia un grado universitario en Dinamarca: en inglés, sin matrícula y con beca del Estado si trabajas unas horas. Te acompañamos en todo el proceso desde España, de principio a fin."
 >
-  <JsonLd slot="head" datos={organizationLd} />
+  <JsonLd slot="head" datos={[organizationLd, websiteLd]} />
 
   <!-- ZONA NAVY · Héroe con fondo de Nyhavn + cifras -->
   <section class="relative isolate overflow-hidden bg-ink text-white">
