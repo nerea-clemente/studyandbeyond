@@ -1,13 +1,13 @@
 ---
-// Calendario de admisión — elemento firma. Cinco pasos del curso, con el 15 de
-// marzo destacado en ámbar. Si faltan menos de 60 días para el 15 de marzo,
-// aparece una cuenta atrás. Fluido (sin scroll horizontal); vertical en móvil.
-import { ruta } from '@/lib/ruta';
-
+// Calendario de admisión — elemento firma del sitio.
+// Cinco hitos del curso. El 15 de marzo es el punto grande, en --sun con anillo,
+// y pulsa cuando faltan menos de 60 días. Las fechas van en DM Mono (única
+// aparición de la monoespaciada). `grande` lo agranda para la banda del home;
+// por defecto es compacto (ficha de grado).
 interface Props {
-  compacto?: boolean;
+  grande?: boolean;
 }
-const { compacto = false } = Astro.props;
+const { grande = false } = Astro.props;
 
 const hitos = [
   { etiqueta: 'Cuanto antes', detalle: 'Arrancamos el trámite', tono: 'normal' },
@@ -17,53 +17,72 @@ const hitos = [
   { etiqueta: 'Agosto', detalle: 'Empiezas en Dinamarca', tono: 'inicio' },
 ] as const;
 
-const dot = (t: string) =>
-  t === 'plazo' ? 'h-5 w-5 bg-deadline' : t === 'inicio' ? 'h-4 w-4 bg-marine' : 'h-3 w-3 bg-slate-400';
+const punto = (t: string) =>
+  t === 'plazo'
+    ? (grande ? 'h-7 w-7 bg-sun ring-4 ring-sun/30' : 'h-6 w-6 bg-sun ring-4 ring-sun/30')
+    : t === 'inicio'
+      ? 'h-4 w-4 bg-marine'
+      : 'h-4 w-4 bg-slate';
 ---
 
-<figure class:list={['not-prose', compacto ? 'my-4' : 'my-6']} data-calendario>
-  <figcaption class="mb-5 flex flex-wrap items-baseline justify-between gap-2">
-    <span class="etiqueta text-marine">Calendario de admisión</span>
-    <span class="dato bg-deadline-100 px-2 py-1 text-xs text-deadline-700" data-cuenta hidden></span>
+<figure class:list={['not-prose', grande ? 'mt-10' : 'my-6']} data-calendario>
+  <figcaption class="mb-6 flex flex-wrap items-baseline justify-between gap-2">
+    <span class:list={['etiqueta text-marine', grande && 'text-sm']}>Calendario de admisión</span>
+    <span class="fecha-mono rounded-full bg-sun-100 px-3 py-1 text-xs text-deadline-700" data-cuenta hidden></span>
   </figcaption>
 
-  <!-- Escritorio: eje horizontal fluido -->
+  <!-- Escritorio: eje horizontal -->
   <div class="relative hidden sm:block">
-    <div class="absolute left-[10%] right-[10%] top-[9px] h-px bg-hairline" aria-hidden="true"></div>
-    <ol class="relative grid grid-cols-5 gap-3 text-center">
+    <div class="absolute left-[9%] right-[9%] top-[13px] h-[2px] bg-hairline" aria-hidden="true"></div>
+    <ol class="relative grid grid-cols-5 gap-4 text-center">
       {hitos.map((h) => (
         <li class="flex flex-col items-center">
-          <span class:list={['block rounded-full ring-4 ring-paper', dot(h.tono)]} aria-hidden="true"></span>
-          <span class:list={['dato mt-3', h.tono === 'plazo' ? 'text-[15px] font-semibold text-deadline-700' : 'text-[13px] text-ink']}>{h.etiqueta}</span>
-          <span class="mt-1 text-xs leading-tight text-slate">{h.detalle}</span>
+          <span
+            data-punto={h.tono}
+            class:list={['block rounded-full ring-4', grande ? 'ring-aqua' : 'ring-paper', punto(h.tono)]}
+            aria-hidden="true"
+          ></span>
+          <span class:list={['fecha-mono mt-4', h.tono === 'plazo' ? 'text-deadline-700' : 'text-ink', grande ? 'text-lg sm:text-xl' : 'text-sm']}>{h.etiqueta}</span>
+          <span class:list={['mt-1 text-slate', grande ? 'text-sm sm:text-base' : 'text-xs']}>{h.detalle}</span>
         </li>
       ))}
     </ol>
   </div>
 
   <!-- Móvil: eje vertical -->
-  <ol class="ml-2 border-l border-hairline sm:hidden">
+  <ol class="ml-2 border-l-2 border-hairline sm:hidden">
     {hitos.map((h) => (
-      <li class="relative py-2 pl-5">
-        <span class:list={['absolute top-3 block rounded-full ring-4 ring-paper', dot(h.tono), h.tono === 'plazo' ? '-left-[10px]' : '-left-[7px]']} aria-hidden="true"></span>
-        <span class:list={['dato', h.tono === 'plazo' ? 'font-semibold text-deadline-700' : 'text-ink']}>{h.etiqueta}</span>
-        <span class="ml-2 text-sm text-slate">{h.detalle}</span>
+      <li class="relative py-3 pl-6">
+        <span
+          data-punto={h.tono}
+          class:list={['absolute top-4 block rounded-full ring-4', grande ? 'ring-aqua' : 'ring-paper', punto(h.tono), h.tono === 'plazo' ? '-left-[15px]' : '-left-[9px]']}
+          aria-hidden="true"
+        ></span>
+        <span class:list={['fecha-mono block', h.tono === 'plazo' ? 'text-deadline-700' : 'text-ink', grande ? 'text-lg' : 'text-sm']}>{h.etiqueta}</span>
+        <span class="text-sm text-slate">{h.detalle}</span>
       </li>
     ))}
   </ol>
 </figure>
 
 <script>
-  // Cuenta atrás al próximo 15 de marzo cuando falten menos de 60 días.
+  // Cuenta atrás al próximo 15 de marzo. Si faltan menos de 60 días, muestra el
+  // aviso y hace pulsar el punto del plazo.
   document.querySelectorAll('[data-calendario]').forEach((cal) => {
     const hoy = new Date();
     let marzo = new Date(hoy.getFullYear(), 2, 15);
     if (hoy > marzo) marzo = new Date(hoy.getFullYear() + 1, 2, 15);
     const dias = Math.ceil((marzo.getTime() - hoy.getTime()) / 86400000);
-    const cuenta = cal.querySelector('[data-cuenta]');
-    if (cuenta instanceof HTMLElement && dias > 0 && dias < 60) {
-      cuenta.textContent = `Quedan ${dias} días para el 15 de marzo`;
-      cuenta.hidden = false;
+    if (dias > 0 && dias < 60) {
+      const cuenta = cal.querySelector('[data-cuenta]');
+      if (cuenta instanceof HTMLElement) {
+        cuenta.textContent = `Quedan ${dias} días para el 15 de marzo`;
+        cuenta.hidden = false;
+      }
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce) {
+        cal.querySelectorAll('[data-punto="plazo"]').forEach((p) => p.classList.add('animate-pulso'));
+      }
     }
   });
 </script>

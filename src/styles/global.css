@@ -7,14 +7,14 @@
 
 @layer base {
   :root {
-    --ink: #0e2233;
-    --marine: #16537e;
-    --frost: #eaf1f6;
+    --navy: #0b2540;
+    --blue: #1466c4;
+    --turq: #12bfb6;
+    --aqua: #e4f7f5;
+    --sun: #ffc24b;
+    --slate: #5b7183;
+    --line: #d3e1e8;
     --paper: #ffffff;
-    --slate: #516472;
-    --hairline: #c6d2da;
-    --deadline: #c2701b;
-    --deadline-t: #8f5210;
   }
 
   html { scroll-behavior: smooth; }
@@ -22,24 +22,32 @@
   body {
     @apply bg-paper text-ink font-sans antialiased;
     font-size: 17px;
-    line-height: 1.6;
+    line-height: 1.65;
     text-rendering: optimizeLegibility;
   }
-  @media (min-width: 1024px) { body { font-size: 18px; } }
+  @media (min-width: 1024px) { body { font-size: 19px; } }
 
+  /* Titulares grandes en Space Grotesk (análogo a Clash Display). */
   h1, h2, h3, h4 { @apply font-display; text-wrap: balance; }
-  h1, h2 { letter-spacing: -0.015em; }
+  h1 { letter-spacing: -0.03em; line-height: 0.98; }
+  h2 { letter-spacing: -0.02em; line-height: 1.05; }
+
+  /* Cuerpo con medida cómoda por defecto en contenido largo. */
+  p { text-wrap: pretty; }
 
   /* Foco de teclado con forma propia. */
   :focus-visible {
-    outline: 3px solid var(--marine);
-    outline-offset: 2px;
-    border-radius: 2px;
+    outline: 3px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
-  /* Datos en monoespaciado y tabular: fechas, ECTS, notas, importes. */
-  .dato { @apply font-mono; font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; letter-spacing: 0; }
+  /* Cifras y datos: Plus Jakarta con numeración tabular (ya no monoespaciada).
+     La monoespaciada (DM Mono) queda reservada al calendario de admisión. */
+  .dato { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
   .tabular { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
+  /* Fechas del calendario: única aparición de la monoespaciada. */
+  .fecha-mono { @apply font-mono; font-variant-numeric: tabular-nums; }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -48,6 +56,7 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+    .reveal { opacity: 1 !important; transform: none !important; }
   }
 }
 
@@ -55,61 +64,105 @@
   .contenedor { @apply mx-auto w-full max-w-contenido px-5 sm:px-6 lg:px-8; }
   .prosa { @apply max-w-prosa text-ink; }
 
+  /* Ritmo vertical entre secciones: 80px móvil, 128px escritorio. */
+  .ritmo { @apply py-20 lg:py-32; }
+
   .saltar-contenido { @apply sr-only; }
-  .saltar-contenido:focus { @apply not-sr-only fixed left-4 top-4 z-50 rounded bg-ink px-4 py-2 text-white; }
+  .saltar-contenido:focus { @apply not-sr-only fixed left-4 top-4 z-50 rounded-full bg-ink px-4 py-2 text-white; }
 
-  /* Etiqueta pequeña (versalitas). */
-  .etiqueta { @apply text-xs font-semibold uppercase text-slate; letter-spacing: 0.08em; }
+  /* Etiqueta pequeña (versalitas). El color lo pone cada uso. */
+  .etiqueta { @apply text-xs font-bold uppercase; letter-spacing: 0.1em; }
 
-  /* CTA primaria: azul de marca. El ámbar NO se usa aquí (es solo para plazos). */
+  /* Pastilla de categoría/área: turquesa con texto navy (cumple AA). */
+  .pastilla {
+    @apply inline-flex items-center rounded-full bg-turq px-3 py-1 text-xs font-bold text-ink;
+    letter-spacing: 0.02em;
+  }
+
+  /* Botones. Primario azul; secundario contorno navy; turquesa el de más
+     energía. Sin sombra en reposo; hover eleva 1px y oscurece. */
   .cta {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-marine px-6 py-3
-           font-semibold text-white transition-colors hover:bg-marine-700;
+           font-bold text-white transition-all duration-150 hover:bg-marine-700 hover:-translate-y-px;
     min-height: 44px;
   }
   .cta-secundario {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-marine
-           px-6 py-3 font-semibold text-marine transition-colors hover:bg-marine hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink
+           px-6 py-3 font-bold text-ink transition-all duration-150 hover:bg-ink hover:text-white hover:-translate-y-px;
+    min-height: 44px;
+  }
+  .cta-turq {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-turq px-6 py-3
+           font-bold text-ink transition-all duration-150 hover:bg-turq-600 hover:-translate-y-px;
     min-height: 44px;
   }
 
-  /* 5.2 · Bloque de condición: filete marine + fondo frost. Sin color de alarma. */
+  /* Enlace de texto: subrayado turquesa de 3px que se dibuja de izq. a der. */
+  .link-sub {
+    background-image: linear-gradient(var(--turq), var(--turq));
+    background-size: 0% 3px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 200ms ease;
+    @apply font-semibold text-marine;
+  }
+  .link-sub:hover { background-size: 100% 3px; }
+
+  /* Tarjeta: radio 20px, sin sombra en reposo, elevación al hover. */
+  .tarjeta {
+    @apply rounded-tarjeta border border-hairline bg-paper transition-all duration-150;
+  }
+  .tarjeta-hover:hover { @apply -translate-y-0.5 shadow-flotante; }
+
+  /* Aparición de sección: 12px hacia arriba, una sola vez. Solo con JS. */
+  .js .reveal { opacity: 0; transform: translateY(12px); }
+  .js .reveal.visible { opacity: 1; transform: translateY(0); transition: opacity 500ms ease, transform 500ms ease; }
+
+  /* Bloque de condición: filete azul + fondo aqua, texto navy (AA sobre aqua). */
   .bloque-condicion, .aviso-condicion {
-    @apply my-6 rounded-2xl border-l-[4px] border-marine bg-frost px-5 py-4 text-ink;
+    @apply my-6 rounded-tarjeta border-l-[4px] border-marine bg-aqua px-5 py-4 text-ink;
   }
   .bloque-condicion::before, .aviso-condicion::before {
     content: 'Condición';
-    @apply mb-1 block text-xs font-semibold uppercase text-marine;
-    letter-spacing: 0.08em;
+    @apply mb-1 block text-xs font-bold uppercase text-marine;
+    letter-spacing: 0.1em;
   }
 
-  /* Nota neutra (sin etiqueta "Condición"). */
-  .nota { @apply my-6 border-l-[3px] border-hairline bg-frost px-5 py-4 text-slate; }
+  /* Nota neutra. */
+  .nota { @apply my-6 rounded-tarjeta border-l-[3px] border-hairline bg-aqua px-5 py-4 text-slate; }
 
-  /* 5.3 · Línea de verificación: una línea en mono, gris, al pie de los datos. */
+  /* Línea de verificación (si se usa). */
   .linea-verificacion {
-    @apply mt-6 border-t border-hairline pt-3 font-mono text-slate;
+    @apply mt-6 border-t border-hairline pt-3 text-slate;
     font-size: 14px;
   }
   .linea-verificacion a { @apply text-marine underline underline-offset-2; }
 
-  /* 5.1 · Ficha de datos: filas etiqueta/valor separadas por filete, valor en mono. */
+  /* Ficha de datos: filas etiqueta/valor, valor con numeración tabular. */
   .ficha-datos { @apply divide-y divide-hairline border-y border-hairline; }
-  .ficha-datos > div { @apply flex items-baseline justify-between gap-4 py-2.5; }
+  .ficha-datos > div { @apply flex items-baseline justify-between gap-4 py-3; }
   .ficha-datos dt { @apply text-sm text-slate; }
-  .ficha-datos dd { @apply font-mono text-sm text-ink; font-variant-numeric: tabular-nums; }
+  .ficha-datos dd { @apply text-sm font-bold text-ink; font-variant-numeric: tabular-nums; }
 
   /* Contenido MDX (guías y blog). */
   .contenido-mdx { @apply max-w-prosa text-ink; }
   .contenido-mdx > * + * { @apply mt-4; }
-  .contenido-mdx h2 { @apply mt-10 text-2xl font-bold text-ink; }
-  .contenido-mdx h3 { @apply mt-8 text-xl font-semibold text-ink; }
-  .contenido-mdx a { @apply text-marine underline underline-offset-2 hover:text-marine-700; }
+  .contenido-mdx h2 { @apply mt-12 text-3xl font-bold text-ink; }
+  .contenido-mdx h3 { @apply mt-8 text-xl font-bold text-ink; }
+  .contenido-mdx a {
+    @apply font-semibold text-marine;
+    background-image: linear-gradient(var(--turq), var(--turq));
+    background-size: 0% 3px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 200ms ease;
+  }
+  .contenido-mdx a:hover { background-size: 100% 3px; }
   .contenido-mdx ul { @apply list-disc space-y-1 pl-5; }
   .contenido-mdx ol { @apply list-decimal space-y-1 pl-5; }
-  .contenido-mdx strong { @apply font-semibold text-ink; }
-  .contenido-mdx blockquote { @apply border-l-[3px] border-marine bg-frost px-4 py-2 text-slate; }
+  .contenido-mdx strong { @apply font-bold text-ink; }
+  .contenido-mdx blockquote { @apply rounded-tarjeta border-l-[3px] border-turq bg-aqua px-4 py-2 text-slate; }
   .contenido-mdx table { @apply my-6 w-full border-collapse text-left text-sm; }
-  .contenido-mdx th { @apply border-b border-hairline bg-frost p-3 font-semibold text-ink; }
+  .contenido-mdx th { @apply border-b border-hairline bg-aqua p-3 font-bold text-ink; }
   .contenido-mdx td { @apply border-b border-hairline p-3 align-top; font-variant-numeric: tabular-nums; }
 }
