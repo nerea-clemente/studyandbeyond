@@ -45,23 +45,19 @@ export default {
         prosa: '68ch',
         contenido: '1120px',
       },
+      // Geometría fluida (como los brochures): esquinas redondeadas y sombras
+      // suaves para dar profundidad.
       borderRadius: {
-        // Geometría contenida: radio máximo 4 px.
-        DEFAULT: '4px',
-        sm: '2px',
-        md: '4px',
-        lg: '4px',
-        xl: '4px',
-        '2xl': '4px',
-        '3xl': '4px',
+        DEFAULT: '0.5rem',
+        xl: '1rem',
+        '2xl': '1.5rem',
+        '3xl': '2rem',
       },
       boxShadow: {
-        // Sin sombras: la separación se resuelve con filetes.
-        none: 'none',
-        sm: 'none',
-        DEFAULT: 'none',
-        md: 'none',
-        lg: 'none',
+        suave: '0 10px 30px -12px rgba(14, 34, 51, 0.18)',
+      },
+      keyframes: {
+        flotar: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
       },
     },
   },

@@ -1,5 +1,5 @@
 ---
-import { NAV, SITIO } from '@/config/sitio';
+import { NAV, NAV_PIE, SITIO } from '@/config/sitio';
 import { ruta } from '@/lib/ruta';
 const anio = 2026; // Se actualiza en build; evita depender de Date en SSG.
 ---
@@ -16,7 +16,7 @@ const anio = 2026; // Se actualiza en build; evita depender de Date en SSG.
     <nav aria-label="Pie" class="text-sm">
       <p class="mb-3 font-semibold text-white">Navegación</p>
       <ul class="space-y-2">
-        {NAV.map((item) => (
+        {[...NAV, ...NAV_PIE].map((item) => (
           <li><a class="text-white/70 hover:text-white" href={ruta(item.href)}>{item.texto}</a></li>
         ))}
       </ul>
@@ -43,7 +43,7 @@ const anio = 2026; // Se actualiza en build; evita depender de Date en SSG.
   <div class="border-t border-white/10">
     <div class="contenedor flex flex-col gap-1 py-6 text-xs text-white/50">
       <p>© {anio} {SITIO.entidadLegal} · CVR {SITIO.cvr}</p>
-      <p>Empresa danesa. Estudia un grado en Dinamarca desde {SITIO.ciudadOrigen}.</p>
+      <p>{SITIO.entidadLegal} · Empresa danesa con base en {SITIO.ciudadOrigen}.</p>
     </div>
   </div>
 </footer>

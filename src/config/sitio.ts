@@ -43,8 +43,13 @@ export const NAV = [
     ],
   },
   { texto: 'Grados', href: '/grados/' },
-  { texto: 'Servicios', href: '/servicios/' },
+  { texto: 'Servicios y precio', href: '/servicios/' },
+  { texto: 'Historias', href: '/historias/' },
   { texto: 'Sobre mí', href: '/sobre-mi/' },
+] as const;
+
+// Enlaces solo en el pie (hasta que el blog tenga más contenido).
+export const NAV_PIE = [
   { texto: 'Blog', href: '/blog/' },
   { texto: 'Contacto', href: '/contacto/' },
 ] as const;

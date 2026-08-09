@@ -33,6 +33,8 @@ const { titulo, descripcion, canonical, imagenOg, noindex } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href={ruta('/favicon.svg')} type="image/svg+xml" />
     <link rel="preload" href={inter} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={space} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={mono} as="font" type="font/woff2" crossorigin />
     <style is:inline set:html={fontFaces}></style>
     <Seo {titulo} {descripcion} {canonical} {imagenOg} {noindex} />
     <slot name="head" />

@@ -63,19 +63,19 @@
 
   /* CTA primaria: azul de marca. El ámbar NO se usa aquí (es solo para plazos). */
   .cta {
-    @apply inline-flex items-center justify-center gap-2 rounded bg-marine px-5 py-3
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-marine px-6 py-3
            font-semibold text-white transition-colors hover:bg-marine-700;
     min-height: 44px;
   }
   .cta-secundario {
-    @apply inline-flex items-center justify-center gap-2 rounded border border-marine
-           px-5 py-3 font-semibold text-marine transition-colors hover:bg-marine hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-marine
+           px-6 py-3 font-semibold text-marine transition-colors hover:bg-marine hover:text-white;
     min-height: 44px;
   }
 
   /* 5.2 · Bloque de condición: filete marine + fondo frost. Sin color de alarma. */
   .bloque-condicion, .aviso-condicion {
-    @apply my-6 border-l-[3px] border-marine bg-frost px-5 py-4 text-ink;
+    @apply my-6 rounded-2xl border-l-[4px] border-marine bg-frost px-5 py-4 text-ink;
   }
   .bloque-condicion::before, .aviso-condicion::before {
     content: 'Condición';

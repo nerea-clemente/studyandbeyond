@@ -2,29 +2,13 @@
 import Base from '@/layouts/Base.astro';
 import { ruta } from '@/lib/ruta';
 import { SITIO } from '@/config/sitio';
+import { HISTORIAS } from '@/config/historias';
 
-// Testimonios reales (sin foto, por decisión del cliente). Helena corresponde
-// al futuro servicio de bachillerato en el extranjero.
-const testimonios = [
-  {
-    nombre: 'Nuria',
-    perfil: 'Ingeniería General · vive en Copenhague',
-    cita:
-      'Estudio en una de las mejores universidades del mundo, la DTU. Dinamarca me ha dado la oportunidad de estudiar muchísimo, trabajar en algo relacionado con mi carrera y ser económicamente independiente de mis padres. Acabo de graduarme y este año empiezo el máster. Y la gente es majísima: he acabado formando una comunidad increíble.',
-  },
-  {
-    nombre: 'Javier',
-    perfil: 'Economía y Administración de Empresas · Aarhus',
-    cita:
-      'Desde el primer año trabajé en casos reales con empresas. Uno de esos proyectos acabó en un trabajo a tiempo parcial en una de ellas, y además me fui de Erasmus a Canadá. La carrera no se queda en la teoría: te pone delante de problemas de verdad.',
-  },
-  {
-    nombre: 'Helena',
-    perfil: 'Bachillerato Internacional en un internado · llegó con 16 años',
-    cita:
-      'Me vine a Dinamarca con 16 años a cursar el Bachillerato Internacional en un internado. Estudiar en inglés y vivir fuera de casa tan joven me dio una soltura que ahora, en la universidad, marca la diferencia. Fue el mejor trampolín posible.',
-  },
-];
+const testimonios = HISTORIAS.map((h) => ({
+  nombre: h.nombre,
+  perfil: [h.carrera, h.ciudad].filter(Boolean).join(' · '),
+  cita: h.cita,
+}));
 ---
 
 <Base

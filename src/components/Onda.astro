@@ -1,0 +1,15 @@
+---
+// Divisor de onda orgánica entre secciones (estilo brochure).
+// `arriba` = color de fondo de la sección de arriba; `abajo` = color de la onda
+// (la sección de abajo), que "sube" con forma curva.
+interface Props {
+  arriba?: string;
+  abajo?: string;
+}
+const { arriba = 'bg-ink', abajo = 'fill-paper' } = Astro.props;
+---
+<div class:list={[arriba, 'leading-[0]']} aria-hidden="true">
+  <svg class:list={['block h-10 w-full sm:h-16', abajo]} viewBox="0 0 1440 100" preserveAspectRatio="none">
+    <path d="M0,55 C220,110 430,10 720,45 C1010,80 1240,5 1440,55 L1440,100 L0,100 Z"></path>
+  </svg>
+</div>
