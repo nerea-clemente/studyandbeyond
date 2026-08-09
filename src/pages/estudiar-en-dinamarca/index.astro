@@ -21,6 +21,28 @@ const guias = (await getCollection('guias', ({ data }) => !data.borrador))
       necesitas al llegar. Y en cada paso, en qué te acompaño yo.
     </p>
 
+    <!-- Dos puntos de vista -->
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      <a href={ruta('/para-estudiantes/')} class="group flex flex-col justify-between bg-ink p-6 text-white transition-colors hover:bg-ink-900">
+        <div>
+          <p class="etiqueta text-marine-300">Para ti</p>
+          <p class="mt-2 font-display text-xl font-bold">Si eres el estudiante</p>
+          <p class="mt-1 text-sm text-white/75">Cómo será tu vida allí y por dónde empezar.</p>
+        </div>
+        <span class="mt-4 text-sm font-semibold text-marine-300 group-hover:text-white">Entrar →</span>
+      </a>
+      <a href={ruta('/para-familias/')} class="group flex flex-col justify-between bg-crema p-6 transition-colors hover:bg-deadline-100">
+        <div>
+          <p class="etiqueta text-deadline-700">Para la familia</p>
+          <p class="mt-2 font-display text-xl font-bold text-ink">Si eres madre o padre</p>
+          <p class="mt-1 text-sm text-slate">Presupuesto, dudas y todo lo que necesitas saber.</p>
+        </div>
+        <span class="mt-4 text-sm font-semibold text-deadline-700">Entrar →</span>
+      </a>
+    </div>
+
+    <h2 class="mt-14 text-2xl font-bold text-ink">Guías paso a paso</h2>
+
     <ul class="mt-10 grid gap-4 sm:grid-cols-2">
       {guias.map((g) => (
         <li>

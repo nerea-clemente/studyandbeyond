@@ -24,11 +24,11 @@ const organizationLd = {
   identifier: { '@type': 'PropertyValue', propertyID: 'CVR', value: SITIO.cvr },
 };
 
-// Los tres argumentos que más enganchan.
+// Los tres argumentos que más enganchan, cada uno con su color.
 const golosos = [
-  { valor: '0 €', titulo: 'Matrícula gratuita', texto: 'Para estudiantes de la UE, el grado no tiene coste de matrícula.' },
-  { valor: 'Beca SU', titulo: 'Ayuda del Gobierno danés', texto: 'Una ayuda mensual para estudiantes que, junto a un trabajo a tiempo parcial, te permite mantenerte.' },
-  { valor: 'Sin EBAU', titulo: 'No necesitas selectividad', texto: 'La admisión valora tus notas de Bachillerato y tus méritos, no la EBAU.' },
+  { valor: '0 €', titulo: 'Matrícula gratuita', texto: 'Para estudiantes de la UE, el grado no tiene coste de matrícula.', bg: 'bg-frost', num: 'text-marine' },
+  { valor: '≈ 995 €/mes', titulo: 'Beca SU del Gobierno danés', texto: 'Una ayuda mensual que, junto a un trabajo a tiempo parcial, te permite mantenerte por tu cuenta.', bg: 'bg-deadline-100', num: 'text-deadline-700' },
+  { valor: 'Sin EBAU', titulo: 'No necesitas selectividad', texto: 'La admisión valora tus notas de Bachillerato y tus méritos, no la EBAU.', bg: 'bg-verde-100', num: 'text-verde-700' },
 ];
 
 const claves = [
@@ -51,7 +51,7 @@ const claves = [
       <div>
         <p class="etiqueta text-marine-300">Estudia en Dinamarca</p>
         <h1 class="mt-4 text-display-lg font-bold text-white">
-          Estudiar en Dinamarca es más fácil de lo que crees
+          Estudiar en Dinamarca es <span class="underline decoration-deadline decoration-[5px] underline-offset-[6px]">más fácil</span> de lo que crees
         </h1>
         <p class="mt-5 max-w-prosa text-lg text-white/80">
           Grados gratuitos y en inglés, con una ayuda del Gobierno para vivir por
@@ -70,11 +70,11 @@ const claves = [
     </div>
   </section>
 
-  <!-- Los tres golosos -->
-  <section class="contenedor -mt-8 grid gap-px overflow-hidden border border-hairline bg-hairline shadow-none sm:grid-cols-3" aria-label="Ventajas de estudiar en Dinamarca">
+  <!-- Los tres golosos, con color -->
+  <section class="contenedor -mt-10 grid gap-4 sm:grid-cols-3" aria-label="Ventajas de estudiar en Dinamarca">
     {golosos.map((g) => (
-      <div class="bg-paper p-6">
-        <p class="dato text-3xl font-bold text-marine">{g.valor}</p>
+      <div class:list={[g.bg, 'border border-hairline p-6']}>
+        <p class:list={['dato text-3xl font-bold', g.num]}>{g.valor}</p>
         <p class="mt-2 font-display text-lg font-semibold text-ink">{g.titulo}</p>
         <p class="mt-1 text-sm text-slate">{g.texto}</p>
       </div>
@@ -91,18 +91,20 @@ const claves = [
   </section>
 
   <!-- Por qué Dinamarca -->
-  <section class="contenedor py-16" aria-labelledby="claves">
-    <h2 id="claves" class="text-2xl font-bold text-ink">Por qué Dinamarca</h2>
-    <div class="mt-8 grid gap-8 sm:grid-cols-2">
-      {claves.map((c, i) => (
-        <div class="flex gap-4">
-          <span class="dato mt-1 text-marine" aria-hidden="true">0{i + 1}</span>
-          <div>
-            <p class="font-display text-lg font-semibold text-ink">{c.t}</p>
-            <p class="mt-1 text-slate">{c.d}</p>
+  <section class="bg-crema">
+    <div class="contenedor py-16" aria-labelledby="claves">
+      <h2 id="claves" class="text-2xl font-bold text-ink">Por qué Dinamarca</h2>
+      <div class="mt-8 grid gap-8 sm:grid-cols-2">
+        {claves.map((c, i) => (
+          <div class="flex gap-4">
+            <span class="dato mt-1 text-xl font-bold text-deadline-700" aria-hidden="true">0{i + 1}</span>
+            <div>
+              <p class="font-display text-lg font-semibold text-ink">{c.t}</p>
+              <p class="mt-1 text-slate">{c.d}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </section>
 

@@ -22,8 +22,12 @@ export default {
         slate: { DEFAULT: '#516472', 400: '#7C8B96' },
         // Filetes y bordes.
         hairline: '#C6D2DA',
-        // Ámbar: SOLO para plazos y elementos con fecha crítica.
-        deadline: { DEFAULT: '#C2701B', 700: '#8F5210', 100: '#F4E6D3' },
+        // Ámbar cálido: acento alegre (plazos, cifras destacadas, detalles).
+        deadline: { DEFAULT: '#C2701B', 700: '#8F5210', 100: '#F7E7D2' },
+        // Verde fresco: acento de apoyo (una de las ventajas, acentos vivos).
+        verde: { DEFAULT: '#1F7A54', 700: '#155C3F', 100: '#DDEFE6' },
+        // Fondo cálido, para romper el azul y dar alegría.
+        crema: '#FBF6EE',
       },
       fontFamily: {
         // Display (sustituto de Cabinet Grotesk).

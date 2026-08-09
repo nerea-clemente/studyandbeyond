@@ -33,10 +33,17 @@ export const SITIO = {
 
 // Navegación principal.
 export const NAV = [
-  { texto: 'Estudiar en Dinamarca', href: '/estudiar-en-dinamarca/' },
+  {
+    texto: 'Estudiar en Dinamarca',
+    href: '/estudiar-en-dinamarca/',
+    hijos: [
+      { texto: 'Para el estudiante', href: '/para-estudiantes/' },
+      { texto: 'Para las familias', href: '/para-familias/' },
+      { texto: 'Guías paso a paso', href: '/estudiar-en-dinamarca/' },
+    ],
+  },
   { texto: 'Grados', href: '/grados/' },
   { texto: 'Servicios', href: '/servicios/' },
-  { texto: 'Para familias', href: '/para-familias/' },
   { texto: 'Sobre mí', href: '/sobre-mi/' },
   { texto: 'Blog', href: '/blog/' },
   { texto: 'Contacto', href: '/contacto/' },
