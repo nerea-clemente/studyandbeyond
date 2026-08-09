@@ -1,5 +1,6 @@
 ---
 import Base from '@/layouts/Base.astro';
+import Imagen from '@/components/Imagen.astro';
 import { ruta } from '@/lib/ruta';
 import { SITIO } from '@/config/sitio';
 import { HISTORIAS } from '@/config/historias';
@@ -17,9 +18,9 @@ const testimonios = HISTORIAS.map((h) => ({
 >
   <section class="contenedor py-10 lg:py-14">
     <div class="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:items-start">
-      <!-- Retrato pendiente (foto real, nada de banco de imágenes). -->
-      <div class="flex min-h-[300px] items-end border border-hairline bg-frost p-5 lg:sticky lg:top-24">
-        <p class="dato text-xs text-slate">Retrato de Nerea · pendiente</p>
+      <!-- Retrato pendiente (foto real, nada de banco de imágenes). Ver PENDIENTE.md. -->
+      <div class="lg:sticky lg:top-24">
+        <Imagen alt="Retrato de Nerea, fundadora de Study and Beyond, en Aarhus" ratio="4/5" />
       </div>
 
       <div>

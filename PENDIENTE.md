@@ -95,11 +95,17 @@ Decisiones del cliente aplicadas: universidad/ciudad **siguen ocultas**;
 testimonios **sin foto**; verificación con fecha **eliminada**.
 
 Sigue pendiente (necesita material o decisión del cliente):
-- **Fotos reales** de Nerea (retrato) y de Aarhus. Ahora hay bloques frost como
-  marcador. Nada de banco de imágenes.
-- **Tipografías del brief**: Cabinet Grotesk + Switzer (Fontshare) están
-  **bloqueadas por red**; se usan Space Grotesk + Inter. Para las originales,
-  dejar los .woff2 en /public/fonts y cambiar 2 líneas de Base.astro.
+- **Fotos reales** de Dinamarca y de Nerea. Ahora hay marcadores turquesa
+  (componente `Imagen.astro`, nunca hueco gris con "pendiente"). Slots listos:
+  héroe del home (4/5), storytelling del home (4/5), retrato de Sobre mí (4/5),
+  fotos de historias (1/1) y una imagen a sangre por página. Basta pasar `src`
+  al componente `Imagen` (admite WebP/AVIF, srcset 640/1280/1920). Nada de banco
+  de imágenes.
+- **Tipografías del brief (rediseño ago-2026)**: Clash Display + Satoshi
+  (Fontshare) están **bloqueadas por red**; se autoalojan sustitutos libres muy
+  cercanos desde Google Fonts: Space Grotesk (display) + Plus Jakarta Sans
+  (texto), y DM Mono solo para el calendario. Para las originales, dejar los
+  .woff2 en /public/fonts y cambiar las @font-face de Base.astro.
 - **Garantía**: se eligió la opción conservadora (renombrar, sin "garantía"). Si
   se quiere devolución íntegra si no hay plaza (opción A), es un cambio pequeño.
 - **Cláusula de desistimiento (14 días)** y legales: revisión legal.

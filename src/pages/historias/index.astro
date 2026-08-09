@@ -1,5 +1,6 @@
 ---
 import Base from '@/layouts/Base.astro';
+import Imagen from '@/components/Imagen.astro';
 import { ruta } from '@/lib/ruta';
 import { HISTORIAS } from '@/config/historias';
 ---
@@ -9,29 +10,27 @@ import { HISTORIAS } from '@/config/historias';
   descripcion="Estudiantes que ya dieron el paso y estudian en Dinamarca: su carrera, su ciudad y cómo les ha ido."
 >
   <section class="bg-ink text-white">
-    <div class="contenedor py-16">
-      <p class="etiqueta text-marine-300">Historias</p>
-      <h1 class="mt-3 text-display-lg font-bold text-white">Ya dieron el paso</h1>
-      <p class="mt-4 max-w-prosa text-lg text-white/80">
+    <div class="contenedor py-16 lg:py-24">
+      <p class="etiqueta text-turq">Historias</p>
+      <h1 class="mt-4 text-h1 font-bold text-white">Ya dieron el paso</h1>
+      <p class="mt-6 max-w-prosa text-lg text-white/85 lg:text-xl">
         Estudiantes reales que hoy estudian en Dinamarca. Su carrera, su ciudad y
         cómo les ha cambiado la vida.
       </p>
     </div>
   </section>
 
-  <section class="contenedor py-16">
+  <section class="contenedor ritmo">
     <ul class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {HISTORIAS.map((h) => (
-        <li class="flex h-full flex-col overflow-hidden rounded-2xl border border-hairline bg-paper shadow-suave">
-          <!-- Foto real pendiente (nada de banco de imágenes). -->
-          <div class="flex aspect-[4/3] items-end bg-frost p-4">
-            <p class="dato text-xs text-slate">Foto de {h.nombre} · pendiente</p>
-          </div>
+        <li class="reveal flex h-full flex-col overflow-hidden rounded-tarjeta border border-hairline bg-paper">
+          <!-- Foto real pendiente (nada de banco de imágenes). Ver PENDIENTE.md. -->
+          <Imagen alt={`Foto de ${h.nombre}, estudiante en Dinamarca`} ratio="1/1" rotulo={h.nombre} class="!rounded-none" />
           <div class="flex flex-1 flex-col p-6">
             <blockquote class="text-ink">«{h.cita}»</blockquote>
             <div class="mt-4 border-t border-hairline pt-4">
               <p class="font-display text-lg font-bold text-ink">{h.nombre}</p>
-              <p class="dato text-xs text-slate">
+              <p class="dato text-sm text-slate">
                 {h.carrera}{h.ciudad ? ` · ${h.ciudad}` : ''}
               </p>
             </div>
@@ -40,9 +39,9 @@ import { HISTORIAS } from '@/config/historias';
       ))}
     </ul>
 
-    <div class="mt-12 rounded-2xl bg-crema p-8 text-center">
-      <p class="font-display text-xl font-bold text-ink">¿Quieres ser la próxima historia?</p>
-      <a href={ruta('/contacto/')} class="cta mt-4">Reserva tu sesión gratis</a>
+    <div class="mt-14 rounded-tarjeta bg-aqua p-10 text-center">
+      <p class="font-display text-2xl font-bold text-ink">¿Quieres ser la próxima historia?</p>
+      <a href={ruta('/contacto/')} class="cta-turq mt-6">Reserva tu sesión gratis</a>
     </div>
   </section>
 </Base>

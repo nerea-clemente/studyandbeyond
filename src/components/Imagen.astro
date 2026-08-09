@@ -2,9 +2,9 @@
 // Componente único de imagen del sitio.
 // - Con `src`: renderiza <img> con width/height explícitos (sin salto de
 //   maquetación), loading lazy salvo `prioridad` (héroe -> fetchpriority alto).
-// - Sin `src`: marcador turquesa con una cifra/palabra grande o el logotipo en
-//   negativo (nunca un hueco gris con "pendiente"). Ver PENDIENTE.md: aquí van
-//   fotos reales de Dinamarca en WebP/AVIF con srcset 640/1280/1920.
+// - Sin `src`: marcador turquesa con el rótulo/logotipo en navy (nunca un hueco
+//   gris con "pendiente"). Ver PENDIENTE.md: aquí van fotos reales de Dinamarca
+//   en WebP/AVIF con srcset 640/1280/1920.
 interface Props {
   src?: string;
   alt: string;
@@ -20,6 +20,7 @@ const aspecto: Record<string, string> = {
   '3/2': 'aspect-[3/2]',
   '21/9': 'aspect-[21/9]',
 };
+const luz = 'radial-gradient(circle at 78% 24%, #ffffff 0, transparent 45%)';
 ---
 
 {src ? (
@@ -37,7 +38,7 @@ const aspecto: Record<string, string> = {
     aria-label={alt}
     class:list={['relative flex items-end overflow-hidden rounded-imagen bg-turq', aspecto[ratio], clase]}
   >
-    <span class="pointer-events-none absolute -right-6 -top-10 select-none font-display text-[9rem] font-bold leading-none text-ink/10" aria-hidden="true">S&B</span>
-    <span class="relative p-6 font-display text-2xl font-bold leading-tight text-ink lg:text-3xl">{rotulo ?? 'Study and Beyond'}</span>
+    <span class="pointer-events-none absolute inset-0 opacity-20" aria-hidden="true" style={`background-image:${luz}`}></span>
+    <span class="relative p-6 font-display text-2xl font-bold leading-tight text-ink lg:text-3xl">{rotulo ?? 'Study and Beyond'}</span>
   </div>
 )}
