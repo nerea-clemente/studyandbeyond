@@ -80,6 +80,34 @@ servicios a clientes en España. Implicaciones a resolver con criterio legal:
 
 - Másters.
 - **Estudiar el bachillerato en Dinamarca** (gymnasium) como nueva línea.
+  El testimonio de Helena (IB en internado con 16 años) es para esta línea.
+
+## Ronda de review + brief visual (2026-08-09)
+
+Aplicado: fechas de admisión generales; canonical/OG sin el segmento de base;
+vista previa en noindex + robots; sistema visual nuevo (paleta ink/marine/frost,
+ámbar solo para plazos, Space Grotesk/Inter/JetBrains Mono, geometría recta sin
+sombras); calendario firma con cuenta atrás; guía SU ampliada; servicios sin la
+palabra "garantía" + desistimiento; /para-familias/ y /sobre-mi/ (primera
+persona); breadcrumbs; se quita el aviso de verificación con fecha.
+
+Decisiones del cliente aplicadas: universidad/ciudad **siguen ocultas**;
+testimonios **sin foto**; verificación con fecha **eliminada**.
+
+Sigue pendiente (necesita material o decisión del cliente):
+- **Fotos reales** de Nerea (retrato) y de Aarhus. Ahora hay bloques frost como
+  marcador. Nada de banco de imágenes.
+- **Tipografías del brief**: Cabinet Grotesk + Switzer (Fontshare) están
+  **bloqueadas por red**; se usan Space Grotesk + Inter. Para las originales,
+  dejar los .woff2 en /public/fonts y cambiar 2 líneas de Base.astro.
+- **Garantía**: se eligió la opción conservadora (renombrar, sin "garantía"). Si
+  se quiere devolución íntegra si no hay plaza (opción A), es un cambio pequeño.
+- **Cláusula de desistimiento (14 días)** y legales: revisión legal.
+- Coste de vida (cifras reales por partida) y salario de facto por convenio.
+- **/historias/**: no se crea con testimonios ilustrativos; espera historias
+  reales verificables.
+- **Analítica**: cookieless lista pero desactivada; activar con Plausible.
+- Blog: 1 entrada; fuera del menú hasta tener 3-4.
 
 ---
 
