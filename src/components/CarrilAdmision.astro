@@ -1,9 +1,9 @@
 ---
-// Calendario de admisión — elemento firma del sitio.
-// Cinco hitos del curso. El 15 de marzo es el punto grande, en --sun con anillo,
-// y pulsa cuando faltan menos de 60 días. Las fechas van en DM Mono (única
-// aparición de la monoespaciada). `grande` lo agranda para la banda del home;
-// por defecto es compacto (ficha de grado).
+// Itinerario de admisión — elemento firma del sitio.
+// Cinco paradas numeradas unidas por una línea con degradado. El 15 de marzo es
+// la parada grande, en --sun con anillo, y pulsa cuando faltan menos de 60 días.
+// Las fechas van en DM Mono (única aparición de la monoespaciada).
+// `grande` lo agranda para la banda del home; por defecto es compacto (ficha).
 interface Props {
   grande?: boolean;
 }
@@ -17,49 +17,56 @@ const hitos = [
   { etiqueta: 'Agosto', detalle: 'Empiezas en Dinamarca', tono: 'inicio' },
 ] as const;
 
-const punto = (t: string) =>
-  t === 'plazo'
-    ? (grande ? 'h-7 w-7 bg-sun ring-4 ring-sun/30' : 'h-6 w-6 bg-sun ring-4 ring-sun/30')
-    : t === 'inicio'
-      ? 'h-4 w-4 bg-marine'
-      : 'h-4 w-4 bg-slate';
+// Estilo de cada círculo según tono y tamaño.
+const circulo = (t: string) => {
+  const base = 'flex items-center justify-center rounded-full font-display font-bold ring-4 ' + (grande ? 'ring-aqua' : 'ring-paper');
+  const color =
+    t === 'plazo' ? 'bg-sun text-ink'
+    : t === 'inicio' ? 'bg-turq text-ink'
+    : 'bg-paper text-ink border border-hairline';
+  const tam =
+    t === 'plazo' ? (grande ? 'h-16 w-16 text-2xl' : 'h-11 w-11 text-base')
+    : (grande ? 'h-12 w-12 text-lg' : 'h-9 w-9 text-sm');
+  return [base, color, tam].join(' ');
+};
+const cajaH = grande ? 'h-16' : 'h-11';
+const lineaTop = grande ? 'top-[30px]' : 'top-[21px]';
 ---
 
-<figure class:list={['not-prose', grande ? 'mt-10' : 'my-6']} data-calendario>
-  <figcaption class="mb-6 flex flex-wrap items-baseline justify-between gap-2">
+<figure class:list={['not-prose', grande ? 'mt-12' : 'my-6']} data-calendario>
+  <figcaption class="mb-8 flex flex-wrap items-baseline justify-between gap-2">
     <span class:list={['etiqueta text-marine', grande && 'text-sm']}>Calendario de admisión</span>
     <span class="fecha-mono rounded-full bg-sun-100 px-3 py-1 text-xs text-deadline-700" data-cuenta hidden></span>
   </figcaption>
 
-  <!-- Escritorio: eje horizontal -->
+  <!-- Escritorio: eje horizontal con línea en degradado -->
   <div class="relative hidden sm:block">
-    <div class="absolute left-[9%] right-[9%] top-[13px] h-[2px] bg-hairline" aria-hidden="true"></div>
+    <div class:list={['absolute left-[10%] right-[10%] h-1 rounded-full bg-gradient-to-r from-slate/40 via-turq to-marine', lineaTop]} aria-hidden="true"></div>
     <ol class="relative grid grid-cols-5 gap-4 text-center">
-      {hitos.map((h) => (
+      {hitos.map((h, i) => (
         <li class="flex flex-col items-center">
-          <span
-            data-punto={h.tono}
-            class:list={['block rounded-full ring-4', grande ? 'ring-aqua' : 'ring-paper', punto(h.tono)]}
-            aria-hidden="true"
-          ></span>
-          <span class:list={['fecha-mono mt-4', h.tono === 'plazo' ? 'text-deadline-700' : 'text-ink', grande ? 'text-lg sm:text-xl' : 'text-sm']}>{h.etiqueta}</span>
+          <div class:list={['flex items-center justify-center', cajaH]}>
+            <span data-punto={h.tono} class={circulo(h.tono)}>{i + 1}</span>
+          </div>
+          <span class:list={['fecha-mono mt-4', h.tono === 'plazo' ? 'text-deadline-700' : 'text-ink', grande ? 'text-lg font-medium sm:text-xl' : 'text-sm']}>{h.etiqueta}</span>
           <span class:list={['mt-1 text-slate', grande ? 'text-sm sm:text-base' : 'text-xs']}>{h.detalle}</span>
         </li>
       ))}
     </ol>
   </div>
 
-  <!-- Móvil: eje vertical -->
-  <ol class="ml-2 border-l-2 border-hairline sm:hidden">
-    {hitos.map((h) => (
-      <li class="relative py-3 pl-6">
-        <span
-          data-punto={h.tono}
-          class:list={['absolute top-4 block rounded-full ring-4', grande ? 'ring-aqua' : 'ring-paper', punto(h.tono), h.tono === 'plazo' ? '-left-[15px]' : '-left-[9px]']}
-          aria-hidden="true"
-        ></span>
-        <span class:list={['fecha-mono block', h.tono === 'plazo' ? 'text-deadline-700' : 'text-ink', grande ? 'text-lg' : 'text-sm']}>{h.etiqueta}</span>
-        <span class="text-sm text-slate">{h.detalle}</span>
+  <!-- Móvil: eje vertical con conectores -->
+  <ol class="sm:hidden">
+    {hitos.map((h, i) => (
+      <li class="flex gap-4">
+        <div class="flex flex-col items-center">
+          <span data-punto={h.tono} class={circulo(h.tono)}>{i + 1}</span>
+          {i < hitos.length - 1 && <span class="w-[3px] flex-1 rounded-full bg-gradient-to-b from-turq to-marine/40" aria-hidden="true"></span>}
+        </div>
+        <div class="pb-8 pt-1.5">
+          <span class:list={['fecha-mono block', h.tono === 'plazo' ? 'text-deadline-700' : 'text-ink', grande ? 'text-lg' : 'text-base']}>{h.etiqueta}</span>
+          <span class="text-sm text-slate">{h.detalle}</span>
+        </div>
       </li>
     ))}
   </ol>
@@ -67,7 +74,7 @@ const punto = (t: string) =>
 
 <script>
   // Cuenta atrás al próximo 15 de marzo. Si faltan menos de 60 días, muestra el
-  // aviso y hace pulsar el punto del plazo.
+  // aviso y hace pulsar la parada del plazo.
   document.querySelectorAll('[data-calendario]').forEach((cal) => {
     const hoy = new Date();
     let marzo = new Date(hoy.getFullYear(), 2, 15);
