@@ -38,5 +38,6 @@ export const NAV = [
   { texto: 'Servicios', href: '/servicios/' },
   { texto: 'Para familias', href: '/para-familias/' },
   { texto: 'Sobre mí', href: '/sobre-mi/' },
+  { texto: 'Blog', href: '/blog/' },
   { texto: 'Contacto', href: '/contacto/' },
 ] as const;

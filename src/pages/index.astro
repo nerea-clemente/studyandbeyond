@@ -24,124 +24,137 @@ const organizationLd = {
   identifier: { '@type': 'PropertyValue', propertyID: 'CVR', value: SITIO.cvr },
 };
 
-// «Por qué Dinamarca»: primero cómo se estudia; el gratis, como refuerzo.
+// Los tres argumentos que más enganchan.
+const golosos = [
+  { valor: '0 €', titulo: 'Matrícula gratuita', texto: 'Para estudiantes de la UE, el grado no tiene coste de matrícula.' },
+  { valor: 'Beca SU', titulo: 'Ayuda del Gobierno danés', texto: 'Una ayuda mensual para estudiantes que, junto a un trabajo a tiempo parcial, te permite mantenerte.' },
+  { valor: 'Sin EBAU', titulo: 'No necesitas selectividad', texto: 'La admisión valora tus notas de Bachillerato y tus méritos, no la EBAU.' },
+];
+
 const claves = [
-  { t: 'Cómo se estudia', d: 'Proyectos en grupo, prácticas dentro del plan de estudios, exámenes que se defienden y clases pequeñas. Se aprende haciendo, desde el primer día.' },
-  { t: 'Clases en inglés', d: 'Grados y másteres impartidos íntegramente en inglés, pensados para un mercado laboral internacional.' },
-  { t: 'Matrícula gratuita', d: 'Para ciudadanos de la UE, el EEE y Suiza. No cubre material, exámenes de idioma ni coste de vida.' },
-  { t: 'Beca SU, con condición', d: 'El Estado danés ayuda a quien acredita estatus de trabajador. Nunca es automática.', href: '/estudiar-en-dinamarca/su-beca-estudiantes/' },
+  { t: 'Aprendes haciendo', d: 'Proyectos en grupo, prácticas dentro del plan de estudios y clases pequeñas. Sales con experiencia real, no solo con teoría.' },
+  { t: 'Todo en inglés', d: 'Grados y másteres impartidos íntegramente en inglés, pensados para un futuro internacional.' },
+  { t: 'Una vida independiente', d: 'Entre la beca SU y un trabajo a tiempo parcial, muchos estudiantes cubren sus gastos y viven por su cuenta.' },
+  { t: 'No estás solo', d: 'Te acompaño en todo el proceso y también en tus primeros meses en el país.' },
 ];
 ---
 
 <Base
   titulo={SITIO.nombre}
-  descripcion="Estudia un grado en Dinamarca: matrícula gratuita para la UE, clases en inglés y acompañamiento sobre el terreno, desde Aarhus, en cada paso hasta que te instalas."
+  descripcion="Estudia un grado en Dinamarca: matrícula gratuita para la UE, ayuda del Gobierno danés y sin selectividad. Te acompaño en todo el proceso, desde España hasta que te instalas."
 >
   <JsonLd slot="head" datos={organizationLd} />
 
   <!-- Hero -->
-  <section class="contenedor grid gap-10 pt-12 pb-8 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:pt-16">
-    <div>
-      <p class="etiqueta text-marine">Estudiar en Dinamarca</p>
-      <h1 class="mt-3 text-display-lg font-bold text-ink">
-        Un grado en Dinamarca,<br />sin perderte en el proceso.
-      </h1>
-      <p class="prosa mt-5 text-slate">
-        Orientación, gestión completa de la admisión, alojamiento y acompañamiento
-        cuando llegas. Lo lleva quien ya hizo el camino.
-      </p>
-      <!-- Tres datos en mono: la tesis de la marca. -->
-      <dl class="ficha-datos mt-7 max-w-md">
-        <div><dt>Grados documentados</dt><dd>{total}</dd></div>
-        <div><dt>Estudiantes por curso</dt><dd>10</dd></div>
-        <div><dt>Sobre el terreno, en</dt><dd>Aarhus</dd></div>
-      </dl>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href={ruta("/grados/")} class="cta">Explora los grados</a>
-        <a href={ruta("/estudiar-en-dinamarca/")} class="cta-secundario">Cómo funciona</a>
+  <section class="bg-ink text-white">
+    <div class="contenedor grid gap-8 py-16 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:py-24">
+      <div>
+        <p class="etiqueta text-marine-300">Estudia en Dinamarca</p>
+        <h1 class="mt-4 text-display-lg font-bold text-white">
+          Estudiar en Dinamarca es más fácil de lo que crees
+        </h1>
+        <p class="mt-5 max-w-prosa text-lg text-white/80">
+          Grados gratuitos y en inglés, con una ayuda del Gobierno para vivir por
+          tu cuenta. Yo me encargo de todo el proceso: desde elegir carrera hasta
+          que te instalas en el país.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={ruta("/grados/")} class="inline-flex min-h-[44px] items-center rounded bg-white px-5 py-3 font-semibold text-ink transition-colors hover:bg-white/90">Explora los grados</a>
+          <a href={ruta("/contacto/")} class="inline-flex min-h-[44px] items-center rounded border border-white/40 px-5 py-3 font-semibold text-white transition-colors hover:bg-white/10">Reserva tu sesión gratuita</a>
+        </div>
+      </div>
+      <div class="lg:justify-self-end">
+        <p class="dato text-6xl font-bold text-marine-300">{total}</p>
+        <p class="mt-1 text-white/70">grados documentados y listos para explorar</p>
       </div>
     </div>
-
-    <!-- Sin foto de banco: bloque frost con datos en mono (brief §7). -->
-    <aside class="border border-hairline bg-frost p-8" aria-hidden="true">
-      <p class="etiqueta text-slate">Aarhus, Dinamarca</p>
-      <dl class="ficha-datos mt-4">
-        <div><dt>Latitud</dt><dd>56°09′ N</dd></div>
-        <div><dt>Horas de luz en junio</dt><dd>~17 h</dd></div>
-        <div><dt>Horas de luz en diciembre</dt><dd>~7 h</dd></div>
-        <div><dt>Proyecto desde</dt><dd>2020</dd></div>
-      </dl>
-    </aside>
   </section>
 
-  <!-- Elemento firma: calendario de admisión -->
-  <section class="contenedor py-10">
-    <CarrilAdmision />
+  <!-- Los tres golosos -->
+  <section class="contenedor -mt-8 grid gap-px overflow-hidden border border-hairline bg-hairline shadow-none sm:grid-cols-3" aria-label="Ventajas de estudiar en Dinamarca">
+    {golosos.map((g) => (
+      <div class="bg-paper p-6">
+        <p class="dato text-3xl font-bold text-marine">{g.valor}</p>
+        <p class="mt-2 font-display text-lg font-semibold text-ink">{g.titulo}</p>
+        <p class="mt-1 text-sm text-slate">{g.texto}</p>
+      </div>
+    ))}
+  </section>
+
+  <!-- Calendario de admisión -->
+  <section class="bg-frost">
+    <div class="contenedor py-14">
+      <h2 class="text-2xl font-bold text-ink">Cuándo tienes que moverte</h2>
+      <p class="mt-2 max-w-prosa text-slate">El curso empieza en agosto, pero el proceso se prepara con meses de antelación. Este es el camino.</p>
+      <div class="mt-6"><CarrilAdmision /></div>
+    </div>
   </section>
 
   <!-- Por qué Dinamarca -->
-  <section class="contenedor py-12" aria-labelledby="claves">
+  <section class="contenedor py-16" aria-labelledby="claves">
     <h2 id="claves" class="text-2xl font-bold text-ink">Por qué Dinamarca</h2>
-    <div class="mt-6 grid gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-2">
-      {claves.map((c) => (
-        <div class="bg-paper p-6">
-          <p class="font-display text-lg font-semibold text-ink">{c.t}</p>
-          <p class="mt-2 text-sm text-slate">
-            {c.d}
-            {c.href && <> <a href={ruta(c.href)} class="text-marine underline underline-offset-2">Cómo funciona de verdad</a>.</>}
-          </p>
+    <div class="mt-8 grid gap-8 sm:grid-cols-2">
+      {claves.map((c, i) => (
+        <div class="flex gap-4">
+          <span class="dato mt-1 text-marine" aria-hidden="true">0{i + 1}</span>
+          <div>
+            <p class="font-display text-lg font-semibold text-ink">{c.t}</p>
+            <p class="mt-1 text-slate">{c.d}</p>
+          </div>
         </div>
       ))}
     </div>
   </section>
 
   <!-- Algunos grados -->
-  <section class="contenedor py-12" aria-labelledby="destacados">
-    <div class="flex items-end justify-between gap-4">
-      <h2 id="destacados" class="text-2xl font-bold text-ink">Algunos grados</h2>
-      <a href={ruta("/grados/")} class="text-sm font-semibold text-marine">Ver todos →</a>
+  <section class="bg-frost">
+    <div class="contenedor py-16" aria-labelledby="destacados">
+      <div class="flex items-end justify-between gap-4">
+        <h2 id="destacados" class="text-2xl font-bold text-ink">Algunos grados</h2>
+        <a href={ruta("/grados/")} class="text-sm font-semibold text-marine">Ver los {total} grados →</a>
+      </div>
+      <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {destacados.map((g) => (
+          <li>
+            <a href={ruta(`/grados/${g.id}/`)} class="flex h-full flex-col border border-hairline bg-paper p-5 transition-colors hover:border-marine">
+              <p class="etiqueta text-slate">{ETIQUETA_AREA[g.data.area]}</p>
+              <h3 class="mt-2 font-display text-lg font-semibold text-ink">{g.data.nombre_es}</h3>
+              <p class="dato mt-4 text-xs text-slate">{ETIQUETA_NIVEL[g.data.nivel]} · {formatoDuracion(g.data.duracion_anios)} · {g.data.ects} ECTS</p>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
-    <ul class="mt-6 grid gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3">
-      {destacados.map((g) => (
-        <li>
-          <a href={ruta(`/grados/${g.id}/`)} class="flex h-full flex-col bg-paper p-5 transition-colors hover:bg-frost">
-            <p class="etiqueta text-slate">{ETIQUETA_AREA[g.data.area]}</p>
-            <h3 class="mt-2 font-display text-lg font-semibold text-ink">{g.data.nombre_es}</h3>
-            <p class="dato mt-4 text-xs text-slate">{ETIQUETA_NIVEL[g.data.nivel]} · {formatoDuracion(g.data.duracion_anios)} · {g.data.ects} ECTS</p>
-          </a>
-        </li>
-      ))}
-    </ul>
   </section>
 
-  <!-- Quién está detrás (diferencial, primera persona) -->
-  <section class="contenedor py-12" aria-labelledby="quien">
-    <div class="grid gap-8 border border-hairline p-8 lg:grid-cols-[1fr_1.4fr] lg:p-12">
-      <!-- Placeholder de foto (pendiente foto real de Nerea; nada de banco). -->
-      <div class="flex min-h-[220px] items-end bg-frost p-5">
-        <p class="dato text-xs text-slate">Foto de Nerea · pendiente</p>
+  <!-- Quién está detrás -->
+  <section class="bg-ink text-white">
+    <div class="contenedor grid gap-10 py-16 lg:grid-cols-[1fr_1.4fr] lg:items-center">
+      <div class="flex min-h-[220px] items-end border border-white/15 bg-white/5 p-5">
+        <p class="dato text-xs text-white/50">Foto de Nerea · pendiente</p>
       </div>
       <div>
-        <h2 id="quien" class="text-2xl font-bold text-ink">Quién está detrás</h2>
-        <ul class="mt-5 space-y-4">
-          <li class="border-l-[3px] border-marine pl-4 text-ink"><strong>Vivo en Dinamarca.</strong> No colaboro con alguien de allí: estoy aquí y conozco el proceso de primera mano.</li>
-          <li class="border-l-[3px] border-marine pl-4 text-ink"><strong>Solo Dinamarca.</strong> Un país, a fondo, en lugar de un catálogo de destinos.</li>
-          <li class="border-l-[3px] border-marine pl-4 text-ink"><strong>Diez estudiantes por curso.</strong> Un grupo pequeño para acompañar de verdad.</li>
-        </ul>
-        <a href={ruta("/sobre-mi/")} class="mt-6 inline-block text-sm font-semibold text-marine">Mi historia →</a>
+        <p class="etiqueta text-marine-300">Quién te acompaña</p>
+        <h2 class="mt-3 text-2xl font-bold text-white">Yo también llegué sin saber por dónde empezar</h2>
+        <p class="mt-4 max-w-prosa text-white/80">
+          Llegué a Aarhus en 2020 y aprendí el proceso a base de tropezar. Hoy
+          vivo aquí y acompaño cada curso a un grupo pequeño de estudiantes, de
+          principio a fin. Un país, a fondo, y contigo en cada paso.
+        </p>
+        <a href={ruta("/sobre-mi/")} class="mt-6 inline-block font-semibold text-marine-300 hover:text-white">Conóceme →</a>
       </div>
     </div>
   </section>
 
   <!-- CTA final -->
-  <section class="contenedor py-12">
-    <div class="bg-ink p-8 text-center text-white lg:p-14">
-      <h2 class="text-2xl font-bold">La primera sesión es gratuita y sin compromiso</h2>
-      <p class="mx-auto mt-3 max-w-prosa text-white/80">
-        Te cuento qué opciones tienes según tu perfil y cómo sería tu proceso.
-        Sin coste hasta que decidas seguir.
+  <section class="bg-marine text-white">
+    <div class="contenedor py-16 text-center">
+      <h2 class="text-2xl font-bold">Empecemos por una sesión gratuita</h2>
+      <p class="mx-auto mt-3 max-w-prosa text-white/85">
+        Me cuentas tu situación y te digo qué opciones tienes y cómo sería tu
+        proceso. Sin coste y sin compromiso.
       </p>
-      <a href={ruta("/contacto/")} class="cta mt-6">Reserva tu sesión</a>
+      <a href={ruta("/contacto/")} class="mt-6 inline-flex min-h-[44px] items-center rounded bg-white px-6 py-3 font-semibold text-marine transition-colors hover:bg-white/90">Reserva tu sesión</a>
     </div>
   </section>
 </Base>

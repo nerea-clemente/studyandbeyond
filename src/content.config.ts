@@ -95,8 +95,8 @@ const guias = defineCollection({
     descripcion: z.string(),
     // Orden dentro del hub.
     orden: z.number().default(99),
-    // Datos con caducidad → fecha visible.
-    ultima_verificacion: z.string(),
+    // Opcional: ya no se muestra fecha de verificación en el sitio.
+    ultima_verificacion: z.string().optional(),
     // Preguntas frecuentes para JSON-LD FAQPage.
     faq: z
       .array(z.object({ pregunta: z.string(), respuesta: z.string() }))

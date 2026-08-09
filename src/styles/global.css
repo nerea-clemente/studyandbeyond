@@ -83,6 +83,9 @@
     letter-spacing: 0.08em;
   }
 
+  /* Nota neutra (sin etiqueta "Condición"). */
+  .nota { @apply my-6 border-l-[3px] border-hairline bg-frost px-5 py-4 text-slate; }
+
   /* 5.3 · Línea de verificación: una línea en mono, gris, al pie de los datos. */
   .linea-verificacion {
     @apply mt-6 border-t border-hairline pt-3 font-mono text-slate;
