@@ -1,65 +1,64 @@
 ---
-// EL CARRIL DE ADMISIÓN — elemento firma (ver DISENO.md).
-// Banda-calendario del proceso de admisión danés. Marca en ámbar las dos
-// fechas límite (las dos cuotas) y en marine el inicio de curso. Sin JS,
-// respeta prefers-reduced-motion.
-//
-// Los plazos exactos por grado están por confirmar; estas son las fechas de
-// referencia del sistema danés (optagelse.dk). Se muestra la fuente y una
-// nota de verificación.
+// EL CALENDARIO DE ADMISIÓN — elemento firma (brief visual, agosto 2026).
+// Eje de septiembre a septiembre con cinco marcas del ciclo. El 15 de marzo
+// pesa el doble y va en ámbar (es la fecha del usuario español); el resto en
+// slate. Un marcador discreto señala en qué punto del ciclo estamos hoy, y si
+// faltan menos de 60 días para el 15 de marzo aparece una cuenta atrás en mono.
+// Única animación de la web; respeta prefers-reduced-motion. En móvil rota a
+// vertical (no se comprime).
 import { ruta } from '@/lib/ruta';
 
 interface Props {
-  // Nota opcional para contextualizar (p. ej. en una ficha concreta).
   nota?: string;
   compacto?: boolean;
 }
 const { nota, compacto = false } = Astro.props;
 
-// Hitos del proceso, en orden. Fechas orientativas, no días exactos.
+// Posición (%) sobre un ciclo de 12 meses que arranca el 1 de septiembre.
 const hitos = [
-  { pos: 5, etiqueta: 'Cuanto antes', detalle: 'Empieza el trámite', tipo: 'inicio' },
-  { pos: 32, etiqueta: '15 de marzo', detalle: 'Fecha límite de solicitud', tipo: 'plazo' },
-  { pos: 60, etiqueta: '5 de julio', detalle: 'Documentación restante', tipo: 'plazo' },
-  { pos: 82, etiqueta: 'Finales de julio', detalle: 'Cartas de admisión', tipo: 'hito' },
-  { pos: 97, etiqueta: 'Agosto', detalle: 'Empiezas en Dinamarca', tipo: 'curso' },
+  { pos: 42, etiqueta: '1 feb', detalle: 'Abre optagelse.dk', tono: 'normal' },
+  { pos: 53, etiqueta: '15 mar', detalle: 'Fecha límite de solicitud', tono: 'plazo' },
+  { pos: 84, etiqueta: '5 jul', detalle: 'Documentación restante', tono: 'normal' },
+  { pos: 90, etiqueta: 'Fin de jul', detalle: 'Cartas de admisión', tono: 'normal' },
+  { pos: 96, etiqueta: 'Agosto', detalle: 'Empiezas en Dinamarca', tono: 'inicio' },
 ] as const;
 ---
 
-<figure class:list={['not-prose', compacto ? 'my-4' : 'my-8']}>
+<figure class:list={['not-prose', compacto ? 'my-4' : 'my-8']} data-calendario>
   <figcaption class="mb-4 flex items-baseline justify-between gap-3">
-    <span class="text-sm font-semibold uppercase tracking-wide text-marine">
-      Calendario de admisión
-    </span>
-    <span class="text-xs text-slate">Fechas orientativas</span>
+    <span class="etiqueta text-marine">Calendario de admisión</span>
+    <span class="dato text-xs text-slate" data-cuenta hidden></span>
   </figcaption>
 
-  <div class="overflow-x-auto">
-    <div class="relative min-w-[560px] pb-16 pt-8">
-      <!-- Raíl -->
-      <div class="absolute left-0 right-0 top-10 h-0.5 bg-frost" aria-hidden="true"></div>
-
+  <!-- ESCRITORIO: eje horizontal -->
+  <div class="hidden overflow-x-auto sm:block">
+    <div class="relative min-w-[600px] pb-16 pt-8">
+      <div class="absolute inset-x-0 top-10 h-px bg-hairline" aria-hidden="true"></div>
+      <!-- Marcador de 'hoy' -->
+      <div data-hoy hidden class="absolute top-10 z-20 -translate-x-1/2" style="left:0%">
+        <span class="block h-3 w-3 -translate-y-1/2 rounded-full border-2 border-marine bg-paper"></span>
+        <span class="dato mt-1 block -translate-x-1/2 whitespace-nowrap text-[11px] text-marine">hoy</span>
+      </div>
       <ol class="relative">
         {hitos.map((h) => (
           <li class="absolute -translate-x-1/2" style={`left:${h.pos}%`}>
             <div class="flex flex-col items-center text-center">
-              {/* Marca. El plazo va en ámbar (el acento cálido, con avaricia). */}
               <span
                 class:list={[
                   'z-10 mt-[6px] block rounded-full ring-4 ring-paper',
-                  h.tipo === 'plazo' ? 'h-4 w-4 bg-deadline' :
-                  h.tipo === 'curso' ? 'h-4 w-4 bg-marine' :
+                  h.tono === 'plazo' ? 'h-5 w-5 bg-deadline' :
+                  h.tono === 'inicio' ? 'h-3.5 w-3.5 bg-marine' :
                   'h-3 w-3 bg-slate-400',
                 ]}
                 aria-hidden="true"
               ></span>
               <span
                 class:list={[
-                  'mt-3 whitespace-nowrap text-sm font-semibold tabular',
-                  h.tipo === 'plazo' ? 'text-deadline-700' : 'text-ink',
+                  'dato mt-3 whitespace-nowrap',
+                  h.tono === 'plazo' ? 'text-[15px] font-semibold text-deadline-700' : 'text-[13px] text-ink',
                 ]}
               >{h.etiqueta}</span>
-              <span class="mt-0.5 max-w-[9rem] text-xs leading-tight text-slate">{h.detalle}</span>
+              <span class="mt-0.5 max-w-[8.5rem] text-xs leading-tight text-slate">{h.detalle}</span>
             </div>
           </li>
         ))}
@@ -67,8 +66,51 @@ const hitos = [
     </div>
   </div>
 
-  <p class="mt-2 text-xs text-slate">
+  <!-- MÓVIL: eje vertical -->
+  <ol class="relative ml-3 border-l border-hairline sm:hidden">
+    {hitos.map((h) => (
+      <li class="relative py-2 pl-5">
+        <span
+          class:list={[
+            'absolute -left-[6px] top-3 block rounded-full ring-4 ring-paper',
+            h.tono === 'plazo' ? 'h-4 w-4 -left-[9px] bg-deadline' :
+            h.tono === 'inicio' ? 'h-3 w-3 bg-marine' : 'h-2.5 w-2.5 bg-slate-400',
+          ]}
+          aria-hidden="true"
+        ></span>
+        <span class:list={['dato', h.tono === 'plazo' ? 'font-semibold text-deadline-700' : 'text-ink']}>{h.etiqueta}</span>
+        <span class="ml-2 text-sm text-slate">{h.detalle}</span>
+      </li>
+    ))}
+  </ol>
+
+  <p class="mt-3 text-xs text-slate">
     {nota ?? 'Fechas orientativas del proceso. Los plazos oficiales pueden variar según la carrera; confírmalos antes de solicitar.'}
     {' '}<a href={ruta("/estudiar-en-dinamarca/proceso-de-admision/")} class="text-marine underline underline-offset-2">Cómo funciona la admisión</a>.
   </p>
 </figure>
+
+<script>
+  // Marcador de 'hoy' y cuenta atrás al 15 de marzo. Sin dependencias.
+  document.querySelectorAll('[data-calendario]').forEach((cal) => {
+    const hoy = new Date();
+    const y = hoy.getFullYear();
+    // El ciclo arranca el 1 de septiembre.
+    const inicioCiclo = new Date(hoy.getMonth() >= 8 ? y : y - 1, 8, 1);
+    const finCiclo = new Date(inicioCiclo.getFullYear() + 1, 8, 1);
+    const pct = Math.max(0, Math.min(100,
+      ((hoy.getTime() - inicioCiclo.getTime()) / (finCiclo.getTime() - inicioCiclo.getTime())) * 100));
+    const marca = cal.querySelector('[data-hoy]');
+    if (marca instanceof HTMLElement) { marca.style.left = pct.toFixed(1) + '%'; marca.hidden = false; }
+
+    // Próximo 15 de marzo.
+    let marzo = new Date(hoy.getFullYear(), 2, 15);
+    if (hoy > marzo) marzo = new Date(hoy.getFullYear() + 1, 2, 15);
+    const dias = Math.ceil((marzo.getTime() - hoy.getTime()) / 86400000);
+    const cuenta = cal.querySelector('[data-cuenta]');
+    if (cuenta instanceof HTMLElement && dias > 0 && dias < 60) {
+      cuenta.textContent = `Quedan ${dias} días para el 15 de marzo`;
+      cuenta.hidden = false;
+    }
+  });
+</script>
