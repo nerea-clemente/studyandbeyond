@@ -136,30 +136,24 @@ const descripcionMeta = truncar(
       </div>
 
       <!-- Barra lateral de datos -->
-      <aside class="rounded-2xl border border-hairline bg-white p-6 lg:sticky lg:top-24">
-        <h2 class="text-sm font-semibold uppercase tracking-wide text-marine">Datos del grado</h2>
-        <dl class="mt-4 space-y-3 text-sm tabular">
-          <div class="flex justify-between gap-4"><dt class="text-slate">Duración</dt><dd class="font-semibold text-ink">{formatoDuracion(d.duracion_anios)}</dd></div>
-          <div class="flex justify-between gap-4"><dt class="text-slate">Créditos</dt><dd class="font-semibold text-ink">{d.ects} ECTS</dd></div>
-          <div class="flex justify-between gap-4"><dt class="text-slate">Idioma</dt><dd class="font-semibold text-ink">{d.idioma}</dd></div>
-          <div class="flex justify-between gap-4"><dt class="text-slate">Comienzo</dt><dd class="font-semibold text-ink">{d.comienzo}</dd></div>
+      <aside class="border border-hairline bg-paper p-6 lg:sticky lg:top-24">
+        <h2 class="etiqueta text-marine">Datos del grado</h2>
+        <dl class="ficha-datos mt-4">
+          <div><dt>Duración</dt><dd>{formatoDuracion(d.duracion_anios)}</dd></div>
+          <div><dt>Créditos</dt><dd>{d.ects} ECTS</dd></div>
+          <div><dt>Idioma</dt><dd>{d.idioma}</dd></div>
+          <div><dt>Comienzo</dt><dd>{d.comienzo}</dd></div>
         </dl>
 
-        {d.url_oficial ? (
+        {d.url_oficial && (
           <a href={d.url_oficial} rel="noopener" class="cta-secundario mt-6 w-full text-sm">Web oficial</a>
-        ) : (
-          <p class="mt-6 rounded-lg bg-frost p-3 text-xs text-slate">
-            Enlace oficial por confirmar. Te lo facilitamos en la sesión de asesoramiento.
-          </p>
         )}
 
-        <div class="mt-6 rounded-xl bg-ink p-5 text-white">
+        <div class="mt-6 bg-ink p-5 text-white">
           <p class="font-semibold">¿Encaja contigo?</p>
           <p class="mt-1 text-sm text-white/80">Lo vemos en una sesión de asesoramiento, sin compromiso.</p>
           <a href={ruta("/contacto/")} class="cta mt-4 w-full text-sm">Reserva tu sesión</a>
         </div>
-
-        <p class="mt-4 text-xs text-slate">Última verificación: {d.ultima_verificacion}.</p>
       </aside>
     </div>
   </article>
