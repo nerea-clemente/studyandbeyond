@@ -54,26 +54,26 @@ export default {
         mono: ['DM Mono', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        // Escala contenida, móvil -> escritorio. Titulares serios, no gigantes.
-        'h1': ['clamp(2rem, 3.2vw, 3rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
-        'h2': ['clamp(1.5rem, 2.2vw, 2.125rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
-        'cifra': ['clamp(1.75rem, 2.6vw, 2.5rem)', { lineHeight: '1.1', letterSpacing: '-0.01em' }],
+        // Escala con energía pero sin gigantismo. Móvil -> escritorio.
+        'h1': ['clamp(2.25rem, 3.6vw, 3.5rem)', { lineHeight: '1.06', letterSpacing: '-0.02em' }],
+        'h2': ['clamp(1.625rem, 2.4vw, 2.25rem)', { lineHeight: '1.12', letterSpacing: '-0.015em' }],
+        'cifra': ['clamp(2rem, 3.2vw, 3rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
         // Compatibilidad con clases previas.
-        'display-lg': ['clamp(2rem, 3.2vw, 3rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
-        display: ['clamp(1.5rem, 2.2vw, 2.125rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
+        'display-lg': ['clamp(2.25rem, 3.6vw, 3.5rem)', { lineHeight: '1.06', letterSpacing: '-0.02em' }],
+        display: ['clamp(1.625rem, 2.4vw, 2.25rem)', { lineHeight: '1.12', letterSpacing: '-0.015em' }],
       },
       maxWidth: {
         prosa: '68ch',
         contenido: '1180px',
       },
-      // Formas: radio moderado (aspecto de web real, no burbujas).
+      // Formas amables: esquinas redondeadas y generosas.
       borderRadius: {
-        DEFAULT: '0.5rem',
-        xl: '0.75rem',
-        '2xl': '0.875rem',
-        '3xl': '1rem',
-        tarjeta: '12px',
-        imagen: '14px',
+        DEFAULT: '0.625rem',
+        xl: '1rem',
+        '2xl': '1.25rem',
+        '3xl': '1.75rem',
+        tarjeta: '18px',
+        imagen: '22px',
       },
       boxShadow: {
         // Sin sombra en reposo; esta aparece solo en hover.

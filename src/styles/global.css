@@ -73,36 +73,40 @@
   /* Etiqueta pequeña (versalitas). El color lo pone cada uso. */
   .etiqueta { @apply text-xs font-bold uppercase; letter-spacing: 0.1em; }
 
-  /* Etiqueta de categoría/área: discreta, no una pastilla saturada. */
+  /* Etiqueta de categoría/área: pastilla turquesa alegre (texto navy, AA). */
   .pastilla {
-    @apply inline-flex items-center rounded bg-aqua px-2.5 py-1 text-xs font-semibold text-marine-700;
+    @apply inline-flex items-center rounded-full bg-turq px-3 py-1 text-xs font-bold text-ink;
     letter-spacing: 0.01em;
   }
 
-  /* Botones. Primario azul de marca; secundario contorno navy. Radio moderado,
-     sin píldora, para un aspecto de web real. */
+  /* Botones tipo píldora, amables. Primario azul; el de más energía, turquesa;
+     secundario contorno. Hover: eleva 1px y oscurece. */
   .cta {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-marine px-5 py-2.5
-           font-semibold text-white transition-colors duration-150 hover:bg-marine-700;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-marine px-6 py-3
+           font-bold text-white transition-all duration-150 hover:-translate-y-px hover:bg-marine-700;
     min-height: 44px;
   }
   .cta-secundario {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-hairline
-           px-5 py-2.5 font-semibold text-ink transition-colors duration-150 hover:border-ink;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink
+           px-6 py-3 font-bold text-ink transition-all duration-150 hover:-translate-y-px hover:bg-ink hover:text-white;
     min-height: 44px;
   }
-  /* Alias heredado: se comporta como el primario azul. */
   .cta-turq {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-marine px-5 py-2.5
-           font-semibold text-white transition-colors duration-150 hover:bg-marine-700;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-turq px-6 py-3
+           font-bold text-ink transition-all duration-150 hover:-translate-y-px hover:bg-turq-600;
     min-height: 44px;
   }
 
-  /* Enlace de texto: azul de marca, subrayado al pasar el ratón. */
+  /* Enlace de texto: subrayado turquesa que se dibuja al pasar el ratón. */
   .link-sub {
-    @apply font-semibold text-marine underline decoration-hairline decoration-2 underline-offset-4
-           transition-colors hover:text-marine-700 hover:decoration-marine;
+    background-image: linear-gradient(var(--turq), var(--turq));
+    background-size: 0% 3px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 200ms ease;
+    @apply font-bold text-marine;
   }
+  .link-sub:hover { background-size: 100% 3px; }
 
   /* Tarjeta: radio 20px, sin sombra en reposo, elevación al hover. */
   .tarjeta {
