@@ -29,10 +29,20 @@ const faqJsonLd = d.faq.length > 0
 // Resto de guías para navegación entre ellas.
 const todas = (await getCollection('guias', ({ data }) => !data.borrador))
   .sort((a, b) => a.data.orden - b.data.orden);
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Estudiar en Dinamarca', item: `${SITIO.dominio}/estudiar-en-dinamarca/` },
+    { '@type': 'ListItem', position: 2, name: d.titulo, item: `${SITIO.dominio}/estudiar-en-dinamarca/${guia.id}/` },
+  ],
+};
 ---
 
 <Base titulo={d.titulo} descripcion={d.descripcion}>
   {faqJsonLd && <JsonLd slot="head" datos={faqJsonLd} />}
+  <JsonLd slot="head" datos={breadcrumbLd} />
 
   <article class="contenedor py-10 lg:py-14">
     <nav aria-label="Migas de pan" class="mb-6 text-sm text-slate">

@@ -36,7 +36,7 @@ export const NAV = [
   { texto: 'Estudiar en Dinamarca', href: '/estudiar-en-dinamarca/' },
   { texto: 'Grados', href: '/grados/' },
   { texto: 'Servicios', href: '/servicios/' },
-  { texto: 'Sobre nosotros', href: '/sobre-nosotros/' },
-  { texto: 'Blog', href: '/blog/' },
+  { texto: 'Para familias', href: '/para-familias/' },
+  { texto: 'Sobre mí', href: '/sobre-mi/' },
   { texto: 'Contacto', href: '/contacto/' },
 ] as const;

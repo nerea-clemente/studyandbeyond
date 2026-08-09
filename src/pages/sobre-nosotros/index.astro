@@ -1,83 +1,19 @@
 ---
-import Base from '@/layouts/Base.astro';
+// La página se renombró a /sobre-mi/ (voz en primera persona). Redirección.
 import { ruta } from '@/lib/ruta';
-import { SITIO } from '@/config/sitio';
-
-const testimonios = [
-  {
-    nombre: 'Nuria',
-    perfil: 'Ingeniería General · vive en Copenhague',
-    cita:
-      'Estudio en una de las mejores universidades del mundo, la DTU. Dinamarca me ha dado la oportunidad de estudiar muchísimo, trabajar en algo relacionado con mi carrera y ser económicamente independiente de mis padres. Acabo de graduarme y este año empiezo el máster. Y la gente es majísima: he acabado formando una comunidad increíble.',
-  },
-  {
-    nombre: 'Javier',
-    perfil: 'Economía y Administración de Empresas · Aarhus',
-    cita:
-      'Desde el primer año trabajé en casos reales con empresas. Uno de esos proyectos acabó en un trabajo a tiempo parcial en una de ellas, y además me fui de Erasmus a Canadá. La carrera no se queda en la teoría: te pone delante de problemas de verdad.',
-  },
-  {
-    nombre: 'Helena',
-    perfil: 'Bachillerato Internacional en un internado · llegó con 16 años',
-    cita:
-      'Me vine a Dinamarca con 16 años a cursar el Bachillerato Internacional en un internado. Estudiar en inglés y vivir fuera de casa tan joven me dio una soltura que ahora, en la universidad, marca la diferencia. Fue el mejor trampolín posible.',
-  },
-];
+const destino = ruta('/sobre-mi/');
 ---
-
-<Base
-  titulo="Sobre nosotros"
-  descripcion="Study and Beyond nació en 2020, en Aarhus, de la experiencia real de una estudiante española que llegó a Dinamarca sin ninguna referencia."
->
-  <section class="contenedor py-10 lg:py-14">
-    <p class="text-sm font-semibold uppercase tracking-wide text-marine">Sobre nosotros</p>
-    <h1 class="mt-3 text-display font-semibold text-ink">Empezó por no dejar a nadie perdido</h1>
-
-    <div class="prosa mt-6 space-y-4">
-      <p>
-        Study and Beyond nació en {SITIO.anioFundacion}, cuando Nerea llegó a
-        {' '}{SITIO.ciudadOrigen} a empezar sus estudios y se encontró sin ninguna
-        referencia a la que acudir. De esa experiencia salió una idea sencilla:
-        que ningún otro estudiante tuviera que sentirse igual de perdido.
-      </p>
-      <p>
-        En 2022 la idea se convirtió en proyecto y hoy es una empresa. Hemos
-        acompañado el camino de estudiantes que llegaron en la misma situación:
-        futuros ingenieros, economistas, diseñadores y gente que aún no lo tenía
-        claro. Con un mismo objetivo: que el proceso deje de dar miedo.
-      </p>
-    </div>
-
-    <!-- Testimonios -->
-    <section aria-labelledby="testimonios" class="mt-14">
-      <h2 id="testimonios" class="text-2xl font-semibold text-ink">Quién ha pasado por aquí</h2>
-      <ul class="mt-6 grid gap-4 sm:grid-cols-3">
-        {testimonios.map((t) => (
-          <li class="flex h-full flex-col rounded-2xl border border-hairline bg-white p-6">
-            <blockquote class="text-sm text-ink">«{t.cita}»</blockquote>
-            <div class="mt-4">
-              <p class="font-display text-lg font-semibold text-ink">{t.nombre}</p>
-              <p class="text-xs text-slate">{t.perfil}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <!-- Quiénes somos legalmente -->
-    <section aria-labelledby="empresa" class="mt-14 rounded-3xl bg-frost p-8 lg:p-12">
-      <h2 id="empresa" class="text-xl font-semibold text-ink">La empresa</h2>
-      <p class="prosa mt-3 text-sm">
-        {SITIO.entidadLegal} es una empresa danesa (CVR {SITIO.cvr}) con base en
-        {' '}{SITIO.ciudadOrigen}. Estar en Dinamarca nos da contacto directo con
-        las universidades y con el proceso real, no de oídas.
-      </p>
-    </section>
-
-    <div class="mt-14 rounded-3xl bg-ink p-8 text-white lg:p-12">
-      <h2 class="text-2xl font-semibold">¿Hablamos de tu caso?</h2>
-      <p class="mt-3 max-w-prosa text-white/80">La primera sesión es gratuita y sin compromiso.</p>
-      <a href={ruta("/contacto/")} class="cta mt-6">Reserva tu sesión</a>
-    </div>
-  </section>
-</Base>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://studyandbeyond.es/sobre-mi/" />
+    <meta http-equiv="refresh" content={`0; url=${destino}`} />
+    <title>Sobre mí · Study and Beyond</title>
+  </head>
+  <body>
+    <p>Esta página se ha movido a <a href={destino}>Sobre mí</a>.</p>
+    <script is:inline set:html={`location.replace(${JSON.stringify(destino)})`}></script>
+  </body>
+</html>

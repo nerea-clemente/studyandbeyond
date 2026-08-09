@@ -31,6 +31,15 @@ const truncar = (t: string, max = 155) =>
 const descripcionMeta = truncar(
   d.descripcion ?? `${d.nombre_es} en Dinamarca: requisitos, duración, ramas y salidas.`,
 );
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Grados', item: `${SITIO.dominio}/grados/` },
+    { '@type': 'ListItem', position: 2, name: d.nombre_es, item: `${SITIO.dominio}/grados/${grado.id}/` },
+  ],
+};
 ---
 
 <Base
@@ -38,6 +47,7 @@ const descripcionMeta = truncar(
   descripcion={descripcionMeta}
 >
   <JsonLd slot="head" datos={jsonLdCurso(grado)} />
+  <JsonLd slot="head" datos={breadcrumbLd} />
 
   <article class="contenedor py-10 lg:py-14">
     <!-- Migas -->

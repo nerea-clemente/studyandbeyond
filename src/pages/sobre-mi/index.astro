@@ -1,0 +1,101 @@
+---
+import Base from '@/layouts/Base.astro';
+import { ruta } from '@/lib/ruta';
+import { SITIO } from '@/config/sitio';
+
+// Testimonios reales (sin foto, por decisión del cliente). Helena corresponde
+// al futuro servicio de bachillerato en el extranjero.
+const testimonios = [
+  {
+    nombre: 'Nuria',
+    perfil: 'Ingeniería General · vive en Copenhague',
+    cita:
+      'Estudio en una de las mejores universidades del mundo, la DTU. Dinamarca me ha dado la oportunidad de estudiar muchísimo, trabajar en algo relacionado con mi carrera y ser económicamente independiente de mis padres. Acabo de graduarme y este año empiezo el máster. Y la gente es majísima: he acabado formando una comunidad increíble.',
+  },
+  {
+    nombre: 'Javier',
+    perfil: 'Economía y Administración de Empresas · Aarhus',
+    cita:
+      'Desde el primer año trabajé en casos reales con empresas. Uno de esos proyectos acabó en un trabajo a tiempo parcial en una de ellas, y además me fui de Erasmus a Canadá. La carrera no se queda en la teoría: te pone delante de problemas de verdad.',
+  },
+  {
+    nombre: 'Helena',
+    perfil: 'Bachillerato Internacional en un internado · llegó con 16 años',
+    cita:
+      'Me vine a Dinamarca con 16 años a cursar el Bachillerato Internacional en un internado. Estudiar en inglés y vivir fuera de casa tan joven me dio una soltura que ahora, en la universidad, marca la diferencia. Fue el mejor trampolín posible.',
+  },
+];
+---
+
+<Base
+  titulo="Sobre mí"
+  descripcion="Llegué a Aarhus en 2020 sin ninguna referencia. De ahí nació Study and Beyond: para que ningún otro estudiante se sienta tan perdido."
+>
+  <section class="contenedor py-10 lg:py-14">
+    <div class="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:items-start">
+      <!-- Retrato pendiente (foto real, nada de banco de imágenes). -->
+      <div class="flex min-h-[300px] items-end border border-hairline bg-frost p-5 lg:sticky lg:top-24">
+        <p class="dato text-xs text-slate">Retrato de Nerea · pendiente</p>
+      </div>
+
+      <div>
+        <p class="etiqueta text-marine">Sobre mí</p>
+        <h1 class="mt-3 text-display font-bold text-ink">Empezó por no dejar a nadie perdido</h1>
+
+        <div class="prosa mt-6 space-y-4 text-ink">
+          <p>
+            Llegué a {SITIO.ciudadOrigen} en {SITIO.anioFundacion} a empezar mis
+            estudios y me encontré sin ninguna referencia a la que acudir. Todo el
+            proceso —admisión, papeles, alojamiento, los primeros meses— lo hice a
+            ciegas, tropezando en cada paso.
+          </p>
+          <p>
+            De ahí salió una idea sencilla: que ningún otro estudiante tuviera que
+            sentirse igual de perdido. En 2022 la convertí en proyecto y hoy es una
+            empresa. Sigo en Dinamarca, y acompaño el camino de un grupo pequeño de
+            estudiantes cada curso.
+          </p>
+          <p>
+            No colaboro con alguien de allí: estoy aquí. Solo trabajo con Dinamarca,
+            porque prefiero conocer un país a fondo que repartirme entre muchos. Y
+            no vendo humo: te cuento las condiciones tal cual son, también la letra
+            pequeña.
+          </p>
+          <p class="font-display text-lg font-semibold text-ink">— Nerea</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonios -->
+    <section aria-labelledby="testimonios" class="mt-16">
+      <h2 id="testimonios" class="text-2xl font-bold text-ink">Quién ha pasado por aquí</h2>
+      <ul class="mt-6 grid gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-3">
+        {testimonios.map((t) => (
+          <li class="flex h-full flex-col bg-paper p-6">
+            <blockquote class="text-sm text-ink">«{t.cita}»</blockquote>
+            <div class="mt-4">
+              <p class="font-display font-semibold text-ink">{t.nombre}</p>
+              <p class="dato text-xs text-slate">{t.perfil}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- La empresa -->
+    <section aria-labelledby="empresa" class="mt-14 border border-hairline bg-frost p-8 lg:p-12">
+      <h2 id="empresa" class="text-xl font-bold text-ink">La empresa</h2>
+      <p class="prosa mt-3 text-sm text-slate">
+        {SITIO.entidadLegal} es una empresa danesa (CVR {SITIO.cvr}) con base en
+        {' '}{SITIO.ciudadOrigen}. Estar en Dinamarca me da contacto directo con las
+        universidades y con el proceso real, no de oídas.
+      </p>
+    </section>
+
+    <div class="mt-14 bg-ink p-8 text-center text-white lg:p-12">
+      <h2 class="text-2xl font-bold">¿Hablamos de tu caso?</h2>
+      <p class="mx-auto mt-3 max-w-prosa text-white/80">La primera sesión es gratuita y sin compromiso.</p>
+      <a href={ruta('/contacto/')} class="cta mt-6">Reserva tu sesión</a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,89 @@
+---
+import Base from '@/layouts/Base.astro';
+import { ruta } from '@/lib/ruta';
+
+const preguntas = [
+  {
+    q: '¿Y si no encuentra trabajo?',
+    a: 'Puede pasar, sobre todo los primeros meses. Sin trabajo no hay beca SU, así que el plan realista es llegar con un colchón para cubrir el arranque y no contar con la SU desde el día uno. Yo envío ofertas para estudiantes y ayudo con el proceso, pero el empleo depende de cada empresa: no lo garantizo.',
+  },
+  {
+    q: '¿Y si no se adapta y decide volver?',
+    a: 'También pasa, y no es un fracaso. La matrícula es gratuita, así que el mayor coste hundido no existe. Lo que no se recupera es el alojamiento ya pagado y los vuelos. Por eso empezamos con calma y hablamos de expectativas antes de que se mude, no después.',
+  },
+  {
+    q: '¿En qué idioma son las clases?',
+    a: 'Íntegramente en inglés. No hace falta saber danés para estudiar, aunque aprender lo básico ayuda a la vida diaria y, sobre todo, a encontrar trabajo.',
+  },
+  {
+    q: '¿Y la sanidad?',
+    a: 'La sanidad pública danesa es gratuita una vez tiene el número CPR y la tarjeta sanitaria (la tarjeta amarilla), y se le asigna un médico de cabecera. Lo tramitamos entre los primeros pasos al llegar.',
+  },
+  {
+    q: '¿Quién responde si tú no estás disponible?',
+    a: 'Es un servicio pequeño y personal, lo llevo yo. Si en algún momento no estoy localizable, dejo una vía de contacto alternativa y un compromiso de respuesta en menos de 48 horas. Prefiero deciros esto claro a fingir una centralita que no existe.',
+  },
+];
+---
+
+<Base
+  titulo="Para familias"
+  descripcion="La información que busca quien paga: presupuesto mensual real (sin contar la beca SU), qué pasa si no encuentra trabajo o decide volver, idioma de las clases, sanidad y quién responde."
+>
+  <section class="contenedor py-10 lg:py-14">
+    <p class="etiqueta text-marine">Para familias</p>
+    <h1 class="mt-3 text-display font-bold text-ink">Las preguntas que hace quien paga</h1>
+    <p class="prosa mt-4 text-slate">
+      Si tu hijo o hija se plantea estudiar en Dinamarca, esta página es para ti.
+      Sin folleto: números, condiciones y respuestas directas, incluidas las
+      incómodas.
+    </p>
+
+    <!-- Presupuesto -->
+    <section aria-labelledby="presupuesto" class="mt-12">
+      <h2 id="presupuesto" class="text-2xl font-bold text-ink">Presupuesto mensual</h2>
+      <p class="prosa mt-3 text-slate">
+        La partida grande es el alojamiento. El resto depende de la ciudad y del
+        estilo de vida, así que preferimos no darte una cifra inventada: la
+        calculamos con tu caso real.
+      </p>
+      <dl class="ficha-datos mt-6 max-w-lg">
+        <div><dt>Alojamiento (residencia)</dt><dd>300–550 €</dd></div>
+        <div><dt>Comida</dt><dd>según estilo</dd></div>
+        <div><dt>Transporte (bici)</dt><dd>según ciudad</dd></div>
+        <div><dt>Sanidad (con CPR)</dt><dd>0 €</dd></div>
+        <div><dt>Móvil e internet</dt><dd>reducido</dd></div>
+      </dl>
+
+      <div class="bloque-condicion mt-6">
+        <strong>Este presupuesto no incluye la beca SU.</strong> La SU no es
+        automática ni segura: depende de que trabaje y lo documente, y puede
+        tardar meses en llegar. Haz la cuenta como si no existiera, y que llegue
+        como un alivio, no como el pilar del plan.
+        {' '}<a href={ruta('/estudiar-en-dinamarca/su-beca-estudiantes/')} class="text-marine underline underline-offset-2">Cómo funciona la SU</a>.
+      </div>
+    </section>
+
+    <!-- Preguntas incómodas -->
+    <section aria-labelledby="preguntas" class="mt-14">
+      <h2 id="preguntas" class="text-2xl font-bold text-ink">Sin maquillar</h2>
+      <div class="mt-6 max-w-prosa space-y-6">
+        {preguntas.map((p) => (
+          <div>
+            <h3 class="font-display text-lg font-semibold text-ink">{p.q}</h3>
+            <p class="mt-2 text-slate">{p.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-14 bg-ink p-8 text-center text-white lg:p-12">
+      <h2 class="text-2xl font-bold">Hablemos con calma</h2>
+      <p class="mx-auto mt-3 max-w-prosa text-white/80">
+        La primera sesión es gratuita y sin compromiso. También para madres y
+        padres con dudas.
+      </p>
+      <a href={ruta('/contacto/')} class="cta mt-6">Reserva tu sesión</a>
+    </div>
+  </section>
+</Base>
