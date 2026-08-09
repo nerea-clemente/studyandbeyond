@@ -10,7 +10,7 @@ interface Props {
 const { compacto = false } = Astro.props;
 
 const hitos = [
-  { etiqueta: 'Cuanto antes', detalle: 'Empieza el trámite', tono: 'normal' },
+  { etiqueta: 'Cuanto antes', detalle: 'Arrancamos el trámite', tono: 'normal' },
   { etiqueta: '15 de marzo', detalle: 'Fecha límite de solicitud', tono: 'plazo' },
   { etiqueta: '5 de julio', detalle: 'Documentación', tono: 'normal' },
   { etiqueta: 'Fin de julio', detalle: 'Cartas de admisión', tono: 'normal' },
@@ -24,7 +24,7 @@ const dot = (t: string) =>
 <figure class:list={['not-prose', compacto ? 'my-4' : 'my-6']} data-calendario>
   <figcaption class="mb-5 flex flex-wrap items-baseline justify-between gap-2">
     <span class="etiqueta text-marine">Calendario de admisión</span>
-    <span class="dato inline-block bg-deadline-100 px-2 py-1 text-xs text-deadline-700" data-cuenta hidden></span>
+    <span class="dato bg-deadline-100 px-2 py-1 text-xs text-deadline-700" data-cuenta hidden></span>
   </figcaption>
 
   <!-- Escritorio: eje horizontal fluido -->
