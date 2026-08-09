@@ -33,7 +33,7 @@ const bloques = [
     <h2 class="text-h2 font-bold text-ink">Cómo será tu vida allí</h2>
     <div class="mt-8 grid gap-5 sm:grid-cols-2">
       {bloques.map((b, i) => (
-        <div class:list={['tarjeta tarjeta-hover p-6', i % 2 === 0 ? 'bg-aqua' : 'bg-paper']}>
+        <div class="tarjeta tarjeta-hover bg-aqua p-6">
           <span class="flex h-11 w-11 items-center justify-center rounded-full bg-turq font-display text-lg font-bold text-ink">{i + 1}</span>
           <p class="mt-4 font-display text-lg font-bold text-ink">{b.t}</p>
           <p class="mt-2 text-slate">{b.d}</p>
