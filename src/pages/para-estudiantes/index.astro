@@ -16,29 +16,27 @@ const bloques = [
 >
   <section class="bg-ink text-white">
     <div class="contenedor py-16 lg:py-20">
-      <p class="etiqueta text-marine-300">Para ti</p>
-      <h1 class="mt-3 max-w-3xl text-display-lg font-bold text-white">
-        Tu aventura empieza aquí, y no la haces <span class="underline decoration-deadline decoration-[5px] underline-offset-[6px]">solo</span>
+      <p class="etiqueta text-turq">Para ti</p>
+      <h1 class="mt-3 max-w-3xl text-h1 font-bold text-white">
+        Tu aventura empieza aquí, y no la haces <span class="text-turq">solo</span>
       </h1>
-      <p class="mt-5 max-w-prosa text-lg text-white/80">
+      <p class="mt-5 max-w-prosa text-lg text-white/85">
         Irte a estudiar fuera suena a muchísimo lío. En Dinamarca es más sencillo
         de lo que crees: del proceso nos encargamos nosotros y tú te centras en lo
         que importa, empezar tu vida allí.
       </p>
-      <a href={ruta('/contacto/')} class="mt-8 inline-flex min-h-[44px] items-center rounded bg-white px-5 py-3 font-semibold text-ink transition-colors hover:bg-white/90">Cuéntanos tu caso</a>
+      <a href={ruta('/contacto/')} class="cta-turq mt-8">Cuéntanos tu caso</a>
     </div>
   </section>
 
-  <section class="contenedor py-16">
-    <h2 class="text-2xl font-bold text-ink">Cómo será tu vida allí</h2>
-    <div class="mt-8 grid gap-8 sm:grid-cols-2">
+  <section class="contenedor ritmo">
+    <h2 class="text-h2 font-bold text-ink">Cómo será tu vida allí</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
       {bloques.map((b, i) => (
-        <div class="flex gap-4">
-          <span class="dato mt-1 text-xl font-bold text-deadline-700" aria-hidden="true">0{i + 1}</span>
-          <div>
-            <p class="font-display text-lg font-semibold text-ink">{b.t}</p>
-            <p class="mt-1 text-slate">{b.d}</p>
-          </div>
+        <div class:list={['tarjeta tarjeta-hover p-6', i % 2 === 0 ? 'bg-aqua' : 'bg-paper']}>
+          <span class="flex h-11 w-11 items-center justify-center rounded-full bg-turq font-display text-lg font-bold text-ink">{i + 1}</span>
+          <p class="mt-4 font-display text-lg font-bold text-ink">{b.t}</p>
+          <p class="mt-2 text-slate">{b.d}</p>
         </div>
       ))}
     </div>

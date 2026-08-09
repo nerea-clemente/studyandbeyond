@@ -32,7 +32,7 @@ const preguntas = [
 >
   <section class="contenedor py-10 lg:py-14">
     <p class="etiqueta text-marine">Para familias</p>
-    <h1 class="mt-3 text-display font-bold text-ink">Que tu hijo estudie fuera genera dudas. Es normal.</h1>
+    <h1 class="mt-3 text-h1 font-bold text-ink">Que tu hijo estudie fuera genera dudas. Es normal.</h1>
     <p class="prosa mt-4 text-slate">
       Entendemos que la idea de que tu hijo o hija se vaya a estudiar a otro país
       te genere muchas preguntas. Esta página es para ti: te contamos con calma
@@ -47,7 +47,7 @@ const preguntas = [
         estilo de vida, así que preferimos no darte una cifra inventada: la
         calculamos con tu caso real.
       </p>
-      <dl class="ficha-datos mt-6 max-w-lg">
+      <dl class="ficha-datos mt-6 max-w-lg rounded-2xl bg-aqua px-6 py-2">
         <div><dt>Alojamiento (residencia)</dt><dd>300–550 €</dd></div>
         <div><dt>Comida</dt><dd>según estilo</dd></div>
         <div><dt>Transporte (bici)</dt><dd>según ciudad</dd></div>
@@ -67,23 +67,23 @@ const preguntas = [
     <!-- Preguntas incómodas -->
     <section aria-labelledby="preguntas" class="mt-14">
       <h2 id="preguntas" class="text-2xl font-bold text-ink">Las dudas más habituales</h2>
-      <div class="mt-6 max-w-prosa space-y-6">
+      <div class="mt-6 grid max-w-prosa gap-4">
         {preguntas.map((p) => (
-          <div>
-            <h3 class="font-display text-lg font-semibold text-ink">{p.q}</h3>
+          <div class="tarjeta bg-paper p-5">
+            <h3 class="font-display text-lg font-bold text-ink">{p.q}</h3>
             <p class="mt-2 text-slate">{p.a}</p>
           </div>
         ))}
       </div>
     </section>
 
-    <div class="mt-14 bg-ink p-8 text-center text-white lg:p-12">
+    <div class="mt-14 rounded-3xl bg-ink p-8 text-center text-white lg:p-12">
       <h2 class="text-2xl font-bold">Hablemos con calma</h2>
-      <p class="mx-auto mt-3 max-w-prosa text-white/80">
+      <p class="mx-auto mt-3 max-w-prosa text-white/85">
         La primera sesión es gratuita y sin compromiso. También para madres y
         padres con dudas.
       </p>
-      <a href={ruta('/contacto/')} class="cta mt-6">Reserva tu sesión</a>
+      <a href={ruta('/contacto/')} class="cta-turq mt-6">Reserva tu sesión</a>
     </div>
   </section>
 </Base>

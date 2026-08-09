@@ -59,17 +59,17 @@ const faqLd = {
     </p>
 
     <!-- Servicios -->
-    <ul class="mt-10 grid gap-4 sm:grid-cols-2">
-      {servicios.map((s) => (
-        <li class="rounded-2xl border border-hairline bg-white p-6">
-          <h2 class="font-display text-lg font-semibold text-ink">{s.t}</h2>
+    <ul class="mt-10 grid gap-5 sm:grid-cols-2">
+      {servicios.map((s, i) => (
+        <li class:list={['tarjeta tarjeta-hover p-6', i % 2 === 0 ? 'bg-aqua' : 'bg-paper']}>
+          <h2 class="font-display text-lg font-bold text-ink">{s.t}</h2>
           <p class="mt-2 text-sm text-slate">{s.d}</p>
         </li>
       ))}
     </ul>
 
     <!-- Precio y condiciones -->
-    <section aria-labelledby="precio" class="mt-14 border border-hairline bg-frost p-8 lg:p-12">
+    <section aria-labelledby="precio" class="mt-14 rounded-3xl bg-aqua p-8 lg:p-12">
       <h2 id="precio" class="text-2xl font-semibold text-ink">Precio y condiciones</h2>
       <p class="mt-4 max-w-prosa text-ink">
         Un precio único, sin importar a cuántas carreras solicites plaza, en dos
@@ -100,18 +100,18 @@ const faqLd = {
         consumidor en España, dispones de 14 días naturales para desistir del
         contrato desde su firma. Si el servicio empieza a tu petición dentro de
         ese plazo, puede corresponderte abonar la parte ya prestada.
-        <span class="text-slate-400">(Redacción pendiente de revisión legal.)</span>
+        <span class="text-slate">(Redacción pendiente de revisión legal.)</span>
       </p>
     </section>
 
     <!-- Proceso -->
     <section aria-labelledby="proceso" class="mt-14">
       <h2 id="proceso" class="text-2xl font-semibold text-ink">El proceso, paso a paso</h2>
-      <ol class="mt-6 grid gap-4 sm:grid-cols-2">
+      <ol class="mt-6 grid gap-5 sm:grid-cols-2">
         {pasos.map((p) => (
-          <li class="rounded-2xl border border-hairline bg-white p-6">
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-ink text-sm font-semibold text-white tabular">{p.n}</span>
-            <h3 class="mt-3 font-display text-lg font-semibold text-ink">{p.t}</h3>
+          <li class="tarjeta tarjeta-hover bg-paper p-6">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-turq text-sm font-bold text-ink tabular">{p.n}</span>
+            <h3 class="mt-3 font-display text-lg font-bold text-ink">{p.t}</h3>
             <p class="mt-2 text-sm text-slate">{p.d}</p>
           </li>
         ))}
@@ -134,10 +134,10 @@ const faqLd = {
       </div>
     </section>
 
-    <div class="mt-14 bg-ink p-8 text-center text-white lg:p-12">
-      <h2 class="text-2xl font-semibold">Empecemos por la sesión gratuita</h2>
-      <p class="mt-3 max-w-prosa text-white/80">Sin compromiso. Vemos juntos si Dinamarca encaja contigo antes de nada.</p>
-      <a href={ruta("/contacto/")} class="cta mt-6">Reserva tu sesión</a>
+    <div class="mt-14 rounded-3xl bg-ink p-8 text-center text-white lg:p-12">
+      <h2 class="text-2xl font-bold">Empecemos por la sesión gratuita</h2>
+      <p class="mx-auto mt-3 max-w-prosa text-white/85">Sin compromiso. Vemos juntos si Dinamarca encaja contigo antes de nada.</p>
+      <a href={ruta("/contacto/")} class="cta-turq mt-6">Reserva tu sesión</a>
     </div>
   </section>
 </Base>

@@ -25,7 +25,7 @@ const testimonios = HISTORIAS.map((h) => ({
 
       <div>
         <p class="etiqueta text-marine">Sobre mí</p>
-        <h1 class="mt-3 text-display font-bold text-ink">Empezó por no dejar a nadie perdido</h1>
+        <h1 class="mt-3 text-h1 font-bold text-ink">Empezó por no dejar a nadie perdido</h1>
 
         <div class="prosa mt-6 space-y-4 text-ink">
           <p>
@@ -53,12 +53,12 @@ const testimonios = HISTORIAS.map((h) => ({
     <!-- Testimonios -->
     <section aria-labelledby="testimonios" class="mt-16">
       <h2 id="testimonios" class="text-2xl font-bold text-ink">Quién ha pasado por aquí</h2>
-      <ul class="mt-6 grid gap-px overflow-hidden border border-hairline bg-hairline sm:grid-cols-3">
+      <ul class="mt-6 grid gap-5 sm:grid-cols-3">
         {testimonios.map((t) => (
-          <li class="flex h-full flex-col bg-paper p-6">
+          <li class="flex h-full flex-col rounded-tarjeta bg-aqua p-6">
             <blockquote class="text-sm text-ink">«{t.cita}»</blockquote>
-            <div class="mt-4">
-              <p class="font-display font-semibold text-ink">{t.nombre}</p>
+            <div class="mt-4 border-t border-turq/25 pt-4">
+              <p class="font-display font-bold text-ink">{t.nombre}</p>
               <p class="dato text-xs text-slate">{t.perfil}</p>
             </div>
           </li>
@@ -67,7 +67,7 @@ const testimonios = HISTORIAS.map((h) => ({
     </section>
 
     <!-- La empresa -->
-    <section aria-labelledby="empresa" class="mt-14 border border-hairline bg-frost p-8 lg:p-12">
+    <section aria-labelledby="empresa" class="mt-14 rounded-3xl bg-aqua p-8 lg:p-12">
       <h2 id="empresa" class="text-xl font-bold text-ink">La empresa</h2>
       <p class="prosa mt-3 text-sm text-slate">
         {SITIO.entidadLegal} es una empresa danesa (CVR {SITIO.cvr}) con base en
@@ -76,10 +76,10 @@ const testimonios = HISTORIAS.map((h) => ({
       </p>
     </section>
 
-    <div class="mt-14 bg-ink p-8 text-center text-white lg:p-12">
+    <div class="mt-14 rounded-3xl bg-ink p-8 text-center text-white lg:p-12">
       <h2 class="text-2xl font-bold">¿Hablamos de tu caso?</h2>
-      <p class="mx-auto mt-3 max-w-prosa text-white/80">La primera sesión es gratuita y sin compromiso.</p>
-      <a href={ruta('/contacto/')} class="cta mt-6">Reserva tu sesión</a>
+      <p class="mx-auto mt-3 max-w-prosa text-white/85">La primera sesión es gratuita y sin compromiso.</p>
+      <a href={ruta('/contacto/')} class="cta-turq mt-6">Reserva tu sesión</a>
     </div>
   </section>
 </Base>
