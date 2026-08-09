@@ -8,7 +8,7 @@ export const SITIO = {
   cvr: '43172794',
   // No se publica la dirección postal (decisión del cliente). Solo ciudad/país;
   // la dirección completa se define en la revisión legal. Ver PENDIENTE.md.
-  domicilio: 'Aarhus (Dinamarca) — dirección postal por confirmar',
+  domicilio: 'Aarhus (Dinamarca), dirección postal por confirmar',
   dominio: 'https://studyandbeyond.es',
   descripcion:
     'Orientación y gestión completa para estudiar un grado en Dinamarca: admisión, alojamiento y acompañamiento en el país.',

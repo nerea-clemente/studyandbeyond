@@ -5,6 +5,7 @@ import Base from '@/layouts/Base.astro';
 import JsonLd from '@/components/JsonLd.astro';
 import CarrilAdmision from '@/components/CarrilAdmision.astro';
 import Imagen from '@/components/Imagen.astro';
+import Nyhavn from '@/components/Nyhavn.astro';
 import { SITIO } from '@/config/sitio';
 import { HISTORIAS } from '@/config/historias';
 import { ETIQUETA_AREA, ETIQUETA_NIVEL, formatoDuracion } from '@/lib/grados';
@@ -46,41 +47,40 @@ const claves = [
 >
   <JsonLd slot="head" datos={organizationLd} />
 
-  <!-- ZONA NAVY · Héroe + cifras -->
-  <section class="relative overflow-hidden bg-ink text-white">
-    <div class="pointer-events-none absolute -right-40 top-10 h-96 w-96 rounded-full bg-turq/20 blur-3xl" aria-hidden="true"></div>
-    <div class="pointer-events-none absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-marine/25 blur-3xl" aria-hidden="true"></div>
+  <!-- ZONA NAVY · Héroe con fondo de Nyhavn + cifras -->
+  <section class="relative isolate overflow-hidden bg-ink text-white">
+    <!-- Fondo (marcador de foto de Nyhavn; ver PENDIENTE.md) -->
+    <div class="absolute inset-0 -z-20">
+      <Nyhavn class="h-full w-full object-cover" />
+    </div>
+    <!-- Velos para legibilidad del texto -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/80 to-ink/25" aria-hidden="true"></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/20 to-ink/65" aria-hidden="true"></div>
 
-    <div class="contenedor relative pt-14 lg:pt-20">
-      <div class="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-        <div>
-          <p class="etiqueta text-turq">Estudia en Dinamarca</p>
-          <h1 class="mt-5 text-h1 font-bold text-white">
-            Estudiar en Dinamarca es <span class="text-turq">más posible</span> de lo que crees
-          </h1>
-          <p class="mt-6 max-w-prosa text-lg text-white/85 lg:text-xl">
-            Grados en inglés, sin matrícula y con prácticas en empresa dentro de la
-            carrera. Y no lo haces solo: te acompañamos en todo el proceso, de
-            principio a fin —elegir el grado, la admisión, el piso y tus primeros
-            meses allí.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href={ruta("/contacto/")} class="cta-turq">Reservar una sesión gratis</a>
-            <a href={ruta("/grados/")} class="inline-flex min-h-[44px] items-center justify-center rounded-full border-2 border-white/30 px-6 py-3 font-bold text-white transition-all duration-150 hover:-translate-y-px hover:bg-white/10">Ver los {total} grados</a>
-          </div>
-        </div>
-
-        <div class="lg:pl-4">
-          <Imagen alt="Estudiantes en un campus universitario en Dinamarca" ratio="4/5" prioridad class="mx-auto max-w-sm lg:max-w-none" />
+    <div class="contenedor relative pt-20 lg:pt-32">
+      <div class="max-w-2xl">
+        <p class="etiqueta text-turq">Estudia en Dinamarca</p>
+        <h1 class="mt-5 text-h1 font-bold text-white">
+          Estudiar en Dinamarca es <span class="text-turq">más posible</span> de lo que crees
+        </h1>
+        <p class="mt-6 max-w-prosa text-lg text-white/90 lg:text-xl">
+          Grados en inglés, sin matrícula y con prácticas en empresa dentro de la
+          carrera. Y no lo haces solo: te acompañamos en todo el proceso, de
+          principio a fin: elegir el grado, la admisión, el piso y tus primeros
+          meses allí.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={ruta("/contacto/")} class="cta-turq">Reservar una sesión gratis</a>
+          <a href={ruta("/grados/")} class="inline-flex min-h-[44px] items-center justify-center rounded-full border-2 border-white/40 px-6 py-3 font-bold text-white transition-all duration-150 hover:-translate-y-px hover:bg-white/10">Ver los {total} grados</a>
         </div>
       </div>
 
       <!-- Cifras sobre el mismo navy, sin cajas -->
-      <dl class="mt-14 grid gap-8 border-t border-white/15 pt-10 pb-16 sm:grid-cols-3 lg:mt-20 lg:pb-24">
+      <dl class="mt-16 grid items-end gap-8 border-t border-white/20 pt-10 pb-16 sm:grid-cols-3 lg:mt-24 lg:pb-24">
         {golosos.map((g) => (
-          <div>
+          <div class="flex h-full flex-col">
             <dt class="font-display text-cifra font-bold text-turq">{g.valor}</dt>
-            <dd class="mt-2 text-sm font-semibold text-white/75">{g.titulo}</dd>
+            <dd class="mt-3 text-sm font-semibold text-white/85">{g.titulo}</dd>
           </div>
         ))}
       </dl>

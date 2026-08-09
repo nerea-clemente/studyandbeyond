@@ -1,0 +1,88 @@
+---
+// Ilustración de Nyhavn (Copenhague) como marcador del fondo del héroe.
+// No es foto de banco: es un dibujo propio hasta tener una foto real (ver
+// PENDIENTE.md). Cubre su contenedor (preserveAspectRatio slice).
+interface Props {
+  class?: string;
+}
+const { class: clase = '' } = Astro.props;
+
+// Fachadas de colores típicas de Nyhavn.
+const colores = ['#D64541', '#E8A33D', '#2C9C8F', '#2E6DA4', '#E07A3F', '#3FA34D', '#B23A48', '#5AA9E6'];
+const anchoCasa = 132;
+const x0 = 52;
+const alturas = [210, 250, 190, 230, 200, 240, 195, 225]; // top de cada casa
+const casas = colores.map((color, i) => {
+  const x = x0 + i * anchoCasa;
+  const top = alturas[i];
+  const escalonado = i % 2 === 0;
+  const ventanas = [] as { x: number; y: number }[];
+  for (let fy = top + 46; fy < 470; fy += 66) {
+    ventanas.push({ x: x + 26, y: fy });
+    ventanas.push({ x: x + anchoCasa - 26 - 30, y: fy });
+  }
+  return { x, top, color, escalonado, ventanas };
+});
+---
+
+<svg
+  viewBox="0 0 1108 800"
+  preserveAspectRatio="xMidYMid slice"
+  class:list={['h-full w-full', clase]}
+  role="presentation"
+  aria-hidden="true"
+>
+  <defs>
+    <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DCEFF7" />
+      <stop offset="1" stop-color="#F3FAFB" />
+    </linearGradient>
+    <linearGradient id="agua" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E6DA4" />
+      <stop offset="1" stop-color="#0F4062" />
+    </linearGradient>
+  </defs>
+
+  <!-- Cielo y agua -->
+  <rect x="0" y="0" width="1108" height="540" fill="url(#cielo)" />
+  <rect x="0" y="520" width="1108" height="280" fill="url(#agua)" />
+
+  <!-- Muelle -->
+  <rect x="0" y="512" width="1108" height="18" fill="#C9B59B" />
+
+  <!-- Casas -->
+  {casas.map((c) => (
+    <g>
+      {/* Tejado */}
+      {c.escalonado ? (
+        <path d={`M${c.x} ${c.top} h132 v-22 h-30 v-22 h-72 v22 h-30 z`} fill={c.color} opacity="0.85" transform={`translate(0 -0)`} />
+      ) : (
+        <path d={`M${c.x - 4} ${c.top} L${c.x + 66} ${c.top - 40} L${c.x + 136} ${c.top} z`} fill={c.color} opacity="0.85" />
+      )}
+      {/* Fachada */}
+      <rect x={c.x} y={c.top} width="132" height={512 - c.top} fill={c.color} />
+      {/* Ventanas */}
+      {c.ventanas.map((v) => (
+        <rect x={v.x} y={v.y} width="30" height="40" rx="2" fill="#F7FAFB" opacity="0.9" />
+      ))}
+      {/* Puerta */}
+      <rect x={c.x + 132 / 2 - 18} y="470" width="36" height="42" rx="3" fill="#F7FAFB" opacity="0.85" />
+      {/* Reflejo en el agua */}
+      <rect x={c.x + 12} y="530" width="108" height="120" fill={c.color} opacity="0.18" />
+    </g>
+  ))}
+
+  <!-- Mástiles de veleros -->
+  {[220, 470, 720, 940].map((mx, i) => (
+    <g stroke="#0B2540" stroke-width="3" opacity="0.7">
+      <line x1={mx} y1="300" x2={mx} y2="560" />
+      <line x1={mx} y1="360" x2={mx + 52} y2="360" stroke-width="2" />
+      <path d={`M${mx} 305 l40 18 l-40 18 z`} fill={i % 2 ? '#D64541' : '#E8A33D'} stroke="none" />
+    </g>
+  ))}
+
+  <!-- Reflejos de luz en el agua -->
+  {[120, 360, 600, 860].map((rx) => (
+    <rect x={rx} y="560" width="90" height="6" rx="3" fill="#EAF6FB" opacity="0.25" />
+  ))}
+</svg>

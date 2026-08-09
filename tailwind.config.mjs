@@ -55,7 +55,7 @@ export default {
         // Escala grande, móvil -> escritorio, con clamp().
         'h1': ['clamp(2.75rem, 6vw, 5.25rem)', { lineHeight: '0.98', letterSpacing: '-0.03em' }],
         'h2': ['clamp(1.875rem, 3.5vw, 3rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
-        'cifra': ['clamp(2.25rem, 5.5vw, 4.25rem)', { lineHeight: '0.95', letterSpacing: '-0.03em' }],
+        'cifra': ['clamp(2rem, 4.4vw, 3.5rem)', { lineHeight: '1', letterSpacing: '-0.03em' }],
         // Compatibilidad con clases previas.
         'display-lg': ['clamp(2.75rem, 6vw, 5.25rem)', { lineHeight: '0.98', letterSpacing: '-0.03em' }],
         display: ['clamp(1.875rem, 3.5vw, 3rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
