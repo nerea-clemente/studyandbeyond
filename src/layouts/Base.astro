@@ -6,14 +6,12 @@ import PieDePagina from '@/components/PieDePagina.astro';
 import BannerConsentimiento from '@/components/BannerConsentimiento.astro';
 import { ruta } from '@/lib/ruta';
 
-// Texto: Plus Jakarta Sans (sustituto de Satoshi). Display: Space Grotesk
-// (sustituto de Clash Display). Mono: DM Mono, solo para el calendario.
+// Titulares y texto: Plus Jakarta Sans (una sola familia, aspecto sobrio).
+// Mono: DM Mono, solo para las fechas del calendario.
 const jakarta = ruta('/fonts/plus-jakarta-sans-latin-var.woff2');
-const space = ruta('/fonts/space-grotesk-latin-var.woff2');
 const mono = ruta('/fonts/dm-mono-latin.woff2');
 const fontFaces = `
 @font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url('${jakarta}') format('woff2');}
-@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url('${space}') format('woff2');}
 @font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url('${mono}') format('woff2');}
 `.trim();
 
@@ -35,7 +33,6 @@ const { titulo, descripcion, canonical, imagenOg, noindex } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href={ruta('/favicon.svg')} type="image/svg+xml" />
     <link rel="preload" href={jakarta} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={space} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={mono} as="font" type="font/woff2" crossorigin />
     <style is:inline set:html={fontFaces}></style>
     <Seo {titulo} {descripcion} {canonical} {imagenOg} {noindex} />

@@ -22,7 +22,7 @@ const circulo = (t: string) => {
   const base = 'flex items-center justify-center rounded-full font-display font-bold ring-4 ' + (grande ? 'ring-aqua' : 'ring-paper');
   const color =
     t === 'plazo' ? 'bg-sun text-ink'
-    : t === 'inicio' ? 'bg-turq text-ink'
+    : t === 'inicio' ? 'bg-marine text-white'
     : 'bg-paper text-ink border border-hairline';
   const tam =
     t === 'plazo' ? (grande ? 'h-16 w-16 text-2xl' : 'h-11 w-11 text-base')
@@ -41,7 +41,7 @@ const lineaTop = grande ? 'top-[30px]' : 'top-[21px]';
 
   <!-- Escritorio: eje horizontal con línea en degradado -->
   <div class="relative hidden sm:block">
-    <div class:list={['absolute left-[10%] right-[10%] h-1 rounded-full bg-gradient-to-r from-slate/40 via-turq to-marine', lineaTop]} aria-hidden="true"></div>
+    <div class:list={['absolute left-[10%] right-[10%] h-0.5 bg-hairline', lineaTop]} aria-hidden="true"></div>
     <ol class="relative grid grid-cols-5 gap-4 text-center">
       {hitos.map((h, i) => (
         <li class="flex flex-col items-center">
@@ -61,7 +61,7 @@ const lineaTop = grande ? 'top-[30px]' : 'top-[21px]';
       <li class="flex gap-4">
         <div class="flex flex-col items-center">
           <span data-punto={h.tono} class={circulo(h.tono)}>{i + 1}</span>
-          {i < hitos.length - 1 && <span class="w-[3px] flex-1 rounded-full bg-gradient-to-b from-turq to-marine/40" aria-hidden="true"></span>}
+          {i < hitos.length - 1 && <span class="w-0.5 flex-1 bg-hairline" aria-hidden="true"></span>}
         </div>
         <div class="pb-8 pt-1.5">
           <span class:list={['fecha-mono block', h.tono === 'plazo' ? 'text-deadline-700' : 'text-ink', grande ? 'text-lg' : 'text-base']}>{h.etiqueta}</span>

@@ -57,21 +57,21 @@ const claves = [
     <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/80 to-ink/25" aria-hidden="true"></div>
     <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/20 to-ink/65" aria-hidden="true"></div>
 
-    <div class="contenedor relative pt-20 lg:pt-32">
+    <div class="contenedor relative pt-16 lg:pt-24">
       <div class="max-w-2xl">
         <p class="etiqueta text-turq">Estudia en Dinamarca</p>
-        <h1 class="mt-5 text-h1 font-bold text-white">
-          Estudiar en Dinamarca es <span class="text-turq">más posible</span> de lo que crees
+        <h1 class="mt-4 text-h1 font-bold text-white">
+          Estudiar en Dinamarca es más posible de lo que crees
         </h1>
-        <p class="mt-6 max-w-prosa text-lg text-white/90 lg:text-xl">
+        <p class="mt-5 max-w-prosa text-lg text-white/90">
           Grados en inglés, sin matrícula y con prácticas en empresa dentro de la
           carrera. Y no lo haces solo: te acompañamos en todo el proceso, de
           principio a fin: elegir el grado, la admisión, el piso y tus primeros
           meses allí.
         </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href={ruta("/contacto/")} class="cta-turq">Reservar una sesión gratis</a>
-          <a href={ruta("/grados/")} class="inline-flex min-h-[44px] items-center justify-center rounded-full border-2 border-white/40 px-6 py-3 font-bold text-white transition-all duration-150 hover:-translate-y-px hover:bg-white/10">Ver los {total} grados</a>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href={ruta("/contacto/")} class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-white px-5 py-2.5 font-semibold text-ink transition-colors hover:bg-white/90">Reservar una sesión gratis</a>
+          <a href={ruta("/grados/")} class="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-white/40 px-5 py-2.5 font-semibold text-white transition-colors hover:bg-white/10">Ver los {total} grados</a>
         </div>
       </div>
 
@@ -87,54 +87,48 @@ const claves = [
     </div>
   </section>
 
-  <!-- ZONA BLANCA · Por qué Dinamarca (dos columnas de texto, filete, numeral grande) -->
+  <!-- ZONA BLANCA · Por qué Dinamarca (dos columnas, filete) -->
   <section class="contenedor ritmo" aria-labelledby="claves">
-    <h2 id="claves" class="reveal max-w-2xl text-h2 font-bold text-ink">Por qué Dinamarca</h2>
-    <div class="mt-12 grid border-t border-hairline sm:grid-cols-2">
+    <h2 id="claves" class="reveal text-h2 font-bold text-ink">Por qué Dinamarca</h2>
+    <div class="mt-10 grid border-t border-hairline sm:grid-cols-2">
       {claves.map((c, i) => (
         <div
           class:list={[
-            'reveal flex gap-5 py-8',
+            'reveal py-8',
             i > 0 && 'border-t border-hairline',
             i === 1 && 'sm:border-t-0',
-            i % 2 === 0 ? 'sm:pr-12' : 'sm:border-l sm:border-hairline sm:pl-12',
+            i % 2 === 0 ? 'sm:pr-10' : 'sm:border-l sm:border-hairline sm:pl-10',
           ]}
         >
-          <span class="font-display text-4xl font-bold leading-none text-marine lg:text-5xl" aria-hidden="true">{c.n}</span>
-          <div>
-            <h3 class="text-xl font-bold text-ink">{c.t}</h3>
-            <p class="mt-2 text-slate">{c.d}</p>
-            {c.href && <a href={ruta(c.href)} class="link-sub mt-3 inline-block">{c.enlace} →</a>}
-          </div>
+          <h3 class="text-lg font-bold text-ink">{c.t}</h3>
+          <p class="mt-2 text-slate">{c.d}</p>
+          {c.href && <a href={ruta(c.href)} class="link-sub mt-3 inline-block text-sm">{c.enlace} →</a>}
         </div>
       ))}
     </div>
   </section>
 
-  <!-- ZONA BLANCA · ¿Y si mi nota no llega? (texto que arranca en la columna 2) -->
-  <section class="contenedor pb-4 lg:pb-8">
-    <div class="grid gap-8 lg:grid-cols-12 lg:items-start">
-      <div class="lg:col-span-4">
-        <div class="flex h-20 w-20 items-center justify-center rounded-tarjeta bg-turq lg:h-28 lg:w-28" aria-hidden="true">
-          <span class="font-display text-4xl font-bold text-ink lg:text-6xl">¿?</span>
+  <!-- ZONA BLANCA · ¿Y si mi nota no llega? (bloque editorial) -->
+  <section class="contenedor pb-16 lg:pb-24">
+    <div class="rounded-tarjeta border-l-4 border-marine bg-aqua/60 p-6 lg:p-10">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-10">
+        <h2 class="reveal text-h2 font-bold text-ink lg:col-span-4">¿Y si mi nota no llega?</h2>
+        <div class="reveal mt-4 lg:col-span-8 lg:mt-0">
+          <p class="max-w-prosa text-slate">
+            En Dinamarca no hay una nota de corte única. Se entra por dos vías: una
+            tiene en cuenta tu media convertida a la escala danesa, y la otra valora
+            otras cosas. Y hay grados que piden asignaturas concretas del
+            bachillerato más que una nota alta. Muchos estudiantes entran con medias
+            que en España no les habrían dado la carrera que querían.
+          </p>
+          <a href={ruta('/estudiar-en-dinamarca/proceso-de-admision/')} class="link-sub mt-4 inline-block text-sm">Cómo funciona la admisión →</a>
         </div>
-      </div>
-      <div class="lg:col-span-8">
-        <h2 class="reveal text-h2 font-bold text-ink">¿Y si mi nota no llega?</h2>
-        <p class="reveal mt-5 max-w-prosa text-lg text-slate">
-          En Dinamarca no hay una nota de corte única. Se entra por dos vías: una
-          tiene en cuenta tu media convertida a la escala danesa, y la otra valora
-          otras cosas. Y hay grados que piden asignaturas concretas del
-          bachillerato más que una nota alta. Muchos estudiantes entran con medias
-          que en España no les habrían dado la carrera que querían.
-        </p>
-        <a href={ruta('/estudiar-en-dinamarca/proceso-de-admision/')} class="link-sub mt-5 inline-block text-lg">Cómo funciona la admisión →</a>
       </div>
     </div>
   </section>
 
   <!-- ZONA AQUA · Calendario de admisión (elemento firma, ancho completo) -->
-  <section class="mt-20 bg-aqua lg:mt-32">
+  <section class="bg-aqua">
     <div class="contenedor py-16 lg:py-24">
       <div class="max-w-2xl">
         <h2 class="text-h2 font-bold text-ink">Nuestro itinerario a Dinamarca</h2>
@@ -192,9 +186,9 @@ const claves = [
     </div>
     <ul class="mt-10 grid gap-6 sm:grid-cols-3">
       {HISTORIAS.map((h) => (
-        <li class="reveal flex h-full flex-col rounded-tarjeta bg-aqua p-6">
-          <blockquote class="text-lg text-ink">«{h.cita}»</blockquote>
-          <div class="mt-5 border-t border-turq/30 pt-4">
+        <li class="reveal flex h-full flex-col rounded-tarjeta border border-hairline bg-paper p-6">
+          <blockquote class="text-ink">«{h.cita}»</blockquote>
+          <div class="mt-5 border-t border-hairline pt-4">
             <p class="font-display font-bold text-ink">{h.nombre}</p>
             <p class="dato text-sm text-slate">{h.carrera}{h.ciudad ? ` · ${h.ciudad}` : ''}</p>
           </div>
@@ -215,14 +209,14 @@ const claves = [
 
   <!-- ZONA NAVY · Cierre (único bloque de cierre) -->
   <section class="bg-ink text-white">
-    <div class="contenedor py-20 text-center lg:py-28">
+    <div class="contenedor py-16 text-center lg:py-20">
       <h2 class="mx-auto max-w-3xl text-h2 font-bold">Cuéntanos qué quieres estudiar</h2>
-      <p class="mx-auto mt-5 max-w-prosa text-lg text-white/85">
+      <p class="mx-auto mt-4 max-w-prosa text-white/85">
         La primera sesión es gratis: miramos tu perfil, qué grados encajan y cómo
         sería tu proceso. Si después decides seguir, te explico el precio y lo que
         incluye.
       </p>
-      <a href={ruta("/contacto/")} class="cta-turq mt-8">Reservar sesión</a>
+      <a href={ruta("/contacto/")} class="mt-7 inline-flex min-h-[44px] items-center justify-center rounded-lg bg-white px-5 py-2.5 font-semibold text-ink transition-colors hover:bg-white/90">Reservar sesión</a>
     </div>
   </section>
 </Base>

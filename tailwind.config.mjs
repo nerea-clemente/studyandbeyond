@@ -44,34 +44,36 @@ export default {
         verde: { DEFAULT: '#12BFB6', 100: '#E4F7F5', 700: '#0C8079' },
       },
       fontFamily: {
-        // Display (sustituto de Clash Display).
-        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
-        // Texto (sustituto de Satoshi).
+        // Una sola familia (Plus Jakarta Sans) para titulares y texto: aspecto
+        // editorial y sobrio, no de landing generada. Space Grotesk queda
+        // disponible por si se quiere un display con más carácter.
+        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        grotesk: ['Space Grotesk', 'system-ui', 'sans-serif'],
         sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
         // Datos: SOLO fechas del calendario de admisión.
         mono: ['DM Mono', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        // Escala grande, móvil -> escritorio, con clamp().
-        'h1': ['clamp(2.75rem, 6vw, 5.25rem)', { lineHeight: '0.98', letterSpacing: '-0.03em' }],
-        'h2': ['clamp(1.875rem, 3.5vw, 3rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
-        'cifra': ['clamp(2rem, 4.4vw, 3.5rem)', { lineHeight: '1', letterSpacing: '-0.03em' }],
+        // Escala contenida, móvil -> escritorio. Titulares serios, no gigantes.
+        'h1': ['clamp(2rem, 3.2vw, 3rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
+        'h2': ['clamp(1.5rem, 2.2vw, 2.125rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
+        'cifra': ['clamp(1.75rem, 2.6vw, 2.5rem)', { lineHeight: '1.1', letterSpacing: '-0.01em' }],
         // Compatibilidad con clases previas.
-        'display-lg': ['clamp(2.75rem, 6vw, 5.25rem)', { lineHeight: '0.98', letterSpacing: '-0.03em' }],
-        display: ['clamp(1.875rem, 3.5vw, 3rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'display-lg': ['clamp(2rem, 3.2vw, 3rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
+        display: ['clamp(1.5rem, 2.2vw, 2.125rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
       },
       maxWidth: {
         prosa: '68ch',
-        contenido: '1200px',
+        contenido: '1180px',
       },
-      // Formas: radio generoso, píldoras en botones/etiquetas.
+      // Formas: radio moderado (aspecto de web real, no burbujas).
       borderRadius: {
-        DEFAULT: '0.75rem',
-        xl: '1rem',
-        '2xl': '1.25rem',
-        '3xl': '1.5rem',
-        tarjeta: '20px',
-        imagen: '24px',
+        DEFAULT: '0.5rem',
+        xl: '0.75rem',
+        '2xl': '0.875rem',
+        '3xl': '1rem',
+        tarjeta: '12px',
+        imagen: '14px',
       },
       boxShadow: {
         // Sin sombra en reposo; esta aparece solo en hover.

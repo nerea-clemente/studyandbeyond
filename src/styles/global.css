@@ -21,16 +21,16 @@
 
   body {
     @apply bg-paper text-ink font-sans antialiased;
-    font-size: 17px;
-    line-height: 1.65;
+    font-size: 16px;
+    line-height: 1.6;
     text-rendering: optimizeLegibility;
   }
-  @media (min-width: 1024px) { body { font-size: 19px; } }
+  @media (min-width: 1024px) { body { font-size: 17px; } }
 
-  /* Titulares grandes en Space Grotesk (análogo a Clash Display). */
+  /* Titulares en la misma familia (Plus Jakarta Sans), sobrios. */
   h1, h2, h3, h4 { @apply font-display; text-wrap: balance; }
-  h1 { letter-spacing: -0.03em; line-height: 0.98; }
-  h2 { letter-spacing: -0.02em; line-height: 1.05; }
+  h1 { letter-spacing: -0.02em; line-height: 1.08; }
+  h2 { letter-spacing: -0.01em; line-height: 1.15; }
 
   /* Cuerpo con medida cómoda por defecto en contenido largo. */
   p { text-wrap: pretty; }
@@ -64,8 +64,8 @@
   .contenedor { @apply mx-auto w-full max-w-contenido px-5 sm:px-6 lg:px-8; }
   .prosa { @apply max-w-prosa text-ink; }
 
-  /* Ritmo vertical entre secciones: 80px móvil, 128px escritorio. */
-  .ritmo { @apply py-20 lg:py-32; }
+  /* Ritmo vertical entre secciones (contenido, no landing con mucho aire). */
+  .ritmo { @apply py-16 lg:py-24; }
 
   .saltar-contenido { @apply sr-only; }
   .saltar-contenido:focus { @apply not-sr-only fixed left-4 top-4 z-50 rounded-full bg-ink px-4 py-2 text-white; }
@@ -73,40 +73,36 @@
   /* Etiqueta pequeña (versalitas). El color lo pone cada uso. */
   .etiqueta { @apply text-xs font-bold uppercase; letter-spacing: 0.1em; }
 
-  /* Pastilla de categoría/área: turquesa con texto navy (cumple AA). */
+  /* Etiqueta de categoría/área: discreta, no una pastilla saturada. */
   .pastilla {
-    @apply inline-flex items-center rounded-full bg-turq px-3 py-1 text-xs font-bold text-ink;
-    letter-spacing: 0.02em;
+    @apply inline-flex items-center rounded bg-aqua px-2.5 py-1 text-xs font-semibold text-marine-700;
+    letter-spacing: 0.01em;
   }
 
-  /* Botones. Primario azul; secundario contorno navy; turquesa el de más
-     energía. Sin sombra en reposo; hover eleva 1px y oscurece. */
+  /* Botones. Primario azul de marca; secundario contorno navy. Radio moderado,
+     sin píldora, para un aspecto de web real. */
   .cta {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-marine px-6 py-3
-           font-bold text-white transition-all duration-150 hover:bg-marine-700 hover:-translate-y-px;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-marine px-5 py-2.5
+           font-semibold text-white transition-colors duration-150 hover:bg-marine-700;
     min-height: 44px;
   }
   .cta-secundario {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink
-           px-6 py-3 font-bold text-ink transition-all duration-150 hover:bg-ink hover:text-white hover:-translate-y-px;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-hairline
+           px-5 py-2.5 font-semibold text-ink transition-colors duration-150 hover:border-ink;
     min-height: 44px;
   }
+  /* Alias heredado: se comporta como el primario azul. */
   .cta-turq {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-turq px-6 py-3
-           font-bold text-ink transition-all duration-150 hover:bg-turq-600 hover:-translate-y-px;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-marine px-5 py-2.5
+           font-semibold text-white transition-colors duration-150 hover:bg-marine-700;
     min-height: 44px;
   }
 
-  /* Enlace de texto: subrayado turquesa de 3px que se dibuja de izq. a der. */
+  /* Enlace de texto: azul de marca, subrayado al pasar el ratón. */
   .link-sub {
-    background-image: linear-gradient(var(--turq), var(--turq));
-    background-size: 0% 3px;
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    transition: background-size 200ms ease;
-    @apply font-semibold text-marine;
+    @apply font-semibold text-marine underline decoration-hairline decoration-2 underline-offset-4
+           transition-colors hover:text-marine-700 hover:decoration-marine;
   }
-  .link-sub:hover { background-size: 100% 3px; }
 
   /* Tarjeta: radio 20px, sin sombra en reposo, elevación al hover. */
   .tarjeta {
@@ -149,15 +145,7 @@
   .contenido-mdx > * + * { @apply mt-4; }
   .contenido-mdx h2 { @apply mt-12 text-3xl font-bold text-ink; }
   .contenido-mdx h3 { @apply mt-8 text-xl font-bold text-ink; }
-  .contenido-mdx a {
-    @apply font-semibold text-marine;
-    background-image: linear-gradient(var(--turq), var(--turq));
-    background-size: 0% 3px;
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    transition: background-size 200ms ease;
-  }
-  .contenido-mdx a:hover { background-size: 100% 3px; }
+  .contenido-mdx a { @apply font-semibold text-marine underline underline-offset-2 hover:text-marine-700; }
   .contenido-mdx ul { @apply list-disc space-y-1 pl-5; }
   .contenido-mdx ol { @apply list-decimal space-y-1 pl-5; }
   .contenido-mdx strong { @apply font-bold text-ink; }
