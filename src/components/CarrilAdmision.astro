@@ -16,13 +16,13 @@ interface Props {
 }
 const { nota, compacto = false } = Astro.props;
 
-// Hitos en orden, con posición aproximada (%). No se implica precisión de día.
+// Hitos del proceso, en orden. Fechas orientativas, no días exactos.
 const hitos = [
-  { pos: 6, etiqueta: 'Otoño', detalle: 'Preparar documentación', tipo: 'inicio' },
-  { pos: 34, etiqueta: '15 marzo', detalle: 'Cuota 2 · fecha límite', tipo: 'plazo' },
-  { pos: 66, etiqueta: '5 julio', detalle: 'Cuota 1 · fecha límite', tipo: 'plazo' },
-  { pos: 82, etiqueta: 'Finales de julio', detalle: 'Respuesta de admisión', tipo: 'hito' },
-  { pos: 96, etiqueta: 'Agosto', detalle: 'Inicio de curso', tipo: 'curso' },
+  { pos: 5, etiqueta: 'Cuanto antes', detalle: 'Empieza el trámite', tipo: 'inicio' },
+  { pos: 32, etiqueta: '15 de marzo', detalle: 'Fecha límite de solicitud', tipo: 'plazo' },
+  { pos: 60, etiqueta: '5 de julio', detalle: 'Documentación restante', tipo: 'plazo' },
+  { pos: 82, etiqueta: 'Finales de julio', detalle: 'Cartas de admisión', tipo: 'hito' },
+  { pos: 97, etiqueta: 'Agosto', detalle: 'Empiezas en Dinamarca', tipo: 'curso' },
 ] as const;
 ---
 
@@ -31,7 +31,7 @@ const hitos = [
     <span class="text-sm font-semibold uppercase tracking-wide text-cian">
       Calendario de admisión
     </span>
-    <span class="text-xs text-pizarra">Referencia · sistema danés</span>
+    <span class="text-xs text-pizarra">Fechas orientativas</span>
   </figcaption>
 
   <div class="overflow-x-auto">
@@ -68,7 +68,7 @@ const hitos = [
   </div>
 
   <p class="mt-2 text-xs text-pizarra">
-    {nota ?? 'El plazo exacto depende de la cuota de tu solicitud. Confírmalo antes de solicitar.'}
+    {nota ?? 'Fechas orientativas del proceso. Los plazos oficiales pueden variar según la carrera; confírmalos antes de solicitar.'}
     {' '}<a href={ruta("/estudiar-en-dinamarca/proceso-de-admision/")} class="text-cian underline underline-offset-2">Cómo funciona la admisión</a>.
   </p>
 </figure>

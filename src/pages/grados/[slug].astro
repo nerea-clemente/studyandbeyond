@@ -25,13 +25,17 @@ const filasIngles = [
   ingles.exenciones && ['Exenciones', ingles.exenciones],
 ].filter(Boolean) as [string, string][];
 
-const descripcionMeta = d.descripcion ??
-  `${d.nombre_es} en Dinamarca: requisitos, duración, ramas y salidas.`;
+// Meta description: corta en límite de palabra, sin partir palabras.
+const truncar = (t: string, max = 155) =>
+  t.length <= max ? t : t.slice(0, t.lastIndexOf(' ', max)).trimEnd() + '…';
+const descripcionMeta = truncar(
+  d.descripcion ?? `${d.nombre_es} en Dinamarca: requisitos, duración, ramas y salidas.`,
+);
 ---
 
 <Base
   titulo={d.nombre_es}
-  descripcion={descripcionMeta.slice(0, 155)}
+  descripcion={descripcionMeta}
 >
   <JsonLd slot="head" datos={jsonLdCurso(grado)} />
 
