@@ -1,7 +1,7 @@
 ---
 // EL CARRIL DE ADMISIÓN — elemento firma (ver DISENO.md).
 // Banda-calendario del proceso de admisión danés. Marca en ámbar las dos
-// fechas límite (las dos cuotas) y en cian el inicio de curso. Sin JS,
+// fechas límite (las dos cuotas) y en marine el inicio de curso. Sin JS,
 // respeta prefers-reduced-motion.
 //
 // Los plazos exactos por grado están por confirmar; estas son las fechas de
@@ -28,16 +28,16 @@ const hitos = [
 
 <figure class:list={['not-prose', compacto ? 'my-4' : 'my-8']}>
   <figcaption class="mb-4 flex items-baseline justify-between gap-3">
-    <span class="text-sm font-semibold uppercase tracking-wide text-cian">
+    <span class="text-sm font-semibold uppercase tracking-wide text-marine">
       Calendario de admisión
     </span>
-    <span class="text-xs text-pizarra">Fechas orientativas</span>
+    <span class="text-xs text-slate">Fechas orientativas</span>
   </figcaption>
 
   <div class="overflow-x-auto">
     <div class="relative min-w-[560px] pb-16 pt-8">
       <!-- Raíl -->
-      <div class="absolute left-0 right-0 top-10 h-0.5 bg-hielo" aria-hidden="true"></div>
+      <div class="absolute left-0 right-0 top-10 h-0.5 bg-frost" aria-hidden="true"></div>
 
       <ol class="relative">
         {hitos.map((h) => (
@@ -46,20 +46,20 @@ const hitos = [
               {/* Marca. El plazo va en ámbar (el acento cálido, con avaricia). */}
               <span
                 class:list={[
-                  'z-10 mt-[6px] block rounded-full ring-4 ring-blanco-frio',
-                  h.tipo === 'plazo' ? 'h-4 w-4 bg-ambar' :
-                  h.tipo === 'curso' ? 'h-4 w-4 bg-cian' :
-                  'h-3 w-3 bg-pizarra-400',
+                  'z-10 mt-[6px] block rounded-full ring-4 ring-paper',
+                  h.tipo === 'plazo' ? 'h-4 w-4 bg-deadline' :
+                  h.tipo === 'curso' ? 'h-4 w-4 bg-marine' :
+                  'h-3 w-3 bg-slate-400',
                 ]}
                 aria-hidden="true"
               ></span>
               <span
                 class:list={[
                   'mt-3 whitespace-nowrap text-sm font-semibold tabular',
-                  h.tipo === 'plazo' ? 'text-ambar-700' : 'text-tinta',
+                  h.tipo === 'plazo' ? 'text-deadline-700' : 'text-ink',
                 ]}
               >{h.etiqueta}</span>
-              <span class="mt-0.5 max-w-[9rem] text-xs leading-tight text-pizarra">{h.detalle}</span>
+              <span class="mt-0.5 max-w-[9rem] text-xs leading-tight text-slate">{h.detalle}</span>
             </div>
           </li>
         ))}
@@ -67,8 +67,8 @@ const hitos = [
     </div>
   </div>
 
-  <p class="mt-2 text-xs text-pizarra">
+  <p class="mt-2 text-xs text-slate">
     {nota ?? 'Fechas orientativas del proceso. Los plazos oficiales pueden variar según la carrera; confírmalos antes de solicitar.'}
-    {' '}<a href={ruta("/estudiar-en-dinamarca/proceso-de-admision/")} class="text-cian underline underline-offset-2">Cómo funciona la admisión</a>.
+    {' '}<a href={ruta("/estudiar-en-dinamarca/proceso-de-admision/")} class="text-marine underline underline-offset-2">Cómo funciona la admisión</a>.
   </p>
 </figure>

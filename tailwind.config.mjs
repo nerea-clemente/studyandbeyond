@@ -1,56 +1,63 @@
 /** @type {import('tailwindcss').Config} */
-// Tokens de marca de Study and Beyond. Definidos aquí, no como valores sueltos.
-// Ver DISENO.md para el porqué de cada uno.
+// Tokens de marca de Study and Beyond — brief visual de agosto 2026.
+// Nota de fuentes: el brief pide Cabinet Grotesk y Switzer (Fontshare). El
+// entorno bloquea Fontshare, así que se autoalojan sustitutos cercanos y libres:
+// Space Grotesk (display) y Inter (texto). JetBrains Mono (datos) es exacto.
+// Para usar las originales, basta dejar sus .woff2 en /public/fonts y cambiar
+// las dos @font-face de Base.astro.
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,ts,tsx,md,mdx}'],
   theme: {
     extend: {
       colors: {
-        // Azul profundo casi tinta. Titulares, fondos oscuros, footer.
-        tinta: {
-          DEFAULT: '#0B2A4A',
-          900: '#081F38',
-          700: '#0B2A4A',
-          500: '#164066',
-        },
-        // Cian nórdico. Enlaces, acentos fríos, estados activos.
-        // DEFAULT ajustado para superar AA (≥4.5:1) como texto sobre claros.
-        cian: {
-          DEFAULT: '#186A8D',
-          600: '#12556F',
-          400: '#2E97C2',
-          300: '#7CC4E3',
-        },
-        // Azul hielo para fondos de sección y cebra de tablas.
-        hielo: '#EAF2F6',
-        // Fondo base: blanco frío, no blanco puro.
-        'blanco-frio': '#F8FAFB',
-        // Único acento cálido: plazos, cuenta atrás, CTA. Usar con avaricia.
-        ambar: {
-          DEFAULT: '#E08A1E',
-          // 700 ajustado para superar AA como texto sobre claros (carril, etc.).
-          700: '#98590E',
-          100: '#FBEBD5',
-        },
-        // Gris azulado para texto secundario y letra pequeña.
-        pizarra: {
-          DEFAULT: '#4A5A68',
-          400: '#6B7A87',
-        },
+        // Texto principal, casi negro con azul dentro.
+        ink: { DEFAULT: '#0E2233', 900: '#0A1926' },
+        // Azul de marca: titulares, enlaces, elementos activos.
+        marine: { DEFAULT: '#16537E', 700: '#0F4062', 300: '#8FB6D3' },
+        // Fondo tintado frío para bloques y tablas (luz de norte).
+        frost: '#EAF1F6',
+        // Fondo base.
+        paper: '#FFFFFF',
+        // Texto secundario, etiquetas.
+        slate: { DEFAULT: '#516472', 400: '#7C8B96' },
+        // Filetes y bordes.
+        hairline: '#C6D2DA',
+        // Ámbar: SOLO para plazos y elementos con fecha crítica.
+        deadline: { DEFAULT: '#C2701B', 700: '#8F5210', 100: '#F4E6D3' },
       },
       fontFamily: {
-        // Display editorial (no la didone del logo).
-        display: ['Fraunces', 'Georgia', 'serif'],
-        // Texto: excelente en pantalla pequeña.
+        // Display (sustituto de Cabinet Grotesk).
+        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        // Texto (sustituto de Switzer).
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        // Datos: fechas, ECTS, notas, horas, importes.
+        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        // Escala tipográfica sobria.
-        'display-lg': ['clamp(2.4rem, 5vw, 3.6rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
-        'display': ['clamp(1.9rem, 3.5vw, 2.6rem)', { lineHeight: '1.1', letterSpacing: '-0.015em' }],
+        'display-lg': ['clamp(2rem, 5vw, 3.25rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        display: ['clamp(1.5rem, 3.5vw, 2.125rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
       },
       maxWidth: {
         prosa: '68ch',
+        contenido: '1120px',
+      },
+      borderRadius: {
+        // Geometría contenida: radio máximo 4 px.
+        DEFAULT: '4px',
+        sm: '2px',
+        md: '4px',
+        lg: '4px',
+        xl: '4px',
+        '2xl': '4px',
+        '3xl': '4px',
+      },
+      boxShadow: {
+        // Sin sombras: la separación se resuelve con filetes.
+        none: 'none',
+        sm: 'none',
+        DEFAULT: 'none',
+        md: 'none',
+        lg: 'none',
       },
     },
   },

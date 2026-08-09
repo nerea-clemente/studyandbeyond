@@ -12,8 +12,8 @@ const guias = (await getCollection('guias', ({ data }) => !data.borrador))
   descripcion="Admisión, beca SU, alojamiento, coste de vida, trabajo y primeros pasos. Las guías que explican, sin letra pequeña escondida, cómo funciona estudiar un grado en Dinamarca."
 >
   <section class="contenedor py-10 lg:py-14">
-    <p class="text-sm font-semibold uppercase tracking-wide text-cian">Estudiar en Dinamarca</p>
-    <h1 class="mt-3 text-display font-semibold text-tinta">
+    <p class="text-sm font-semibold uppercase tracking-wide text-marine">Estudiar en Dinamarca</p>
+    <h1 class="mt-3 text-display font-semibold text-ink">
       Todo lo que necesitas entender, explicado sin humo
     </h1>
     <p class="prosa mt-4">
@@ -27,11 +27,11 @@ const guias = (await getCollection('guias', ({ data }) => !data.borrador))
         <li>
           <a
             href={ruta(`/estudiar-en-dinamarca/${g.id}/`)}
-            class="flex h-full flex-col rounded-2xl border border-hielo bg-white p-6 transition-colors hover:border-cian"
+            class="flex h-full flex-col rounded-2xl border border-hairline bg-white p-6 transition-colors hover:border-marine"
           >
-            <h2 class="font-display text-xl font-semibold text-tinta">{g.data.titulo}</h2>
-            <p class="mt-2 text-sm text-pizarra">{g.data.descripcion}</p>
-            <span class="mt-4 text-sm font-semibold text-cian">Leer la guía →</span>
+            <h2 class="font-display text-xl font-semibold text-ink">{g.data.titulo}</h2>
+            <p class="mt-2 text-sm text-slate">{g.data.descripcion}</p>
+            <span class="mt-4 text-sm font-semibold text-marine">Leer la guía →</span>
           </a>
         </li>
       ))}

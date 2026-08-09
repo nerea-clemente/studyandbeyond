@@ -96,14 +96,14 @@ export default function BuscadorGrados({ grados }: Props) {
   const hayFiltros = Object.values(filtros).some(Boolean);
 
   const selectClase =
-    'w-full rounded-lg border border-hielo bg-white px-3 py-2 text-sm text-tinta focus-visible:outline-none';
+    'w-full rounded-lg border border-hairline bg-white px-3 py-2 text-sm text-ink focus-visible:outline-none';
 
   return (
     <div>
-      <form class="rounded-2xl border border-hielo bg-white p-4 sm:p-5" onSubmit={(e) => e.preventDefault()}>
+      <form class="rounded-2xl border border-hairline bg-white p-4 sm:p-5" onSubmit={(e) => e.preventDefault()}>
         <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <label class="sm:col-span-2 lg:col-span-4">
-            <span class="mb-1 block text-xs font-semibold text-pizarra">Buscar</span>
+            <span class="mb-1 block text-xs font-semibold text-slate">Buscar</span>
             <input
               type="search"
               value={filtros.q}
@@ -115,7 +115,7 @@ export default function BuscadorGrados({ grados }: Props) {
           </label>
 
           <label>
-            <span class="mb-1 block text-xs font-semibold text-pizarra">Área</span>
+            <span class="mb-1 block text-xs font-semibold text-slate">Área</span>
             <select value={filtros.area} onChange={set('area')} class={selectClase}>
               <option value="">Todas</option>
               {areas.map(([v, t]) => (<option value={v}>{t}</option>))}
@@ -123,7 +123,7 @@ export default function BuscadorGrados({ grados }: Props) {
           </label>
 
           <label>
-            <span class="mb-1 block text-xs font-semibold text-pizarra">Nivel</span>
+            <span class="mb-1 block text-xs font-semibold text-slate">Nivel</span>
             <select value={filtros.nivel} onChange={set('nivel')} class={selectClase}>
               <option value="">Todos</option>
               {niveles.map(([v, t]) => (<option value={v}>{t}</option>))}
@@ -132,7 +132,7 @@ export default function BuscadorGrados({ grados }: Props) {
 
           {ciudades.length > 0 && (
             <label>
-              <span class="mb-1 block text-xs font-semibold text-pizarra">Ciudad</span>
+              <span class="mb-1 block text-xs font-semibold text-slate">Ciudad</span>
               <select value={filtros.ciudad} onChange={set('ciudad')} class={selectClase}>
                 <option value="">Todas</option>
                 {ciudades.map(([v, t]) => (<option value={v}>{t}</option>))}
@@ -142,7 +142,7 @@ export default function BuscadorGrados({ grados }: Props) {
 
           {idiomas.length > 1 && (
             <label>
-              <span class="mb-1 block text-xs font-semibold text-pizarra">Idioma</span>
+              <span class="mb-1 block text-xs font-semibold text-slate">Idioma</span>
               <select value={filtros.idioma} onChange={set('idioma')} class={selectClase}>
                 <option value="">Todos</option>
                 {idiomas.map(([v, t]) => (<option value={v}>{t}</option>))}
@@ -152,7 +152,7 @@ export default function BuscadorGrados({ grados }: Props) {
 
           {cuotas.length > 0 && (
             <label>
-              <span class="mb-1 block text-xs font-semibold text-pizarra">Cuota</span>
+              <span class="mb-1 block text-xs font-semibold text-slate">Cuota</span>
               <select value={filtros.cuota} onChange={set('cuota')} class={selectClase}>
                 <option value="">Todas</option>
                 {cuotas.map((c) => (<option value={String(c)}>Cuota {c}</option>))}
@@ -162,14 +162,14 @@ export default function BuscadorGrados({ grados }: Props) {
         </div>
 
         <div class="mt-3 flex items-center justify-between">
-          <p class="text-sm text-pizarra tabular" aria-live="polite">
+          <p class="text-sm text-slate tabular" aria-live="polite">
             {resultados.length} {resultados.length === 1 ? 'grado' : 'grados'}
           </p>
           {hayFiltros && (
             <button
               type="button"
               onClick={() => setFiltros({ ...VACIO })}
-              class="text-sm font-semibold text-cian underline underline-offset-2"
+              class="text-sm font-semibold text-marine underline underline-offset-2"
             >
               Limpiar filtros
             </button>
@@ -183,18 +183,18 @@ export default function BuscadorGrados({ grados }: Props) {
           <li>
             <a
               href={g.url}
-              class="flex h-full flex-col rounded-2xl border border-hielo bg-white p-5 transition-colors hover:border-cian"
+              class="flex h-full flex-col rounded-2xl border border-hairline bg-white p-5 transition-colors hover:border-marine"
             >
               <div class="flex flex-wrap gap-2">
-                <span class="rounded-full bg-hielo px-2.5 py-0.5 text-xs font-semibold text-tinta">{g.nivelEtiqueta}</span>
-                <span class="rounded-full bg-hielo px-2.5 py-0.5 text-xs font-semibold text-tinta">{g.areaEtiqueta}</span>
+                <span class="rounded-full bg-frost px-2.5 py-0.5 text-xs font-semibold text-ink">{g.nivelEtiqueta}</span>
+                <span class="rounded-full bg-frost px-2.5 py-0.5 text-xs font-semibold text-ink">{g.areaEtiqueta}</span>
               </div>
-              <h3 class="mt-3 font-display text-lg font-semibold text-tinta">{g.nombre}</h3>
-              {g.descripcion && <p class="mt-2 line-clamp-3 text-sm text-pizarra">{g.descripcion}</p>}
-              <dl class="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs text-pizarra tabular">
-                <div><dt class="inline">Duración: </dt><dd class="inline font-semibold text-tinta">{g.duracion}</dd></div>
-                <div><dt class="inline">ECTS: </dt><dd class="inline font-semibold text-tinta">{g.ects}</dd></div>
-                {g.ingles && <div><dt class="inline">Inglés: </dt><dd class="inline font-semibold text-tinta">{g.ingles}</dd></div>}
+              <h3 class="mt-3 font-display text-lg font-semibold text-ink">{g.nombre}</h3>
+              {g.descripcion && <p class="mt-2 line-clamp-3 text-sm text-slate">{g.descripcion}</p>}
+              <dl class="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate tabular">
+                <div><dt class="inline">Duración: </dt><dd class="inline font-semibold text-ink">{g.duracion}</dd></div>
+                <div><dt class="inline">ECTS: </dt><dd class="inline font-semibold text-ink">{g.ects}</dd></div>
+                {g.ingles && <div><dt class="inline">Inglés: </dt><dd class="inline font-semibold text-ink">{g.ingles}</dd></div>}
               </dl>
             </a>
           </li>
@@ -202,7 +202,7 @@ export default function BuscadorGrados({ grados }: Props) {
       </ul>
 
       {resultados.length === 0 && (
-        <p class="mt-10 rounded-2xl border border-hielo bg-white p-8 text-center text-pizarra">
+        <p class="mt-10 rounded-2xl border border-hairline bg-white p-8 text-center text-slate">
           No hay grados con esos filtros. Prueba a quitar alguno.
         </p>
       )}

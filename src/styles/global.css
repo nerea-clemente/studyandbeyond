@@ -2,49 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Las @font-face se declaran en el <head> (Base.astro) para poder prefijar la
-   URL con la base del sitio (GitHub Pages). */
+/* Las @font-face se declaran en el <head> (Base.astro) para prefijar la URL
+   con la base del despliegue (GitHub Pages). */
 
 @layer base {
   :root {
-    --color-tinta: #0b2a4a;
-    --color-cian: #186a8d;
-    --color-ambar: #e08a1e;
-    --color-pizarra: #4a5a68;
+    --ink: #0e2233;
+    --marine: #16537e;
+    --frost: #eaf1f6;
+    --paper: #ffffff;
+    --slate: #516472;
+    --hairline: #c6d2da;
+    --deadline: #c2701b;
+    --deadline-t: #8f5210;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-blanco-frio text-tinta font-sans antialiased;
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 17px;
+    line-height: 1.6;
     text-rendering: optimizeLegibility;
   }
+  @media (min-width: 1024px) { body { font-size: 18px; } }
 
-  h1, h2, h3, h4 {
-    @apply font-display;
-    text-wrap: balance;
-  }
+  h1, h2, h3, h4 { @apply font-display; text-wrap: balance; }
+  h1, h2 { letter-spacing: -0.015em; }
 
-  /* Foco de teclado siempre visible. */
+  /* Foco de teclado con forma propia. */
   :focus-visible {
-    outline: 3px solid var(--color-cian);
+    outline: 3px solid var(--marine);
     outline-offset: 2px;
     border-radius: 2px;
   }
 
-  /* Cifras alineadas en columna: media web son datos. */
-  .tabular {
-    font-variant-numeric: tabular-nums;
-    font-feature-settings: 'tnum' 1;
-  }
+  /* Datos en monoespaciado y tabular: fechas, ECTS, notas, importes. */
+  .dato { @apply font-mono; font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; letter-spacing: 0; }
+  .tabular { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
 
-  /* Respeta la preferencia de movimiento reducido. */
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
+    html { scroll-behavior: auto; }
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
@@ -54,53 +52,61 @@
 }
 
 @layer components {
-  .contenedor {
-    @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
+  .contenedor { @apply mx-auto w-full max-w-contenido px-5 sm:px-6 lg:px-8; }
+  .prosa { @apply max-w-prosa text-ink; }
+
+  .saltar-contenido { @apply sr-only; }
+  .saltar-contenido:focus { @apply not-sr-only fixed left-4 top-4 z-50 rounded bg-ink px-4 py-2 text-white; }
+
+  /* Etiqueta pequeña (versalitas). */
+  .etiqueta { @apply text-xs font-semibold uppercase text-slate; letter-spacing: 0.08em; }
+
+  /* CTA primaria: azul de marca. El ámbar NO se usa aquí (es solo para plazos). */
+  .cta {
+    @apply inline-flex items-center justify-center gap-2 rounded bg-marine px-5 py-3
+           font-semibold text-white transition-colors hover:bg-marine-700;
+    min-height: 44px;
+  }
+  .cta-secundario {
+    @apply inline-flex items-center justify-center gap-2 rounded border border-marine
+           px-5 py-3 font-semibold text-marine transition-colors hover:bg-marine hover:text-white;
+    min-height: 44px;
   }
 
-  .prosa {
-    @apply max-w-prosa text-[1.05rem] leading-relaxed text-tinta;
+  /* 5.2 · Bloque de condición: filete marine + fondo frost. Sin color de alarma. */
+  .bloque-condicion, .aviso-condicion {
+    @apply my-6 border-l-[3px] border-marine bg-frost px-5 py-4 text-ink;
+  }
+  .bloque-condicion::before, .aviso-condicion::before {
+    content: 'Condición';
+    @apply mb-1 block text-xs font-semibold uppercase text-marine;
+    letter-spacing: 0.08em;
   }
 
-  /* Enlace de saltar al contenido, oculto hasta recibir foco. */
-  .saltar-contenido {
-    @apply sr-only;
+  /* 5.3 · Línea de verificación: una línea en mono, gris, al pie de los datos. */
+  .linea-verificacion {
+    @apply mt-6 border-t border-hairline pt-3 font-mono text-slate;
+    font-size: 14px;
   }
-  .saltar-contenido:focus {
-    @apply not-sr-only fixed left-4 top-4 z-50 rounded bg-tinta px-4 py-2 text-white;
-  }
+  .linea-verificacion a { @apply text-marine underline underline-offset-2; }
 
-  /* Estilos del contenido MDX (guías y blog). Sin plugin de typography. */
-  .contenido-mdx {
-    @apply max-w-prosa text-[1.05rem] leading-relaxed text-tinta;
-  }
+  /* 5.1 · Ficha de datos: filas etiqueta/valor separadas por filete, valor en mono. */
+  .ficha-datos { @apply divide-y divide-hairline border-y border-hairline; }
+  .ficha-datos > div { @apply flex items-baseline justify-between gap-4 py-2.5; }
+  .ficha-datos dt { @apply text-sm text-slate; }
+  .ficha-datos dd { @apply font-mono text-sm text-ink; font-variant-numeric: tabular-nums; }
+
+  /* Contenido MDX (guías y blog). */
+  .contenido-mdx { @apply max-w-prosa text-ink; }
   .contenido-mdx > * + * { @apply mt-4; }
-  .contenido-mdx h2 { @apply mt-10 font-display text-2xl font-semibold text-tinta; }
-  .contenido-mdx h3 { @apply mt-8 font-display text-xl font-semibold text-tinta; }
-  .contenido-mdx p { @apply text-tinta; }
-  .contenido-mdx a { @apply text-cian underline underline-offset-2 hover:text-cian-600; }
+  .contenido-mdx h2 { @apply mt-10 text-2xl font-bold text-ink; }
+  .contenido-mdx h3 { @apply mt-8 text-xl font-semibold text-ink; }
+  .contenido-mdx a { @apply text-marine underline underline-offset-2 hover:text-marine-700; }
   .contenido-mdx ul { @apply list-disc space-y-1 pl-5; }
   .contenido-mdx ol { @apply list-decimal space-y-1 pl-5; }
-  .contenido-mdx strong { @apply font-semibold text-tinta; }
-  .contenido-mdx blockquote {
-    @apply border-l-4 border-cian bg-hielo/60 px-4 py-2 text-pizarra;
-  }
-  .contenido-mdx table { @apply my-6 w-full border-collapse text-left text-sm tabular; }
-  .contenido-mdx th { @apply border-b border-hielo bg-hielo/60 p-3 font-semibold text-tinta; }
-  .contenido-mdx td { @apply border-b border-hielo p-3 align-top; }
-  /* Aviso destacado dentro de una guía (p. ej. la condición de la beca SU). */
-  .aviso-condicion {
-    @apply my-6 rounded-xl border-l-4 border-ambar bg-ambar-100/60 px-5 py-4 text-tinta;
-  }
-
-  /* CTA cálido, con avaricia. */
-  .cta {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-ambar px-5 py-3
-           font-semibold text-tinta-900 transition-colors hover:bg-ambar-700 hover:text-white;
-  }
-
-  .cta-secundario {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-cian
-           px-5 py-3 font-semibold text-cian transition-colors hover:bg-cian hover:text-white;
-  }
+  .contenido-mdx strong { @apply font-semibold text-ink; }
+  .contenido-mdx blockquote { @apply border-l-[3px] border-marine bg-frost px-4 py-2 text-slate; }
+  .contenido-mdx table { @apply my-6 w-full border-collapse text-left text-sm; }
+  .contenido-mdx th { @apply border-b border-hairline bg-frost p-3 font-semibold text-ink; }
+  .contenido-mdx td { @apply border-b border-hairline p-3 align-top; font-variant-numeric: tabular-nums; }
 }

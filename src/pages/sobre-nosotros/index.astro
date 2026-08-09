@@ -30,8 +30,8 @@ const testimonios = [
   descripcion="Study and Beyond nació en 2020, en Aarhus, de la experiencia real de una estudiante española que llegó a Dinamarca sin ninguna referencia."
 >
   <section class="contenedor py-10 lg:py-14">
-    <p class="text-sm font-semibold uppercase tracking-wide text-cian">Sobre nosotros</p>
-    <h1 class="mt-3 text-display font-semibold text-tinta">Empezó por no dejar a nadie perdido</h1>
+    <p class="text-sm font-semibold uppercase tracking-wide text-marine">Sobre nosotros</p>
+    <h1 class="mt-3 text-display font-semibold text-ink">Empezó por no dejar a nadie perdido</h1>
 
     <div class="prosa mt-6 space-y-4">
       <p>
@@ -50,14 +50,14 @@ const testimonios = [
 
     <!-- Testimonios -->
     <section aria-labelledby="testimonios" class="mt-14">
-      <h2 id="testimonios" class="text-2xl font-semibold text-tinta">Quién ha pasado por aquí</h2>
+      <h2 id="testimonios" class="text-2xl font-semibold text-ink">Quién ha pasado por aquí</h2>
       <ul class="mt-6 grid gap-4 sm:grid-cols-3">
         {testimonios.map((t) => (
-          <li class="flex h-full flex-col rounded-2xl border border-hielo bg-white p-6">
-            <blockquote class="text-sm text-tinta">«{t.cita}»</blockquote>
+          <li class="flex h-full flex-col rounded-2xl border border-hairline bg-white p-6">
+            <blockquote class="text-sm text-ink">«{t.cita}»</blockquote>
             <div class="mt-4">
-              <p class="font-display text-lg font-semibold text-tinta">{t.nombre}</p>
-              <p class="text-xs text-pizarra">{t.perfil}</p>
+              <p class="font-display text-lg font-semibold text-ink">{t.nombre}</p>
+              <p class="text-xs text-slate">{t.perfil}</p>
             </div>
           </li>
         ))}
@@ -65,8 +65,8 @@ const testimonios = [
     </section>
 
     <!-- Quiénes somos legalmente -->
-    <section aria-labelledby="empresa" class="mt-14 rounded-3xl bg-hielo p-8 lg:p-12">
-      <h2 id="empresa" class="text-xl font-semibold text-tinta">La empresa</h2>
+    <section aria-labelledby="empresa" class="mt-14 rounded-3xl bg-frost p-8 lg:p-12">
+      <h2 id="empresa" class="text-xl font-semibold text-ink">La empresa</h2>
       <p class="prosa mt-3 text-sm">
         {SITIO.entidadLegal} es una empresa danesa (CVR {SITIO.cvr}) con base en
         {' '}{SITIO.ciudadOrigen}. Estar en Dinamarca nos da contacto directo con
@@ -74,7 +74,7 @@ const testimonios = [
       </p>
     </section>
 
-    <div class="mt-14 rounded-3xl bg-tinta p-8 text-white lg:p-12">
+    <div class="mt-14 rounded-3xl bg-ink p-8 text-white lg:p-12">
       <h2 class="text-2xl font-semibold">¿Hablamos de tu caso?</h2>
       <p class="mt-3 max-w-prosa text-white/80">La primera sesión es gratuita y sin compromiso.</p>
       <a href={ruta("/contacto/")} class="cta mt-6">Reserva tu sesión</a>

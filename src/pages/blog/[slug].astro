@@ -35,12 +35,12 @@ const articleLd = {
   <JsonLd slot="head" datos={articleLd} />
 
   <article class="contenedor py-10 lg:py-14">
-    <nav aria-label="Migas de pan" class="mb-6 text-sm text-pizarra">
-      <a href={ruta("/blog/")} class="hover:text-tinta">Blog</a>
+    <nav aria-label="Migas de pan" class="mb-6 text-sm text-slate">
+      <a href={ruta("/blog/")} class="hover:text-ink">Blog</a>
     </nav>
     <header class="max-w-prosa">
-      <time datetime={d.fecha} class="text-xs font-semibold uppercase tracking-wide text-pizarra">{fechaLarga}</time>
-      <h1 class="mt-2 text-display font-semibold text-tinta">{d.titulo}</h1>
+      <time datetime={d.fecha} class="text-xs font-semibold uppercase tracking-wide text-slate">{fechaLarga}</time>
+      <h1 class="mt-2 text-display font-semibold text-ink">{d.titulo}</h1>
       <p class="prosa mt-4">{d.descripcion}</p>
     </header>
     <div class="contenido-mdx mt-8">
