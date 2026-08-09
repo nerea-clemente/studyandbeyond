@@ -16,32 +16,36 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Paleta de marca: blanco + azules como principales; rojo (bandera
+        // danesa) SOLO como acento. Gris para texto secundario.
         // Navy: texto principal y secciones oscuras.
-        ink: { DEFAULT: '#0B2540', 900: '#081B30' },
-        navy: '#0B2540',
-        // Azul de marca: enlaces y botones primarios.
-        marine: { DEFAULT: '#1466C4', 700: '#0F4E97', 300: '#7FB0E6' },
-        blue: { DEFAULT: '#1466C4', 700: '#0F4E97', 300: '#7FB0E6' },
-        // Turquesa: acento principal. Nunca como texto sobre blanco (no llega a
-        // AA). Va en rellenos, botones, etiquetas, subrayados y fondos.
-        turq: { DEFAULT: '#12BFB6', 600: '#0FA69E', 700: '#0C8079' },
-        // Aqua: fondo tintado muy claro (una zona grande por página).
-        aqua: '#E4F7F5',
-        // Alias heredado -> aqua.
-        frost: '#E4F7F5',
+        ink: { DEFAULT: '#1d3461', 900: '#142644' },
+        navy: '#1d3461',
+        // Azul de marca: enlaces, etiquetas y botones estructurales.
+        marine: { DEFAULT: '#1f487e', 700: '#163760', 300: '#7FA3C4' },
+        blue: { DEFAULT: '#1f487e', 700: '#163760', 300: '#7FA3C4' },
+        // Azul cielo brillante: acentos grandes (distintivos, puntos del
+        // calendario, línea). Solo con texto blanco y en elementos grandes.
+        cielo: { DEFAULT: '#247ba0', 300: '#8FC0DB', 700: '#1c6182' },
+        // Alias heredado -> azul cielo (para clases existentes bg-turq/text-turq).
+        turq: { DEFAULT: '#247ba0', 600: '#1c6182', 700: '#1c6182' },
+        // Rojo bandera danesa: ACENTO. Botón de conversión y plazos del
+        // calendario. Uso medido.
+        rojo: { DEFAULT: '#c42017', 700: '#9d1a12', 100: '#F7DDDB' },
+        deadline: { DEFAULT: '#c42017', 700: '#9d1a12', 100: '#F7DDDB' },
+        sun: { DEFAULT: '#c42017', 700: '#9d1a12', 100: '#F7DDDB' },
+        // Aqua: fondo tintado muy claro (azul frío).
+        aqua: '#E9F1F7',
+        frost: '#E9F1F7',
+        crema: '#E9F1F7',
         paper: '#FFFFFF',
-        // Texto secundario.
-        slate: { DEFAULT: '#5B7183', 400: '#8194A3' },
+        // Texto secundario (gris de marca).
+        slate: { DEFAULT: '#605f5e', 400: '#8a8988' },
         // Filetes y bordes.
-        hairline: '#D3E1E8',
-        line: '#D3E1E8',
-        // Sun: SOLO calendario y fechas límite. Texto oscuro sobre sun.
-        deadline: { DEFAULT: '#FFC24B', 700: '#7A5200', 100: '#FFF1D6' },
-        sun: { DEFAULT: '#FFC24B', 700: '#7A5200', 100: '#FFF1D6' },
-        // Aliases heredados de colores retirados (menta/crema) -> paleta nueva,
-        // para que ninguna clase quede sin fondo mientras se migra.
-        crema: '#E4F7F5',
-        verde: { DEFAULT: '#12BFB6', 100: '#E4F7F5', 700: '#0C8079' },
+        hairline: '#D5DEE8',
+        line: '#D5DEE8',
+        // Alias heredado (verde retirado) -> azul cielo/aqua.
+        verde: { DEFAULT: '#247ba0', 100: '#E9F1F7', 700: '#1c6182' },
       },
       fontFamily: {
         // Una sola familia (Plus Jakarta Sans) para titulares y texto: aspecto

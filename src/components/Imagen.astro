@@ -36,9 +36,9 @@ const luz = 'radial-gradient(circle at 78% 24%, #ffffff 0, transparent 45%)';
   <div
     role="img"
     aria-label={alt}
-    class:list={['relative flex items-end overflow-hidden rounded-imagen bg-turq', aspecto[ratio], clase]}
+    class:list={['relative flex items-end overflow-hidden rounded-imagen bg-cielo', aspecto[ratio], clase]}
   >
     <span class="pointer-events-none absolute inset-0 opacity-20" aria-hidden="true" style={`background-image:${luz}`}></span>
-    <span class="relative p-6 font-display text-2xl font-bold leading-tight text-ink lg:text-3xl">{rotulo ?? 'Study and Beyond'}</span>
+    <span class="relative p-6 font-display text-2xl font-bold leading-tight text-white lg:text-3xl">{rotulo ?? 'Study and Beyond'}</span>
   </div>
 )}

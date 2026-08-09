@@ -7,13 +7,14 @@
 
 @layer base {
   :root {
-    --navy: #0b2540;
-    --blue: #1466c4;
-    --turq: #12bfb6;
-    --aqua: #e4f7f5;
-    --sun: #ffc24b;
-    --slate: #5b7183;
-    --line: #d3e1e8;
+    --navy: #1d3461;
+    --blue: #1f487e;
+    --cielo: #247ba0;
+    --turq: #247ba0; /* alias heredado -> cielo */
+    --aqua: #e9f1f7;
+    --rojo: #c42017;
+    --slate: #605f5e;
+    --line: #d5dee8;
     --paper: #ffffff;
   }
 
@@ -73,14 +74,14 @@
   /* Etiqueta pequeña (versalitas). El color lo pone cada uso. */
   .etiqueta { @apply text-xs font-bold uppercase; letter-spacing: 0.1em; }
 
-  /* Etiqueta de categoría/área: pastilla turquesa alegre (texto navy, AA). */
+  /* Etiqueta de categoría/área: pastilla azul de marca con texto blanco. */
   .pastilla {
-    @apply inline-flex items-center rounded-full bg-turq px-3 py-1 text-xs font-bold text-ink;
+    @apply inline-flex items-center rounded-full bg-marine px-3 py-1 text-xs font-bold text-white;
     letter-spacing: 0.01em;
   }
 
-  /* Botones tipo píldora, amables. Primario azul; el de más energía, turquesa;
-     secundario contorno. Hover: eleva 1px y oscurece. */
+  /* Botones tipo píldora, amables. Estructural azul; el de conversión en rojo
+     (acento de marca); secundario contorno. Hover: eleva 1px y oscurece. */
   .cta {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-marine px-6 py-3
            font-bold text-white transition-all duration-150 hover:-translate-y-px hover:bg-marine-700;
@@ -91,9 +92,10 @@
            px-6 py-3 font-bold text-ink transition-all duration-150 hover:-translate-y-px hover:bg-ink hover:text-white;
     min-height: 44px;
   }
+  /* Botón de conversión (Reserva tu sesión): rojo bandera, el acento. */
   .cta-turq {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-turq px-6 py-3
-           font-bold text-ink transition-all duration-150 hover:-translate-y-px hover:bg-turq-600;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-rojo px-6 py-3
+           font-bold text-white transition-all duration-150 hover:-translate-y-px hover:bg-rojo-700;
     min-height: 44px;
   }
 
@@ -153,7 +155,7 @@
   .contenido-mdx ul { @apply list-disc space-y-1 pl-5; }
   .contenido-mdx ol { @apply list-decimal space-y-1 pl-5; }
   .contenido-mdx strong { @apply font-bold text-ink; }
-  .contenido-mdx blockquote { @apply rounded-tarjeta border-l-[3px] border-turq bg-aqua px-4 py-2 text-slate; }
+  .contenido-mdx blockquote { @apply rounded-tarjeta border-l-[3px] border-cielo bg-aqua px-4 py-2 text-slate; }
   .contenido-mdx table { @apply my-6 w-full border-collapse text-left text-sm; }
   .contenido-mdx th { @apply border-b border-hairline bg-aqua p-3 font-bold text-ink; }
   .contenido-mdx td { @apply border-b border-hairline p-3 align-top; font-variant-numeric: tabular-nums; }
