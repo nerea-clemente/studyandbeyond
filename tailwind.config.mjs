@@ -34,16 +34,18 @@ export default {
         rojo: { DEFAULT: '#c42017', 700: '#9d1a12', 100: '#F7DDDB' },
         deadline: { DEFAULT: '#c42017', 700: '#9d1a12', 100: '#F7DDDB' },
         sun: { DEFAULT: '#c42017', 700: '#9d1a12', 100: '#F7DDDB' },
-        // Aqua: fondo tintado muy claro (azul frío).
-        aqua: '#E9F1F7',
-        frost: '#E9F1F7',
-        crema: '#E9F1F7',
+        // Fondo tintado cálido (crema), para dar cercanía en vez de azul frío.
+        aqua: '#FBF5EC',
+        frost: '#FBF5EC',
+        crema: '#FBF5EC',
+        // Arena cálida: marcadores de imagen y acentos suaves (eco de Nyhavn).
+        arena: { DEFAULT: '#E7D6BC', 700: '#8a6d43' },
         paper: '#FFFFFF',
-        // Texto secundario (gris de marca).
-        slate: { DEFAULT: '#605f5e', 400: '#8a8988' },
-        // Filetes y bordes.
-        hairline: '#D5DEE8',
-        line: '#D5DEE8',
+        // Texto secundario (gris de marca, cálido).
+        slate: { DEFAULT: '#5f5b54', 400: '#8a857c' },
+        // Filetes y bordes (gris cálido).
+        hairline: '#E6DFD3',
+        line: '#E6DFD3',
         // Alias heredado (verde retirado) -> azul cielo/aqua.
         verde: { DEFAULT: '#247ba0', 100: '#E9F1F7', 700: '#1c6182' },
       },
