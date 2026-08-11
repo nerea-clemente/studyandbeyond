@@ -5,7 +5,6 @@ import Base from '@/layouts/Base.astro';
 import JsonLd from '@/components/JsonLd.astro';
 import CarrilAdmision from '@/components/CarrilAdmision.astro';
 import Imagen from '@/components/Imagen.astro';
-import Nyhavn from '@/components/Nyhavn.astro';
 import { SITIO } from '@/config/sitio';
 import { HISTORIAS } from '@/config/historias';
 import { ETIQUETA_AREA, ETIQUETA_NIVEL, formatoDuracion } from '@/lib/grados';
@@ -66,16 +65,34 @@ const claves = [
   descripcion="Estudia un grado universitario en Dinamarca: en inglés, sin matrícula y con beca del Estado si trabajas unas horas. Te acompañamos en todo el proceso desde España, de principio a fin."
 >
   <JsonLd slot="head" datos={[organizationLd, websiteLd]} />
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={ruta('/img/hero-nyhavn-1920.webp')}
+    imagesrcset={`${ruta('/img/hero-nyhavn-1200.webp')} 1200w, ${ruta('/img/hero-nyhavn-1920.webp')} 1920w`}
+    imagesizes="100vw"
+    fetchpriority="high"
+  />
 
   <!-- ZONA NAVY · Héroe con fondo de Nyhavn + cifras -->
   <section class="relative isolate overflow-hidden bg-ink text-white">
-    <!-- Fondo (marcador de foto de Nyhavn; ver PENDIENTE.md) -->
-    <div class="absolute inset-0 -z-20">
-      <Nyhavn class="h-full w-full object-cover" />
-    </div>
-    <!-- Velos para legibilidad del texto -->
-    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/80 to-ink/25" aria-hidden="true"></div>
-    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/20 to-ink/65" aria-hidden="true"></div>
+    <!-- Fondo: foto de Nyhavn (Copenhague) -->
+    <img
+      src={ruta('/img/hero-nyhavn-1920.webp')}
+      srcset={`${ruta('/img/hero-nyhavn-1200.webp')} 1200w, ${ruta('/img/hero-nyhavn-1920.webp')} 1920w`}
+      sizes="100vw"
+      width="1920"
+      height="1080"
+      alt="Nyhavn, el puerto de casas de colores de Copenhague"
+      fetchpriority="high"
+      decoding="async"
+      class="absolute inset-0 -z-20 h-full w-full object-cover"
+    />
+    <!-- Velos para legibilidad del texto (oscuro a la izquierda y abajo; a la
+         derecha se deja ver el color de las casas). -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/75 to-transparent" aria-hidden="true"></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink/95 via-ink/10 to-ink/45" aria-hidden="true"></div>
 
     <div class="contenedor relative pt-16 lg:pt-24">
       <div class="max-w-2xl">

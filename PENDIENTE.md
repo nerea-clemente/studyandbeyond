@@ -95,12 +95,11 @@ Decisiones del cliente aplicadas: universidad/ciudad **siguen ocultas**;
 testimonios **sin foto**; verificación con fecha **eliminada**.
 
 Sigue pendiente (necesita material o decisión del cliente):
-- **Fotos reales** de Dinamarca y de Nerea. Ahora hay marcadores turquesa
-  (componente `Imagen.astro`, nunca hueco gris con "pendiente"). Slots listos:
-  héroe del home (4/5), storytelling del home (4/5), retrato de Sobre mí (4/5),
-  fotos de historias (1/1) y una imagen a sangre por página. Basta pasar `src`
-  al componente `Imagen` (admite WebP/AVIF, srcset 640/1280/1920). Nada de banco
-  de imágenes.
+- **Fotos reales** que faltan (el héroe del home YA usa foto de Nyhavn en
+  `public/img/hero-nyhavn-*.webp`). Pendientes: storytelling del home (4/5),
+  retrato de Sobre mí (4/5) y fotos de historias (1/1). Ahora hay marcadores
+  azules (componente `Imagen.astro`, nunca hueco gris con "pendiente"). Basta
+  pasar `src` al componente `Imagen`. Nada de banco de imágenes.
 - **Tipografías del brief (rediseño ago-2026)**: Clash Display + Satoshi
   (Fontshare) están **bloqueadas por red**; se autoalojan sustitutos libres muy
   cercanos desde Google Fonts: Space Grotesk (display) + Plus Jakarta Sans
