@@ -220,3 +220,25 @@ reescribir hay que corregirlas. Ejemplos detectados:
 9. Analítica (¿Plausible?), hosting (¿Netlify / Cloudflare Pages?) y acceso al
    DNS de studyandbeyond.es.
 10. Archivo del logo y nombre de la tipografía didone del logotipo.
+
+---
+
+## Fotografía documental (rediseño editorial, sep. 2026)
+
+El rediseño usa fotografía real donde la hay (las 2 fotos de Nyhavn que
+aportó Nerea, recortadas en varios ratios: `hero-nyhavn`, `banner-nyhavn`,
+`dk-vertical`, `dk-cuadrada`). Los siguientes huecos usan hoy una superficie
+de marca de color con rótulo (componente `Imagen` sin `src`) y esperan foto
+documental real (nada de banco de imágenes con estudiantes sonriendo a cámara):
+
+- **Home · «Aprendes haciendo»**: hoy es una banda tipográfica charcoal. Encaja
+  una foto documental de estudiantes en un proyecto/aula.
+- **Home · «Por qué Study & Beyond»**: superficie sage con rótulo
+  «Aarhus · Dinamarca». Va una foto real de Aarhus o de la fundadora en
+  Dinamarca (prueba de presencia local, no marca personal).
+- **Home · «Historias»** y **/historias/**: retrato real de cada estudiante
+  (Nuria, Javier, Helena) con permiso de uso. Hoy: bloque de color con el nombre.
+- **/sobre-mi/**: retrato real de Nerea en Aarhus (hoy bloque 4/5).
+
+Sustituir es trivial: pasar `src` al componente `Imagen` (admite srcset) y
+quitar el `rotulo`. Ratios sugeridos ya definidos por sección (4/5, 1/1, 3/2).

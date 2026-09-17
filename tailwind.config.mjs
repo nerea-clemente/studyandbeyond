@@ -51,17 +51,22 @@ export default {
         line: '#E7E3DB',
       },
       fontFamily: {
-        // DM Sans para titulares y texto (sans europea limpia con carácter);
+        // DM Sans para titulares y texto (grotesk europea limpia con carácter);
+        // Instrument Serif para acentos editoriales en cursiva;
         // DM Mono para datos, etiquetas y fechas.
         display: ['DM Sans', 'system-ui', 'sans-serif'],
         sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        serif: ['Instrument Serif', 'Georgia', 'serif'],
         mono: ['DM Mono', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        // Escala editorial: titulares enormes.
+        // Escala editorial con mucho contraste de tamaño.
         'h1': ['clamp(2.5rem, 6vw, 4.75rem)', { lineHeight: '0.98', letterSpacing: '-0.03em' }],
         'h2': ['clamp(1.75rem, 3vw, 2.75rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
         'cifra': ['clamp(2.75rem, 6vw, 4.5rem)', { lineHeight: '0.9', letterSpacing: '-0.03em' }],
+        // Titular monumental (portada editorial) y numeral gigante como grafismo.
+        'monumento': ['clamp(3rem, 9vw, 8rem)', { lineHeight: '0.92', letterSpacing: '-0.04em' }],
+        'numeral': ['clamp(4.5rem, 15vw, 12rem)', { lineHeight: '0.82', letterSpacing: '-0.05em' }],
         'display-lg': ['clamp(2.5rem, 6vw, 4.75rem)', { lineHeight: '0.98', letterSpacing: '-0.03em' }],
         display: ['clamp(1.75rem, 3vw, 2.75rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
       },

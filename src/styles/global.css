@@ -74,6 +74,42 @@
   /* Etiqueta editorial: sans en mayúsculas, espaciada (estilo señalética). */
   .etiqueta { @apply text-xs font-semibold uppercase; letter-spacing: 0.16em; }
 
+  /* Acento editorial: Instrument Serif en cursiva. Para una palabra o frase
+     dentro de un titular, o un pequeño destacado. Nunca para cuerpo largo. */
+  .acento { @apply font-serif italic; letter-spacing: 0; font-weight: 400; }
+
+  /* Anotación editorial al margen: cursiva serif, gris, con función informativa
+     (no decoración). Suele acompañarse de una flecha → ↗ ↓ en el texto. */
+  .anotacion { @apply font-serif italic text-slate; font-size: 1.05rem; line-height: 1.3; }
+
+  /* Numeral gigante como grafismo (0 €, 40+, 01…). */
+  .numeral { @apply font-display font-extrabold text-numeral; font-variant-numeric: tabular-nums; }
+
+  /* Filete fino de sección (regla editorial). */
+  .regla { @apply border-0 border-t border-hairline; }
+  .regla-ink { @apply border-0 border-t border-ink; }
+  .regla-blanca { @apply border-0 border-t border-white/25; }
+
+  /* Enlace editorial: texto + flecha, subrayado que aparece al pasar. */
+  .enlace {
+    @apply inline-flex items-center gap-1.5 font-semibold text-ink underline decoration-transparent
+           decoration-2 underline-offset-4 transition-colors hover:text-rojo hover:decoration-rojo;
+  }
+  .enlace-claro {
+    @apply inline-flex items-center gap-1.5 font-semibold text-white underline decoration-transparent
+           decoration-2 underline-offset-4 transition-colors hover:decoration-white/70;
+  }
+
+  /* Anotación rodeada a mano: elipse de trazo fino, ligeramente girada. */
+  .circulo-nota {
+    @apply relative inline-block;
+  }
+  .circulo-nota::after {
+    content: '';
+    @apply pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-[50%] border border-rojo;
+    transform: rotate(-2.5deg);
+  }
+
   /* Etiqueta de categoría/área: mayúsculas rojas, sin caja pesada. */
   .pastilla {
     @apply inline-flex items-center text-[11px] font-semibold uppercase text-rojo;
@@ -90,6 +126,12 @@
   .cta-secundario {
     @apply inline-flex items-center justify-center gap-2 rounded-lg border border-ink
            px-6 py-3 font-bold text-ink transition-colors duration-150 hover:bg-ink hover:text-white;
+    min-height: 44px;
+  }
+  /* Secundario sobre fondo oscuro/foto: contorno claro. */
+  .cta-secundario-claro {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/60
+           px-6 py-3 font-bold text-white transition-colors duration-150 hover:bg-white/10;
     min-height: 44px;
   }
   /* Alias heredado de conversión -> mismo botón rojo de marca. */
