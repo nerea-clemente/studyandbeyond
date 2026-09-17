@@ -16,37 +16,39 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Identidad "Modern Danish editorial": rojo danés profundo como color de
-        // marca, off-white cálido de fondo, charcoal para texto, y UN azul cielo
-        // como acento secundario inesperado.
+        // Paleta de marca (Brand Manual 2026). Rojo de marca + pasteles nórdicos
+        // + charcoal, sobre off-white casi blanco.
         // Charcoal: texto y secciones oscuras.
-        ink: { DEFAULT: '#202020', 900: '#141414' },
-        navy: '#202020',
-        charcoal: '#202020',
-        // Rojo danés profundo: color de marca (botones, etiquetas, acentos).
-        // Los alias heredados (marine/blue) apuntan aquí para no reescribir clases.
-        rojo: { DEFAULT: '#B52B32', 700: '#93222a', 600: '#a3272e', 300: '#e0a6a9', 100: '#F3E3E3' },
-        marine: { DEFAULT: '#B52B32', 700: '#93222a', 300: '#e0a6a9' },
-        blue: { DEFAULT: '#B52B32', 700: '#93222a', 300: '#e0a6a9' },
+        ink: { DEFAULT: '#1E1E1E', 900: '#121212' },
+        navy: '#1E1E1E',
+        charcoal: '#1E1E1E',
+        // Copenhagen Red: color de marca (CTA, ampersand, acentos).
+        rojo: { DEFAULT: '#B52B32', 700: '#93222a', 600: '#a3272e', 300: '#e2a7aa', 100: '#F3E3E3' },
+        marine: { DEFAULT: '#B52B32', 700: '#93222a', 300: '#e2a7aa' },
+        blue: { DEFAULT: '#B52B32', 700: '#93222a', 300: '#e2a7aa' },
         deadline: { DEFAULT: '#B52B32', 700: '#93222a', 100: '#F3E3E3' },
         sun: { DEFAULT: '#B52B32', 700: '#93222a', 100: '#F3E3E3' },
-        // Azul cielo/cobalto: único acento secundario.
-        cielo: { DEFAULT: '#2E6F9E', 300: '#9FC1DA', 700: '#234f74', 100: '#E4EEF5' },
-        turq: { DEFAULT: '#2E6F9E', 600: '#234f74', 700: '#234f74' },
-        verde: { DEFAULT: '#2E6F9E', 100: '#E4EEF5', 700: '#234f74' },
-        // Off-white cálido (fondo principal) y papel blanco (tarjetas).
-        hueso: '#F7F5F0',
+        // Secundarios pastel nórdicos (fondos suaves, texto charcoal encima).
+        nordic: '#D7E6F3',   // Nordic Blue: datos / información
+        sage: '#C7D3C7',     // Sage: vida en Dinamarca
+        sand: '#F6E6B8',     // Sand: acento cálido / editorial
+        // Aliases heredados -> pasteles.
+        cielo: { DEFAULT: '#D7E6F3', 300: '#D7E6F3', 100: '#EAF2F9', 700: '#2a5f86' },
+        turq: { DEFAULT: '#D7E6F3', 600: '#2a5f86', 700: '#2a5f86' },
+        verde: { DEFAULT: '#C7D3C7', 100: '#E4EEE6', 700: '#3b5145' },
+        arena: { DEFAULT: '#F6E6B8', 700: '#8a6d43' },
+        // Off-white casi blanco (fondo principal) y papel blanco (tarjetas).
+        hueso: '#FBFBF9',
         paper: '#FFFFFF',
-        // Bandas tintadas: off-white un punto más profundo (separación sutil).
-        aqua: '#EFEBE1',
-        frost: '#EFEBE1',
-        crema: '#EFEBE1',
-        arena: { DEFAULT: '#E7D6BC', 700: '#8a6d43' },
+        // Banda tintada genérica (separación sutil).
+        aqua: '#F1EEE7',
+        frost: '#F1EEE7',
+        crema: '#F1EEE7',
         // Texto secundario (gris cálido).
-        slate: { DEFAULT: '#5c574f', 400: '#8a857c' },
-        // Filetes y bordes (cálidos).
-        hairline: '#E2DCD0',
-        line: '#E2DCD0',
+        slate: { DEFAULT: '#57534d', 400: '#8a857c' },
+        // Filetes y bordes.
+        hairline: '#E7E3DB',
+        line: '#E7E3DB',
       },
       fontFamily: {
         // DM Sans para titulares y texto (sans europea limpia con carácter);

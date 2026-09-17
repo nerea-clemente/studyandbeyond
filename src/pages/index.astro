@@ -35,7 +35,6 @@ const organizationLd = {
   ],
   identifier: { '@type': 'PropertyValue', propertyID: 'CVR', value: SITIO.cvr },
 };
-
 const websiteLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -46,24 +45,34 @@ const websiteLd = {
   publisher: { '@type': 'Organization', name: SITIO.entidadLegal },
 };
 
+// Bloque de datos del héroe.
 const datos = [
-  { tag: 'Matrícula', valor: '0 €', pie: 'para estudiantes de la UE' },
-  { tag: 'Grados', valor: `${total}`, pie: 'en inglés' },
-  { tag: 'Beca SU', valor: '≈995 €', pie: 'al mes, con un trabajo de estudiante' },
-  { tag: 'Solicitud', valor: '15 mar', pie: 'fecha límite de admisión' },
+  { n: '0 €', l: 'Matrícula para estudiantes de la UE' },
+  { n: '40+', l: 'Grados en inglés' },
+  { n: 'SU', l: 'Ayuda mensual si cumples los requisitos' },
 ];
 
+// ¿Por qué estudiar en Dinamarca? — cuatro tarjetas en los pasteles de marca.
 const claves = [
-  { t: 'Aprendes haciendo', d: 'Proyectos en grupo sobre casos reales, prácticas en empresa dentro del plan de estudios y exámenes que se defienden en vez de memorizarse. Clases de veinticinco personas donde tuteas al profesor.' },
-  { t: 'Todo en inglés desde el primer día', d: 'No necesitas saber danés para estudiar. Lo aprenderás viviendo aquí, a tu ritmo.' },
-  { t: 'No pagas matrícula', d: 'Si tienes la ciudadanía de la UE, el grado no cuesta nada.', href: '/estudiar-en-dinamarca/coste-de-vida/', enlace: 'Qué gastos sí hay' },
-  { t: 'Y puedes cobrar una beca mientras estudias', d: 'El Estado danés da una ayuda mensual a los estudiantes que trabajan unas horas a la semana.', href: '/estudiar-en-dinamarca/su-beca-estudiantes/', enlace: 'Cómo funciona la SU' },
-].map((c, i) => ({ ...c, n: String(i + 1).padStart(2, '0') }));
+  { t: 'Aprendes haciendo', d: 'Aquí el objetivo no es memorizar apuntes para repetirlos en un examen. Muchos grados trabajan con proyectos, casos reales, trabajos en grupo y prácticas dentro del plan de estudios.', bg: 'bg-sage' },
+  { t: 'Estudias en inglés', d: 'Hay decenas de grados impartidos íntegramente en inglés. No necesitas saber danés para empezar la carrera.', bg: 'bg-nordic' },
+  { t: 'No pagas matrícula', d: 'Si eres estudiante de la Unión Europea, la matrícula de los grados públicos tiene coste 0.', bg: 'bg-sand' },
+  { t: 'Puedes acceder a la SU', d: 'Los estudiantes europeos que cumplen los requisitos de trabajo pueden solicitar la SU, una ayuda mensual del Estado danés.', bg: 'bg-rojo/10' },
+];
+
+// Cómo funciona el proceso — pasos 01–05.
+const pasos = [
+  { t: 'Orientación académica', d: 'Revisamos tu perfil y las opciones que encajan contigo.' },
+  { t: 'Solicitudes', d: 'Preparamos el proceso y gestionamos las solicitudes de admisión.' },
+  { t: 'Documentación', d: 'Revisamos requisitos y coordinamos las traducciones cuando son necesarias.' },
+  { t: 'Alojamiento', d: 'Te asesoramos sobre opciones, zonas, precios y plazos.' },
+  { t: 'Llegada a Dinamarca', d: 'Te orientamos con CPR, banco, trabajo de estudiante y solicitud de la SU.' },
+];
 ---
 
 <Base
   titulo="Estudiar en Dinamarca desde España"
-  descripcion="Estudia un grado universitario en Dinamarca: en inglés, sin matrícula y con beca del Estado si trabajas unas horas. Te acompañamos en todo el proceso desde España, de principio a fin."
+  descripcion="Grados en inglés, matrícula gratuita para estudiantes de la UE y una forma de estudiar más práctica. Study and Beyond está especializado exclusivamente en Dinamarca y gestiona contigo todo el proceso."
 >
   <JsonLd slot="head" datos={[organizationLd, websiteLd]} />
   <link
@@ -76,169 +85,201 @@ const claves = [
     fetchpriority="high"
   />
 
-  <!-- HÉROE editorial sobre off-white: titular enorme + dato como gráfico -->
-  <section class="bg-hueso">
-    <div class="contenedor pt-10 lg:pt-16">
-      <p class="etiqueta text-rojo">Study &amp; Beyond · Dinamarca</p>
-      <h1 class="mt-5 max-w-4xl text-h1 font-bold text-ink">
-        Estudiar en Dinamarca es más posible de lo que crees
-      </h1>
-      <p class="mt-6 max-w-prosa text-lg text-slate lg:text-xl">
-        Grados en inglés, sin matrícula y con prácticas en empresa dentro de la
-        carrera. Y no lo haces solo: te acompañamos en todo el proceso, de
-        principio a fin: elegir el grado, la admisión, el piso y tus primeros
-        meses allí.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href={ruta("/grados/")} class="cta">Explorar los {total} grados →</a>
-        <a href={ruta("/contacto/")} class="cta-secundario">Reservar una sesión gratis</a>
+  <!-- HÉROE · banner con foto de Dinamarca -->
+  <section class="relative isolate overflow-hidden bg-ink text-white">
+    <img
+      src={ruta('/img/hero-nyhavn-1920.webp')}
+      srcset={`${ruta('/img/hero-nyhavn-1200.webp')} 1200w, ${ruta('/img/hero-nyhavn-1920.webp')} 1920w`}
+      sizes="100vw"
+      width="1920"
+      height="1080"
+      alt="Nyhavn, el puerto de casas de colores de Copenhague"
+      fetchpriority="high"
+      decoding="async"
+      class="absolute inset-0 -z-20 h-full w-full object-cover"
+    />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink/90 via-ink/70 to-ink/35" aria-hidden="true"></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink/70 via-transparent to-transparent" aria-hidden="true"></div>
+
+    <div class="contenedor py-20 lg:py-28">
+      <div class="max-w-3xl">
+        <p class="etiqueta text-white/80">Estudiar en Dinamarca</p>
+        <h1 class="mt-5 text-h1 font-extrabold text-white">
+          ¿Has pensado en estudiar tu carrera en Dinamarca?
+        </h1>
+        <p class="mt-6 max-w-prosa text-lg text-white/90">
+          Grados en inglés, matrícula gratuita para estudiantes de la UE y una
+          forma de estudiar mucho más práctica. Study and Beyond está
+          especializado exclusivamente en Dinamarca y gestiona contigo todo el
+          proceso para estudiar aquí.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={ruta("/grados/")} class="cta">Explorar grados →</a>
+          <a href={ruta("/servicios/")} class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-white/50 px-6 py-3 font-bold text-white transition-colors hover:bg-white/10">Ver cómo funciona →</a>
+        </div>
       </div>
-
-      <!-- Dato como gráfico: cifras enormes con etiqueta editorial -->
-      <dl class="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-hairline pt-8 lg:mt-16 lg:grid-cols-4 lg:gap-x-10">
-        {datos.map((d) => (
-          <div>
-            <dt class="etiqueta text-slate">{d.tag}</dt>
-            <dd class="mt-2">
-              <span class="block font-display text-cifra font-bold text-ink">{d.valor}</span>
-              <span class="mt-1 block text-sm text-slate">{d.pie}</span>
-            </dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-
-    <!-- Fotografía documental a sangre de ancho completo -->
-    <div class="mt-10 lg:mt-16">
-      <img
-        src={ruta('/img/hero-nyhavn-1920.webp')}
-        srcset={`${ruta('/img/hero-nyhavn-1200.webp')} 1200w, ${ruta('/img/hero-nyhavn-1920.webp')} 1920w`}
-        sizes="100vw"
-        width="1920"
-        height="1080"
-        alt="Nyhavn, el puerto de casas de colores de Copenhague"
-        fetchpriority="high"
-        decoding="async"
-        class="aspect-[2/1] h-auto w-full object-cover lg:aspect-[21/9]"
-      />
     </div>
   </section>
 
-  <!-- ZONA BLANCA · Por qué Dinamarca (tarjetas alegres con distintivo) -->
-  <section class="contenedor ritmo" aria-labelledby="claves">
-    <h2 id="claves" class="reveal text-h2 font-bold text-ink">Por qué Dinamarca</h2>
-    <div class="mt-8 grid gap-5 sm:grid-cols-2">
-      {claves.map((c, i) => (
-        <div class="reveal tarjeta tarjeta-hover bg-paper p-6 lg:p-7">
-          <span class="flex h-11 w-11 items-center justify-center rounded-full bg-marine font-display text-lg font-bold text-white">{i + 1}</span>
-          <h3 class="mt-4 text-xl font-bold text-ink">{c.t}</h3>
-          <p class="mt-2 text-slate">{c.d}</p>
-          {c.href && <a href={ruta(c.href)} class="link-sub mt-3 inline-block text-sm">{c.enlace} →</a>}
+  <!-- BLOQUE DE DATOS · Nordic Blue -->
+  <section class="bg-nordic">
+    <div class="contenedor grid gap-8 py-10 sm:grid-cols-3 lg:py-12">
+      {datos.map((d) => (
+        <div class="flex items-baseline gap-3">
+          <span class="font-display text-4xl font-extrabold leading-none text-rojo lg:text-5xl">{d.n}</span>
+          <span class="text-sm font-medium text-ink">{d.l}</span>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- ZONA CIELO · ¿Y si mi nota no llega? (banda de color con tarjeta blanca) -->
-  <section class="contenedor pb-16 lg:pb-24">
-    <div class="rounded-3xl bg-cielo p-8 lg:p-12">
-      <div class="lg:grid lg:grid-cols-12 lg:items-center lg:gap-10">
-        <h2 class="reveal text-h2 font-bold text-white lg:col-span-4">¿Y si mi nota no llega?</h2>
-        <div class="reveal mt-5 rounded-2xl bg-paper p-6 lg:col-span-8 lg:mt-0 lg:p-8">
-          <p class="text-slate">
-            En Dinamarca no hay una nota de corte única. Se entra por dos vías: una
-            tiene en cuenta tu media convertida a la escala danesa, y la otra valora
-            otras cosas. Y hay grados que piden asignaturas concretas del
-            bachillerato más que una nota alta. Muchos estudiantes entran con medias
-            que en España no les habrían dado la carrera que querían.
-          </p>
-          <a href={ruta('/estudiar-en-dinamarca/proceso-de-admision/')} class="link-sub mt-4 inline-block text-sm">Cómo funciona la admisión →</a>
+  <!-- ¿POR QUÉ ESTUDIAR EN DINAMARCA? -->
+  <section class="contenedor ritmo" aria-labelledby="porque">
+    <div class="max-w-prosa">
+      <p class="etiqueta text-rojo">Descubrir</p>
+      <h2 id="porque" class="reveal mt-3 text-h2 font-bold text-ink">¿Por qué estudiar en Dinamarca?</h2>
+      <p class="reveal mt-5 text-lg text-slate">
+        Cuando se piensa en estudiar una carrera en inglés en el extranjero, suelen
+        aparecer Reino Unido, Estados Unidos o Países Bajos. Dinamarca no siempre
+        entra en la lista. Y, sin embargo, tiene algunas diferencias bastante
+        importantes.
+      </p>
+    </div>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {claves.map((c) => (
+        <div class:list={['reveal flex h-full flex-col rounded-tarjeta p-6', c.bg]}>
+          <h3 class="font-display text-lg font-bold text-ink">{c.t}</h3>
+          <p class="mt-2 text-sm text-ink/80">{c.d}</p>
         </div>
+      ))}
+    </div>
+    <a href={ruta('/estudiar-en-dinamarca/')} class="link-sub mt-8 inline-block">Por qué estudiar en Dinamarca →</a>
+  </section>
+
+  <!-- ENCUENTRA EL GRADO -->
+  <section class="bg-hueso">
+    <div class="contenedor pb-4">
+      <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+        <div class="max-w-prosa">
+          <p class="etiqueta text-rojo">Encontrar</p>
+          <h2 class="reveal mt-3 text-h2 font-bold text-ink">Encuentra el grado adecuado para ti</h2>
+          <p class="reveal mt-5 text-lg text-slate">
+            Revisamos tu perfil académico, tus intereses y las opciones disponibles
+            en Dinamarca para identificar qué grados pueden encajar contigo. A veces
+            la mejor opción es la que ya tenías en mente. Otras veces aparece una que
+            ni sabías que existía.
+          </p>
+        </div>
+        <a href={ruta("/grados/")} class="link-sub">Ver los grados disponibles →</a>
       </div>
+      <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {destacados.map((g) => (
+          <li class="reveal">
+            <a href={ruta(`/grados/${g.id}/`)} class="tarjeta tarjeta-hover flex h-full flex-col p-6">
+              <span class="pastilla">{ETIQUETA_AREA[g.data.area]}</span>
+              <h3 class="mt-3 font-display text-lg font-bold text-ink">{g.data.nombre_es}</h3>
+              <p class="dato mt-auto pt-4 text-sm text-slate">{ETIQUETA_NIVEL[g.data.nivel]} · {formatoDuracion(g.data.duracion_anios)} · {g.data.ects} ECTS</p>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
-  <!-- ZONA AQUA · Calendario de admisión (elemento firma, ancho completo) -->
+  <!-- CÓMO FUNCIONA EL PROCESO -->
+  <section class="contenedor ritmo" aria-labelledby="proceso">
+    <div class="max-w-prosa">
+      <p class="etiqueta text-rojo">Aplicar</p>
+      <h2 id="proceso" class="reveal mt-3 text-h2 font-bold text-ink">Cómo funciona el proceso</h2>
+      <p class="reveal mt-5 text-lg text-slate">
+        Study and Beyond se ocupa del proceso para que tú puedas centrarte en tomar
+        buenas decisiones. Asesoramiento académico, estrategia de solicitudes,
+        documentación, admisión y orientación práctica antes y después de llegar a
+        Dinamarca.
+      </p>
+    </div>
+    <ol class="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-5">
+      {pasos.map((p, i) => (
+        <li class="reveal border-t-2 border-rojo pt-4">
+          <span class="font-display text-2xl font-extrabold text-rojo">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="mt-2 font-display text-base font-bold text-ink">{p.t}</h3>
+          <p class="mt-1 text-sm text-slate">{p.d}</p>
+        </li>
+      ))}
+    </ol>
+    <a href={ruta("/servicios/")} class="link-sub mt-8 inline-block">Ver el servicio completo →</a>
+  </section>
+
+  <!-- FECHAS IMPORTANTES -->
   <section class="bg-aqua">
     <div class="contenedor py-16 lg:py-24">
-      <div class="max-w-2xl">
-        <h2 class="text-h2 font-bold text-ink">Nuestro itinerario a Dinamarca</h2>
-        <p class="mt-4 text-lg text-slate">Los tiempos y las fechas del proceso, de un vistazo. El curso empieza en agosto, pero conviene que arranquemos mucho antes.</p>
+      <div class="max-w-prosa">
+        <p class="etiqueta text-rojo">Cuándo</p>
+        <h2 class="mt-3 text-h2 font-bold text-ink">Fechas importantes</h2>
+        <p class="mt-5 text-lg text-slate">
+          El curso empieza en agosto, pero la admisión se prepara meses antes. Cuanto
+          antes sepamos qué quieres estudiar, más margen hay para revisar requisitos y
+          preparar una buena solicitud.
+        </p>
       </div>
       <CarrilAdmision grande />
+      <p class="mt-8 text-sm text-slate">Las fechas exactas dependen del grado, la universidad y el perfil del estudiante.</p>
     </div>
   </section>
 
-  <!-- ZONA BLANCA · Grados -->
-  <section class="contenedor ritmo" aria-labelledby="destacados">
-    <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
-      <div>
-        <h2 id="destacados" class="text-h2 font-bold text-ink">Tu carrera te espera</h2>
-        <p class="mt-3 text-lg text-slate">Explora los grados que ofrecemos.</p>
-      </div>
-      <a href={ruta("/grados/")} class="link-sub">Ver los {total} grados →</a>
-    </div>
-    <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {destacados.map((g) => (
-        <li class="reveal">
-          <a href={ruta(`/grados/${g.id}/`)} class="tarjeta tarjeta-hover flex h-full flex-col p-6">
-            <span class="pastilla self-start">{ETIQUETA_AREA[g.data.area]}</span>
-            <h3 class="mt-4 font-display text-xl font-bold text-ink">{g.data.nombre_es}</h3>
-            <p class="dato mt-auto pt-4 text-sm text-slate">{ETIQUETA_NIVEL[g.data.nivel]} · {formatoDuracion(g.data.duracion_anios)} · {g.data.ects} ECTS</p>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <!-- ZONA BLANCA · Quién está detrás (storytelling, imagen a un lado) -->
-  <section class="contenedor pb-16 lg:pb-24">
-    <div class="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-      <Imagen alt="Nerea, fundadora de Study and Beyond, en Aarhus" ratio="4/5" class="reveal max-w-sm lg:max-w-none" />
+  <!-- POR QUÉ STUDY AND BEYOND + PARA FAMILIAS -->
+  <section class="contenedor ritmo">
+    <div class="grid gap-10 lg:grid-cols-2">
       <div class="reveal">
-        <p class="etiqueta text-marine">Quién te acompaña</p>
-        <h2 class="mt-3 text-h2 font-bold text-ink">Soy Nerea, y llegué a Aarhus en 2020 sin conocer a nadie</h2>
-        <p class="mt-5 max-w-prosa text-lg text-slate">
-          Aprendí a base de equivocarme: cómo se pide una habitación, qué es el
-          CPR, que existía una beca para estudiantes que trabajan. Nadie lo
-          contaba en español, así que empecé a contarlo yo. Acompaño a diez
-          estudiantes por curso, uno a uno. Hablas siempre conmigo.
+        <p class="etiqueta text-rojo">Especialistas</p>
+        <h2 class="mt-3 text-h2 font-bold text-ink">Por qué Study &amp; Beyond</h2>
+        <p class="mt-5 text-slate">
+          No trabajamos con diez destinos. Trabajamos con uno. Study and Beyond es una
+          empresa danesa con base en Aarhus y especializada exclusivamente en estudiar
+          en Dinamarca. Conocemos el sistema educativo, el proceso de admisión y los
+          trámites que vienen después porque trabajamos con ellos cada año.
         </p>
-        <a href={ruta("/sobre-mi/")} class="link-sub mt-6 inline-block text-lg">Mi historia →</a>
+        <a href={ruta("/sobre-mi/")} class="link-sub mt-5 inline-block">Conocer Study and Beyond →</a>
+      </div>
+      <div class="reveal rounded-tarjeta bg-sage p-8 lg:p-10">
+        <p class="etiqueta text-ink/70">Para familias</p>
+        <h2 class="mt-3 font-display text-2xl font-bold text-ink">Los datos antes de decidir</h2>
+        <p class="mt-4 text-ink/80">
+          Matrícula, presupuesto, alojamiento, trabajo, SU, sanidad y qué ocurre cuando
+          llega a Dinamarca. Hemos reunido la información que normalmente aparece en las
+          primeras conversaciones con las familias.
+        </p>
+        <a href={ruta('/para-familias/')} class="link-sub mt-5 inline-block">Información para familias →</a>
       </div>
     </div>
   </section>
 
-  <!-- ZONA BLANCA · Historias -->
-  <section class="contenedor ritmo" aria-labelledby="historias">
-    <div class="flex flex-wrap items-end justify-between gap-4">
-      <h2 id="historias" class="text-h2 font-bold text-ink">Historias reales</h2>
-      <a href={ruta("/historias/")} class="link-sub">Ver todas →</a>
-    </div>
-    <ul class="mt-10 grid gap-6 sm:grid-cols-3">
-      {HISTORIAS.map((h) => (
-        <li class="reveal flex h-full flex-col rounded-tarjeta bg-aqua p-6">
-          <blockquote class="text-ink">«{h.cita}»</blockquote>
-          <div class="mt-5 border-t border-cielo/40 pt-4">
-            <p class="font-display font-bold text-ink">{h.nombre}</p>
-            <p class="dato text-sm text-slate">{h.carrera}{h.ciudad ? ` · ${h.ciudad}` : ''}</p>
-          </div>
-        </li>
-      ))}
-    </ul>
-
-    <!-- Puntero a familias (sin banda de color, filete simple) -->
-    <div class="mt-12 flex flex-col gap-4 border-t border-hairline pt-8 sm:flex-row sm:items-center sm:justify-between">
-      <div>
-        <p class="etiqueta text-marine">Para madres y padres</p>
-        <p class="mt-2 max-w-xl font-display text-xl font-bold text-ink">¿Eres su madre o su padre y te asaltan las dudas?</p>
-        <p class="mt-1 text-slate">Presupuesto, beca, sanidad y todo lo que necesitas saber, con calma.</p>
+  <!-- HISTORIAS -->
+  <section class="bg-hueso">
+    <div class="contenedor pb-16 lg:pb-24" aria-labelledby="historias">
+      <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+        <div class="max-w-prosa">
+          <p class="etiqueta text-rojo">Estudiantes</p>
+          <h2 id="historias" class="mt-3 text-h2 font-bold text-ink">Historias de estudiantes</h2>
+          <p class="mt-5 text-lg text-slate">Conoce la experiencia de estudiantes que ya han elegido Dinamarca para estudiar.</p>
+        </div>
+        <a href={ruta("/historias/")} class="link-sub">Ver historias →</a>
       </div>
-      <a href={ruta('/para-familias/')} class="cta-secundario shrink-0">Página para familias</a>
+      <ul class="mt-10 grid gap-4 sm:grid-cols-3">
+        {HISTORIAS.map((h) => (
+          <li class="reveal flex h-full flex-col rounded-tarjeta border border-hairline bg-paper p-6">
+            <blockquote class="text-ink">«{h.cita}»</blockquote>
+            <div class="mt-5 border-t border-hairline pt-4">
+              <p class="font-display font-bold text-ink">{h.nombre}</p>
+              <p class="dato text-sm text-slate">{h.carrera}{h.ciudad ? ` · ${h.ciudad}` : ''}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
-  <!-- ZONA NAVY · Cierre con foto de fondo (banner estilo brochure) -->
+  <!-- CTA FINAL · banner con foto -->
   <section class="relative isolate overflow-hidden bg-ink text-white">
     <img
       src={ruta('/img/banner-nyhavn-1920.webp')}
@@ -251,15 +292,14 @@ const claves = [
       decoding="async"
       class="absolute inset-0 -z-20 h-full w-full object-cover"
     />
-    <div class="absolute inset-0 -z-10 bg-ink/60" aria-hidden="true"></div>
+    <div class="absolute inset-0 -z-10 bg-ink/70" aria-hidden="true"></div>
     <div class="contenedor py-20 text-center lg:py-28">
-      <h2 class="mx-auto max-w-3xl text-h2 font-bold">Cuéntanos qué quieres estudiar</h2>
+      <h2 class="mx-auto max-w-3xl text-h2 font-bold">¿Quieres saber qué opciones tienes en Dinamarca?</h2>
       <p class="mx-auto mt-4 max-w-prosa text-white/90">
-        La primera sesión es gratis: miramos tu perfil, qué grados encajan y cómo
-        sería tu proceso. Si después decides seguir, te explico el precio y lo que
-        incluye.
+        La primera sesión es gratuita. Revisamos tu situación, qué grados pueden
+        encajar y cómo sería el proceso en tu caso.
       </p>
-      <a href={ruta("/contacto/")} class="cta-turq mt-7">Reservar sesión</a>
+      <a href={ruta("/contacto/")} class="cta mt-7">Reservar una sesión →</a>
     </div>
   </section>
 </Base>

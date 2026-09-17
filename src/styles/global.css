@@ -7,15 +7,15 @@
 
 @layer base {
   :root {
-    --navy: #202020;
-    --ink: #202020;
+    --navy: #1e1e1e;
+    --ink: #1e1e1e;
     --rojo: #b52b32;
-    --cielo: #2e6f9e;
-    --turq: #2e6f9e; /* alias heredado -> cielo */
-    --aqua: #efebe1;
-    --hueso: #f7f5f0;
-    --slate: #5c574f;
-    --line: #e2dcd0;
+    --cielo: #d7e6f3;
+    --turq: #d7e6f3;
+    --aqua: #f1eee7;
+    --hueso: #fbfbf9;
+    --slate: #57534d;
+    --line: #e7e3db;
     --paper: #ffffff;
   }
 
@@ -71,13 +71,13 @@
   .saltar-contenido { @apply sr-only; }
   .saltar-contenido:focus { @apply not-sr-only fixed left-4 top-4 z-50 rounded bg-ink px-4 py-2 text-white; }
 
-  /* Etiqueta editorial (mono, versalitas). Estilo señalética danesa. */
-  .etiqueta { @apply font-mono text-xs font-medium uppercase; letter-spacing: 0.14em; }
+  /* Etiqueta editorial: sans en mayúsculas, espaciada (estilo señalética). */
+  .etiqueta { @apply text-xs font-semibold uppercase; letter-spacing: 0.16em; }
 
-  /* Etiqueta de categoría/área: chip editorial con contorno rojo. */
+  /* Etiqueta de categoría/área: mayúsculas rojas, sin caja pesada. */
   .pastilla {
-    @apply inline-flex items-center rounded border border-rojo/35 bg-rojo/5 px-2.5 py-1 font-mono text-[11px] font-medium uppercase text-rojo;
-    letter-spacing: 0.08em;
+    @apply inline-flex items-center text-[11px] font-semibold uppercase text-rojo;
+    letter-spacing: 0.1em;
   }
 
   /* Botones editoriales: rojo de marca; radio limpio, no píldora.
