@@ -16,57 +16,52 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Paleta de marca: blanco + azules como principales; rojo (bandera
-        // danesa) SOLO como acento. Gris para texto secundario.
-        // Navy: texto principal y secciones oscuras.
-        ink: { DEFAULT: '#1d3461', 900: '#142644' },
-        navy: '#1d3461',
-        // Azul de marca: enlaces, etiquetas y botones estructurales.
-        marine: { DEFAULT: '#1f487e', 700: '#163760', 300: '#7FA3C4' },
-        blue: { DEFAULT: '#1f487e', 700: '#163760', 300: '#7FA3C4' },
-        // Azul cielo brillante: acentos grandes (distintivos, puntos del
-        // calendario, línea). Solo con texto blanco y en elementos grandes.
-        cielo: { DEFAULT: '#247ba0', 300: '#8FC0DB', 700: '#1c6182' },
-        // Alias heredado -> azul cielo (para clases existentes bg-turq/text-turq).
-        turq: { DEFAULT: '#247ba0', 600: '#1c6182', 700: '#1c6182' },
-        // Rojo bandera danesa: ACENTO. Botón de conversión y plazos del
-        // calendario. Uso medido.
-        rojo: { DEFAULT: '#c42017', 700: '#9d1a12', 100: '#F7DDDB' },
-        deadline: { DEFAULT: '#c42017', 700: '#9d1a12', 100: '#F7DDDB' },
-        sun: { DEFAULT: '#c42017', 700: '#9d1a12', 100: '#F7DDDB' },
-        // Fondo tintado en cerúleo claro (con vida, no gris ni crema).
-        aqua: '#DCEEF6',
-        frost: '#DCEEF6',
-        crema: '#DCEEF6',
-        // Arena cálida (acento suave opcional).
-        arena: { DEFAULT: '#E7D6BC', 700: '#8a6d43' },
+        // Identidad "Modern Danish editorial": rojo danés profundo como color de
+        // marca, off-white cálido de fondo, charcoal para texto, y UN azul cielo
+        // como acento secundario inesperado.
+        // Charcoal: texto y secciones oscuras.
+        ink: { DEFAULT: '#202020', 900: '#141414' },
+        navy: '#202020',
+        charcoal: '#202020',
+        // Rojo danés profundo: color de marca (botones, etiquetas, acentos).
+        // Los alias heredados (marine/blue) apuntan aquí para no reescribir clases.
+        rojo: { DEFAULT: '#B52B32', 700: '#93222a', 600: '#a3272e', 300: '#e0a6a9', 100: '#F3E3E3' },
+        marine: { DEFAULT: '#B52B32', 700: '#93222a', 300: '#e0a6a9' },
+        blue: { DEFAULT: '#B52B32', 700: '#93222a', 300: '#e0a6a9' },
+        deadline: { DEFAULT: '#B52B32', 700: '#93222a', 100: '#F3E3E3' },
+        sun: { DEFAULT: '#B52B32', 700: '#93222a', 100: '#F3E3E3' },
+        // Azul cielo/cobalto: único acento secundario.
+        cielo: { DEFAULT: '#2E6F9E', 300: '#9FC1DA', 700: '#234f74', 100: '#E4EEF5' },
+        turq: { DEFAULT: '#2E6F9E', 600: '#234f74', 700: '#234f74' },
+        verde: { DEFAULT: '#2E6F9E', 100: '#E4EEF5', 700: '#234f74' },
+        // Off-white cálido (fondo principal) y papel blanco (tarjetas).
+        hueso: '#F7F5F0',
         paper: '#FFFFFF',
-        // Texto secundario (gris de marca).
-        slate: { DEFAULT: '#5b6b78', 400: '#84929d' },
-        // Filetes y bordes.
-        hairline: '#CFE0EA',
-        line: '#CFE0EA',
-        // Alias heredado (verde retirado) -> azul cielo/aqua.
-        verde: { DEFAULT: '#247ba0', 100: '#E9F1F7', 700: '#1c6182' },
+        // Bandas tintadas: off-white un punto más profundo (separación sutil).
+        aqua: '#EFEBE1',
+        frost: '#EFEBE1',
+        crema: '#EFEBE1',
+        arena: { DEFAULT: '#E7D6BC', 700: '#8a6d43' },
+        // Texto secundario (gris cálido).
+        slate: { DEFAULT: '#5c574f', 400: '#8a857c' },
+        // Filetes y bordes (cálidos).
+        hairline: '#E2DCD0',
+        line: '#E2DCD0',
       },
       fontFamily: {
-        // Una sola familia (Plus Jakarta Sans) para titulares y texto: aspecto
-        // editorial y sobrio, no de landing generada. Space Grotesk queda
-        // disponible por si se quiere un display con más carácter.
-        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        grotesk: ['Space Grotesk', 'system-ui', 'sans-serif'],
-        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        // Datos: SOLO fechas del calendario de admisión.
+        // DM Sans para titulares y texto (sans europea limpia con carácter);
+        // DM Mono para datos, etiquetas y fechas.
+        display: ['DM Sans', 'system-ui', 'sans-serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
         mono: ['DM Mono', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        // Escala con energía pero sin gigantismo. Móvil -> escritorio.
-        'h1': ['clamp(2.25rem, 3.6vw, 3.5rem)', { lineHeight: '1.06', letterSpacing: '-0.02em' }],
-        'h2': ['clamp(1.625rem, 2.4vw, 2.25rem)', { lineHeight: '1.12', letterSpacing: '-0.015em' }],
-        'cifra': ['clamp(2rem, 3.2vw, 3rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
-        // Compatibilidad con clases previas.
-        'display-lg': ['clamp(2.25rem, 3.6vw, 3.5rem)', { lineHeight: '1.06', letterSpacing: '-0.02em' }],
-        display: ['clamp(1.625rem, 2.4vw, 2.25rem)', { lineHeight: '1.12', letterSpacing: '-0.015em' }],
+        // Escala editorial: titulares enormes.
+        'h1': ['clamp(2.5rem, 6vw, 4.75rem)', { lineHeight: '0.98', letterSpacing: '-0.03em' }],
+        'h2': ['clamp(1.75rem, 3vw, 2.75rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'cifra': ['clamp(2.75rem, 6vw, 4.5rem)', { lineHeight: '0.9', letterSpacing: '-0.03em' }],
+        'display-lg': ['clamp(2.5rem, 6vw, 4.75rem)', { lineHeight: '0.98', letterSpacing: '-0.03em' }],
+        display: ['clamp(1.75rem, 3vw, 2.75rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
       },
       maxWidth: {
         prosa: '68ch',
@@ -74,17 +69,17 @@ export default {
       },
       // Formas amables: esquinas redondeadas y generosas.
       borderRadius: {
-        DEFAULT: '0.625rem',
-        xl: '1rem',
-        '2xl': '1.25rem',
-        '3xl': '1.75rem',
-        tarjeta: '18px',
-        imagen: '22px',
+        DEFAULT: '0.375rem',
+        xl: '0.625rem',
+        '2xl': '0.75rem',
+        '3xl': '1rem',
+        tarjeta: '10px',
+        imagen: '12px',
       },
       boxShadow: {
         // Sin sombra en reposo; esta aparece solo en hover.
-        flotante: '0 12px 32px rgba(11, 37, 64, 0.10)',
-        suave: '0 12px 32px rgba(11, 37, 64, 0.10)',
+        flotante: '0 14px 34px rgba(32, 32, 32, 0.10)',
+        suave: '0 14px 34px rgba(32, 32, 32, 0.10)',
       },
       keyframes: {
         flotar: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },

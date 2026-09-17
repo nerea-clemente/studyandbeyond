@@ -7,47 +7,47 @@
 
 @layer base {
   :root {
-    --navy: #1d3461;
-    --blue: #1f487e;
-    --cielo: #247ba0;
-    --turq: #247ba0; /* alias heredado -> cielo */
-    --aqua: #dceef6;
-    --rojo: #c42017;
-    --slate: #5b6b78;
-    --line: #cfe0ea;
+    --navy: #202020;
+    --ink: #202020;
+    --rojo: #b52b32;
+    --cielo: #2e6f9e;
+    --turq: #2e6f9e; /* alias heredado -> cielo */
+    --aqua: #efebe1;
+    --hueso: #f7f5f0;
+    --slate: #5c574f;
+    --line: #e2dcd0;
     --paper: #ffffff;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-paper text-ink font-sans antialiased;
+    @apply bg-hueso text-ink font-sans antialiased;
     font-size: 16px;
     line-height: 1.6;
     text-rendering: optimizeLegibility;
   }
   @media (min-width: 1024px) { body { font-size: 17px; } }
 
-  /* Titulares en la misma familia (Plus Jakarta Sans), sobrios. */
+  /* Titulares en DM Sans, apretados y con carácter editorial. */
   h1, h2, h3, h4 { @apply font-display; text-wrap: balance; }
-  h1 { letter-spacing: -0.02em; line-height: 1.08; }
-  h2 { letter-spacing: -0.01em; line-height: 1.15; }
+  h1 { letter-spacing: -0.03em; line-height: 0.98; }
+  h2 { letter-spacing: -0.02em; line-height: 1.05; }
 
   /* Cuerpo con medida cómoda por defecto en contenido largo. */
   p { text-wrap: pretty; }
 
-  /* Foco de teclado con forma propia. */
+  /* Foco de teclado con forma propia (rojo de marca). */
   :focus-visible {
-    outline: 3px solid var(--blue);
+    outline: 3px solid var(--rojo);
     outline-offset: 3px;
     border-radius: 4px;
   }
 
-  /* Cifras y datos: Plus Jakarta con numeración tabular (ya no monoespaciada).
-     La monoespaciada (DM Mono) queda reservada al calendario de admisión. */
+  /* Cifras y datos: numeración tabular. */
   .dato { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
   .tabular { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
-  /* Fechas del calendario: única aparición de la monoespaciada. */
+  /* Fechas del calendario y datos monoespaciados. */
   .fecha-mono { @apply font-mono; font-variant-numeric: tabular-nums; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -65,50 +65,45 @@
   .contenedor { @apply mx-auto w-full max-w-contenido px-5 sm:px-6 lg:px-8; }
   .prosa { @apply max-w-prosa text-ink; }
 
-  /* Ritmo vertical entre secciones (contenido, no landing con mucho aire). */
+  /* Ritmo vertical entre secciones. */
   .ritmo { @apply py-16 lg:py-24; }
 
   .saltar-contenido { @apply sr-only; }
-  .saltar-contenido:focus { @apply not-sr-only fixed left-4 top-4 z-50 rounded-full bg-ink px-4 py-2 text-white; }
+  .saltar-contenido:focus { @apply not-sr-only fixed left-4 top-4 z-50 rounded bg-ink px-4 py-2 text-white; }
 
-  /* Etiqueta pequeña (versalitas). El color lo pone cada uso. */
-  .etiqueta { @apply text-xs font-bold uppercase; letter-spacing: 0.1em; }
+  /* Etiqueta editorial (mono, versalitas). Estilo señalética danesa. */
+  .etiqueta { @apply font-mono text-xs font-medium uppercase; letter-spacing: 0.14em; }
 
-  /* Etiqueta de categoría/área: pastilla azul de marca con texto blanco. */
+  /* Etiqueta de categoría/área: chip editorial con contorno rojo. */
   .pastilla {
-    @apply inline-flex items-center rounded-full bg-marine px-3 py-1 text-xs font-bold text-white;
-    letter-spacing: 0.01em;
+    @apply inline-flex items-center rounded border border-rojo/35 bg-rojo/5 px-2.5 py-1 font-mono text-[11px] font-medium uppercase text-rojo;
+    letter-spacing: 0.08em;
   }
 
-  /* Botones tipo píldora, amables. Estructural azul; el de conversión en rojo
-     (acento de marca); secundario contorno. Hover: eleva 1px y oscurece. */
+  /* Botones editoriales: rojo de marca; radio limpio, no píldora.
+     El secundario, contorno charcoal. */
   .cta {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-marine px-6 py-3
-           font-bold text-white transition-all duration-150 hover:-translate-y-px hover:bg-marine-700;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-rojo px-6 py-3
+           font-bold text-white transition-colors duration-150 hover:bg-rojo-700;
     min-height: 44px;
   }
   .cta-secundario {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink
-           px-6 py-3 font-bold text-ink transition-all duration-150 hover:-translate-y-px hover:bg-ink hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-ink
+           px-6 py-3 font-bold text-ink transition-colors duration-150 hover:bg-ink hover:text-white;
     min-height: 44px;
   }
-  /* Botón de conversión (Reserva tu sesión): rojo bandera, el acento. */
+  /* Alias heredado de conversión -> mismo botón rojo de marca. */
   .cta-turq {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-rojo px-6 py-3
-           font-bold text-white transition-all duration-150 hover:-translate-y-px hover:bg-rojo-700;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-rojo px-6 py-3
+           font-bold text-white transition-colors duration-150 hover:bg-rojo-700;
     min-height: 44px;
   }
 
-  /* Enlace de texto: subrayado turquesa que se dibuja al pasar el ratón. */
+  /* Enlace de texto editorial: texto charcoal con subrayado rojo que se dibuja. */
   .link-sub {
-    background-image: linear-gradient(var(--turq), var(--turq));
-    background-size: 0% 3px;
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    transition: background-size 200ms ease;
-    @apply font-bold text-marine;
+    @apply font-bold text-ink underline decoration-rojo decoration-2 underline-offset-4
+           transition-colors hover:text-rojo;
   }
-  .link-sub:hover { background-size: 100% 3px; }
 
   /* Tarjeta: radio 20px, sin sombra en reposo, elevación al hover. */
   .tarjeta {
