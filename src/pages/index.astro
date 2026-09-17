@@ -63,6 +63,10 @@ const fechas = [
 
 // Cita corta para la portada (la historia completa vive en /historias/).
 const acorta = (s: string) => (s.length > 150 ? s.slice(0, s.lastIndexOf(' ', 150)) + '…' : s);
+
+// Color por familia académica (mismo sistema que el buscador).
+const bgArea = (a: string): string =>
+  ({ negocios: 'bg-nordic', 'ciencias-ingenieria': 'bg-sand', 'sociales-humanidades': 'bg-rosa', 'diseno-creativo': 'bg-sage' } as Record<string, string>)[a] ?? 'bg-lavanda';
 ---
 
 <Base
@@ -211,16 +215,20 @@ const acorta = (s: string) => (s.length > 150 ? s.slice(0, s.lastIndexOf(' ', 15
           <a href={ruta("/grados/")} class="enlace mt-7">Ver los grados disponibles →</a>
         </div>
 
-        <ul class="border-t-2 border-ink">
-          {destacados.map((g, i) => (
-            <li class="reveal border-b border-hairline">
-              <a href={ruta(`/grados/${g.id}/`)} class="group flex items-baseline gap-4 py-5 sm:gap-6">
-                <span class="font-mono text-sm text-slate">{String(i + 1).padStart(2, '0')}</span>
-                <span class="min-w-0 flex-1">
-                  <span class="block font-display text-xl font-bold text-ink transition-colors group-hover:text-rojo lg:text-2xl">{g.data.nombre_es}</span>
-                  <span class="dato mt-1 block text-sm text-slate">{ETIQUETA_AREA[g.data.area]} · {ETIQUETA_NIVEL[g.data.nivel]} · {formatoDuracion(g.data.duracion_anios)} · {g.data.ects} ECTS</span>
+        <ul class="grid gap-4 sm:grid-cols-2">
+          {destacados.map((g) => (
+            <li class="reveal">
+              <a
+                href={ruta(`/grados/${g.id}/`)}
+                class:list={['group flex h-full flex-col rounded-blanda p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-flotante', bgArea(g.data.area)]}
+              >
+                <span class="text-xs font-semibold uppercase tracking-[0.12em] text-ink/75">{ETIQUETA_AREA[g.data.area]}</span>
+                <h3 class="mt-2 font-display text-lg font-bold text-ink">{g.data.nombre_es}</h3>
+                <p class="dato mt-auto pt-5 text-sm text-ink/75">{ETIQUETA_NIVEL[g.data.nivel]} · {formatoDuracion(g.data.duracion_anios)} · {g.data.ects} ECTS</p>
+                <span class="mt-3 inline-flex items-center gap-1 text-sm font-bold text-ink">
+                  Ver grado
+                  <span class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true">↗</span>
                 </span>
-                <span class="text-xl text-rojo transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
               </a>
             </li>
           ))}

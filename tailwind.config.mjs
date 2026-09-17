@@ -29,9 +29,14 @@ export default {
         deadline: { DEFAULT: '#B52B32', 700: '#93222a', 100: '#F3E3E3' },
         sun: { DEFAULT: '#B52B32', 700: '#93222a', 100: '#F3E3E3' },
         // Secundarios pastel nórdicos (fondos suaves, texto charcoal encima).
-        nordic: '#D7E6F3',   // Nordic Blue: datos / información
-        sage: '#C7D3C7',     // Sage: vida en Dinamarca
-        sand: '#F6E6B8',     // Sand: acento cálido / editorial
+        // Cada familia académica tiene su color; todos comparten luminosidad
+        // alta para que el texto charcoal pase AA.
+        nordic: '#D3E4F5',   // Nordic Blue: negocios y economía
+        sage: '#C6DCC9',     // Sage: diseño y creación
+        sand: '#F8E7A8',     // Butter Yellow: ingenierías y tecnología
+        rosa: '#F6D4DE',     // Soft Pink: humanidades y sociales
+        lavanda: '#E1DBF4',  // Lavender: otras ciencias
+        coral: '#FBD5C8',    // Soft Coral: salud (si aparece la categoría)
         // Aliases heredados -> pasteles.
         cielo: { DEFAULT: '#D7E6F3', 300: '#D7E6F3', 100: '#EAF2F9', 700: '#2a5f86' },
         turq: { DEFAULT: '#D7E6F3', 600: '#2a5f86', 700: '#2a5f86' },
@@ -74,14 +79,16 @@ export default {
         prosa: '68ch',
         contenido: '1180px',
       },
-      // Formas amables: esquinas redondeadas y generosas.
+      // Formas amables: esquinas redondeadas y generosas (más suaves para una
+      // marca joven; se combinan con composiciones editoriales rectas).
       borderRadius: {
-        DEFAULT: '0.375rem',
-        xl: '0.625rem',
-        '2xl': '0.75rem',
-        '3xl': '1rem',
-        tarjeta: '10px',
-        imagen: '12px',
+        DEFAULT: '0.5rem',
+        xl: '0.875rem',
+        '2xl': '1.125rem',
+        '3xl': '1.5rem',
+        tarjeta: '18px',
+        imagen: '18px',
+        blanda: '22px',
       },
       boxShadow: {
         // Sin sombra en reposo; esta aparece solo en hover.

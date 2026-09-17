@@ -3,31 +3,13 @@ import { getCollection } from 'astro:content';
 import Base from '@/layouts/Base.astro';
 import BuscadorGrados from '@/components/BuscadorGrados.tsx';
 import JsonLd from '@/components/JsonLd.astro';
-import { aIndice, ETIQUETA_AREA } from '@/lib/grados';
-import { ruta } from '@/lib/ruta';
+import { aIndice } from '@/lib/grados';
 import { SITIO } from '@/config/sitio';
 
 const grados = await getCollection('grados');
 const indice = grados
   .map(aIndice)
   .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
-
-// Áreas como entrada de descubrimiento (cada una filtra el buscador por URL).
-const swatch: Record<string, string> = {
-  'ciencias-ingenieria': '#B52B32',
-  negocios: '#2a5f86',
-  'sociales-humanidades': '#3b5145',
-  'diseno-creativo': '#8a6d43',
-};
-const areas = Object.keys(ETIQUETA_AREA)
-  .map((key) => ({
-    key,
-    label: ETIQUETA_AREA[key],
-    color: swatch[key] ?? '#57534d',
-    count: indice.filter((g) => g.area === key).length,
-  }))
-  .filter((a) => a.count > 0)
-  .sort((a, b) => b.count - a.count);
 
 // JSON-LD: lista de cursos.
 const itemList = {
@@ -50,14 +32,16 @@ const itemList = {
 >
   <JsonLd slot="head" datos={itemList} />
 
-  <!-- Portada del buscador: descubrimiento, no dashboard -->
+  <!-- Portada del buscador: descubrimiento, cards a color por área -->
   <section class="contenedor py-12 lg:py-16">
-    <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-      <div>
+    <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div class="max-w-prosa">
         <p class="etiqueta text-rojo">Buscador de grados</p>
-        <p class="mt-4 font-display font-extrabold leading-none tracking-tight text-ink text-[clamp(4.5rem,13vw,10rem)]">{indice.length}</p>
-        <p class="etiqueta mt-1 text-slate">grados en inglés, verificados</p>
-        <h1 class="mt-8 text-h2 font-bold text-ink">
+        <div class="mt-4 flex items-end gap-5">
+          <span class="font-display font-extrabold leading-[0.8] tracking-tight text-ink text-[clamp(4.5rem,13vw,9rem)]">{indice.length}</span>
+          <span class="etiqueta mb-3 text-slate">grados en inglés,<br />verificados</span>
+        </div>
+        <h1 class="mt-6 text-h2 font-bold text-ink">
           ¿Qué puedes estudiar en Dinamarca en <span class="acento text-rojo">inglés</span>?
         </h1>
         <p class="mt-5 text-lg text-slate">
@@ -66,30 +50,11 @@ const itemList = {
           inglés, con la fecha de la última verificación.
         </p>
       </div>
-
-      <!-- Áreas como lista editorial (entra al buscador ya filtrado) -->
-      <nav aria-label="Explorar por área">
-        <p class="etiqueta text-slate">Empieza por un área</p>
-        <ul class="mt-4 border-t border-ink">
-          {areas.map((a) => (
-            <li class="border-b border-hairline">
-              <a href={ruta(`/grados/?area=${a.key}`)} class="group flex items-center gap-4 py-5">
-                <span class="h-3.5 w-3.5 shrink-0 rounded-sm" style={`background:${a.color}`} aria-hidden="true"></span>
-                <span class="flex-1 font-display text-2xl font-bold text-ink transition-colors group-hover:text-rojo lg:text-3xl">{a.label}</span>
-                <span class="font-mono text-sm text-slate">{String(a.count).padStart(2, '0')}</span>
-                <span class="text-xl text-rojo transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        <p class="anotacion mt-4">¿no lo tienes claro? filtra abajo ↓</p>
-      </nav>
+      <p class="anotacion md:mb-2 md:text-right">cada color, un área ↓<br />toca para explorar</p>
     </div>
-  </section>
 
-  <!-- Buscador con filtros (funcionalidad intacta) -->
-  <section class="contenedor pb-16">
-    <div class="regla mb-8"></div>
-    <BuscadorGrados grados={indice} client:load />
+    <div class="mt-10">
+      <BuscadorGrados grados={indice} client:load />
+    </div>
   </section>
 </Base>

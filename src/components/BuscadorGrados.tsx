@@ -16,6 +16,15 @@ interface Filtros {
 
 const VACIO: Filtros = { q: '', area: '', nivel: '', ciudad: '', idioma: '', cuota: '' };
 
+// Color por familia académica. Texto charcoal encima (todas pasan AA).
+const AREA_BG: Record<string, string> = {
+  negocios: 'bg-nordic',
+  'ciencias-ingenieria': 'bg-sand',
+  'sociales-humanidades': 'bg-rosa',
+  'diseno-creativo': 'bg-sage',
+};
+const bgArea = (area: string) => AREA_BG[area] ?? 'bg-lavanda';
+
 // Lee los filtros de la URL (para que cada combinación sea compartible).
 function desdeUrl(): Filtros {
   if (typeof window === 'undefined') return { ...VACIO };
@@ -96,86 +105,99 @@ export default function BuscadorGrados({ grados }: Props) {
   const hayFiltros = Object.values(filtros).some(Boolean);
 
   const selectClase =
-    'w-full rounded-lg border border-hairline bg-white px-3 py-2 text-sm text-ink focus-visible:outline-none';
+    'rounded-full border border-hairline bg-white px-4 py-2 text-sm text-ink focus-visible:outline-none';
+
+  // Pill de área. Activa: color de la familia; inactiva: contorno.
+  const pill = (activo: boolean, bg: string) =>
+    activo
+      ? `${bg} text-ink ring-1 ring-ink/15 shadow-sm`
+      : 'bg-white border border-hairline text-slate hover:border-ink/40 hover:text-ink';
 
   return (
     <div>
-      <form class="rounded-2xl border border-hairline bg-white p-4 sm:p-5" onSubmit={(e) => e.preventDefault()}>
-        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <label class="sm:col-span-2 lg:col-span-4">
-            <span class="mb-1 block text-xs font-semibold text-slate">Buscar</span>
-            <input
-              type="search"
-              value={filtros.q}
-              onInput={set('q')}
-              placeholder="Nombre del grado, palabra clave…"
-              class={selectClase}
-              aria-label="Buscar grados"
-            />
-          </label>
+      {/* Búsqueda + pills de área (filtro principal, visual y redondeado) */}
+      <div class="rounded-blanda bg-white p-5 shadow-sm sm:p-6">
+        <label class="block">
+          <span class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate">Buscar</span>
+          <input
+            type="search"
+            value={filtros.q}
+            onInput={set('q')}
+            placeholder="Nombre del grado, palabra clave…"
+            class="w-full rounded-full border border-hairline bg-hueso px-5 py-3 text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rojo/30"
+            aria-label="Buscar grados"
+          />
+        </label>
 
-          <label>
-            <span class="mb-1 block text-xs font-semibold text-slate">Área</span>
-            <select value={filtros.area} onChange={set('area')} class={selectClase}>
-              <option value="">Todas</option>
-              {areas.map(([v, t]) => (<option value={v}>{t}</option>))}
-            </select>
-          </label>
-
-          <label>
-            <span class="mb-1 block text-xs font-semibold text-slate">Nivel</span>
-            <select value={filtros.nivel} onChange={set('nivel')} class={selectClase}>
-              <option value="">Todos</option>
-              {niveles.map(([v, t]) => (<option value={v}>{t}</option>))}
-            </select>
-          </label>
-
-          {ciudades.length > 0 && (
-            <label>
-              <span class="mb-1 block text-xs font-semibold text-slate">Ciudad</span>
-              <select value={filtros.ciudad} onChange={set('ciudad')} class={selectClase}>
-                <option value="">Todas</option>
-                {ciudades.map(([v, t]) => (<option value={v}>{t}</option>))}
-              </select>
-            </label>
-          )}
-
-          {idiomas.length > 1 && (
-            <label>
-              <span class="mb-1 block text-xs font-semibold text-slate">Idioma</span>
-              <select value={filtros.idioma} onChange={set('idioma')} class={selectClase}>
-                <option value="">Todos</option>
-                {idiomas.map(([v, t]) => (<option value={v}>{t}</option>))}
-              </select>
-            </label>
-          )}
-
-          {cuotas.length > 0 && (
-            <label>
-              <span class="mb-1 block text-xs font-semibold text-slate">Cuota</span>
-              <select value={filtros.cuota} onChange={set('cuota')} class={selectClase}>
-                <option value="">Todas</option>
-                {cuotas.map((c) => (<option value={String(c)}>Cuota {c}</option>))}
-              </select>
-            </label>
-          )}
+        <div class="mt-4 flex flex-wrap gap-2" role="group" aria-label="Filtrar por área">
+          <button
+            type="button"
+            onClick={() => setFiltros((f) => ({ ...f, area: '' }))}
+            aria-pressed={!filtros.area}
+            class={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+              !filtros.area ? 'bg-ink text-white' : 'bg-white border border-hairline text-slate hover:border-ink/40 hover:text-ink'
+            }`}
+          >
+            Todos
+          </button>
+          {areas.map(([v, t]) => (
+            <button
+              type="button"
+              onClick={() => setFiltros((f) => ({ ...f, area: f.area === v ? '' : v }))}
+              aria-pressed={filtros.area === v}
+              class={`rounded-full px-4 py-2 text-sm font-semibold transition ${pill(filtros.area === v, bgArea(v))}`}
+            >
+              {t}
+            </button>
+          ))}
         </div>
 
-        <div class="mt-3 flex items-center justify-between">
-          <p class="text-sm text-slate tabular" aria-live="polite">
+        {/* Refinar: filtros secundarios, discretos */}
+        {(niveles.length > 1 || ciudades.length > 0 || idiomas.length > 1 || cuotas.length > 0) && (
+          <div class="mt-4 flex flex-wrap items-center gap-2 border-t border-hairline pt-4">
+            <span class="text-xs font-semibold uppercase tracking-wide text-slate">Refinar</span>
+            {niveles.length > 1 && (
+              <select value={filtros.nivel} onChange={set('nivel')} class={selectClase} aria-label="Nivel">
+                <option value="">Cualquier nivel</option>
+                {niveles.map(([v, t]) => (<option value={v}>{t}</option>))}
+              </select>
+            )}
+            {ciudades.length > 0 && (
+              <select value={filtros.ciudad} onChange={set('ciudad')} class={selectClase} aria-label="Ciudad">
+                <option value="">Cualquier ciudad</option>
+                {ciudades.map(([v, t]) => (<option value={v}>{t}</option>))}
+              </select>
+            )}
+            {idiomas.length > 1 && (
+              <select value={filtros.idioma} onChange={set('idioma')} class={selectClase} aria-label="Idioma">
+                <option value="">Cualquier idioma</option>
+                {idiomas.map(([v, t]) => (<option value={v}>{t}</option>))}
+              </select>
+            )}
+            {cuotas.length > 0 && (
+              <select value={filtros.cuota} onChange={set('cuota')} class={selectClase} aria-label="Cuota">
+                <option value="">Cualquier cuota</option>
+                {cuotas.map((c) => (<option value={String(c)}>Cuota {c}</option>))}
+              </select>
+            )}
+          </div>
+        )}
+
+        <div class="mt-4 flex items-center justify-between">
+          <p class="text-sm font-semibold text-ink tabular" aria-live="polite">
             {resultados.length} {resultados.length === 1 ? 'grado' : 'grados'}
           </p>
           {hayFiltros && (
             <button
               type="button"
               onClick={() => setFiltros({ ...VACIO })}
-              class="text-sm font-semibold text-marine underline underline-offset-2"
+              class="text-sm font-semibold text-rojo underline underline-offset-2 hover:text-rojo-700"
             >
               Limpiar filtros
             </button>
           )}
         </div>
-      </form>
+      </div>
 
       <h2 class="sr-only">Resultados</h2>
       <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -183,26 +205,24 @@ export default function BuscadorGrados({ grados }: Props) {
           <li>
             <a
               href={g.url}
-              class="flex h-full flex-col rounded-2xl border border-hairline bg-white p-5 transition-colors hover:border-marine"
+              class={`group flex h-full flex-col rounded-blanda p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-flotante ${bgArea(g.area)}`}
             >
-              <div class="flex flex-wrap gap-2">
-                <span class="rounded-full bg-frost px-2.5 py-0.5 text-xs font-semibold text-ink">{g.nivelEtiqueta}</span>
-                <span class="rounded-full bg-frost px-2.5 py-0.5 text-xs font-semibold text-ink">{g.areaEtiqueta}</span>
-              </div>
-              <h3 class="mt-3 font-display text-lg font-semibold text-ink">{g.nombre}</h3>
-              {g.descripcion && <p class="mt-2 line-clamp-3 text-sm text-slate">{g.descripcion}</p>}
-              <dl class="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate tabular">
-                <div><dt class="inline">Duración: </dt><dd class="inline font-semibold text-ink">{g.duracion}</dd></div>
-                <div><dt class="inline">ECTS: </dt><dd class="inline font-semibold text-ink">{g.ects}</dd></div>
-                {g.ingles && <div><dt class="inline">Inglés: </dt><dd class="inline font-semibold text-ink">{g.ingles}</dd></div>}
-              </dl>
+              <span class="text-xs font-semibold uppercase tracking-[0.12em] text-ink/75">{g.areaEtiqueta}</span>
+              <h3 class="mt-2 font-display text-lg font-bold text-ink">{g.nombre}</h3>
+              <p class="dato mt-auto pt-5 text-sm text-ink/75">
+                {g.nivelEtiqueta} · {g.duracion} · {g.ects} ECTS
+              </p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-bold text-ink">
+                Ver grado
+                <span class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true">↗</span>
+              </span>
             </a>
           </li>
         ))}
       </ul>
 
       {resultados.length === 0 && (
-        <p class="mt-10 rounded-2xl border border-hairline bg-white p-8 text-center text-slate">
+        <p class="mt-8 rounded-blanda border border-hairline bg-white p-8 text-center text-slate">
           No hay grados con esos filtros. Prueba a quitar alguno.
         </p>
       )}
