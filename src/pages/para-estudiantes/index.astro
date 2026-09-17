@@ -3,56 +3,78 @@ import Base from '@/layouts/Base.astro';
 import { ruta } from '@/lib/ruta';
 
 const bloques = [
-  { t: 'Vives por tu cuenta', d: 'Entre la beca SU y un trabajo a tiempo parcial, la mayoría de estudiantes cubren sus gastos y viven de forma independiente. Tu etapa, tu ritmo, tu dinero.' },
-  { t: 'Aprendes de verdad', d: 'Nada de memorizar y soltar. Proyectos en grupo, casos reales y prácticas dentro del plan de estudios. Sales con experiencia, no solo con apuntes.' },
-  { t: 'Todo en inglés', d: 'Te desenvuelves en inglés desde el primer día y sales con un perfil internacional muy demandado.' },
-  { t: 'Una comunidad nueva', d: 'Llegas a un sitio lleno de estudiantes de todo el mundo en tu misma situación. Hacer grupo es cuestión de semanas.' },
+  { t: 'Learning by doing', d: 'Proyectos, casos reales, trabajo en grupo y, en muchas titulaciones, prácticas dentro del plan de estudios. El objetivo es entender y aplicar, no memorizar por memorizar.' },
+  { t: 'Todo en inglés', d: 'Clases, materiales y exámenes pueden ser íntegramente en inglés. El danés no es un requisito para empezar muchos de los programas internacionales.' },
+  { t: 'Trabajo mientras estudias', d: 'Muchos estudiantes tienen un trabajo a tiempo parcial. Con el tiempo, también existen student jobs relacionados con la carrera.' },
+  { t: 'SU', d: 'Si eres estudiante europeo y cumples los requisitos aplicables, puedes solicitar esta ayuda mensual del Estado danés.' },
 ];
 ---
 
 <Base
-  titulo="Para el estudiante"
-  descripcion="Cómo es de verdad estudiar en Dinamarca: vives por tu cuenta con la beca SU, aprendes con proyectos reales y en inglés, y no estás solo en el proceso."
+  titulo="Para estudiantes"
+  descripcion="Qué puedes estudiar en Dinamarca, cómo se estudia (learning by doing, en inglés) y cómo funciona el proceso de admisión. El punto de partida para valorar la opción."
 >
   <section class="bg-ink text-white">
     <div class="contenedor py-16 lg:py-20">
-      <p class="etiqueta text-cielo-300">Para ti</p>
+      <p class="etiqueta text-cielo-300">Para estudiantes</p>
       <h1 class="mt-3 max-w-3xl text-h1 font-bold text-white">
-        Tu aventura empieza aquí, y no la haces <span class="text-cielo-300">solo</span>
+        Estudia tu carrera en <span class="text-cielo-300">Dinamarca</span>
       </h1>
       <p class="mt-5 max-w-prosa text-lg text-white/85">
-        Irte a estudiar fuera suena a muchísimo lío. En Dinamarca es más sencillo
-        de lo que crees: del proceso nos encargamos nosotros y tú te centras en lo
-        que importa, empezar tu vida allí.
+        Si estás buscando qué estudiar, si quieres hacerlo fuera o si ya tienes
+        Dinamarca en mente, aquí puedes ver qué opciones existen y cómo funciona el
+        proceso.
       </p>
-      <a href={ruta('/contacto/')} class="cta-turq mt-8">Cuéntanos tu caso</a>
+      <a href={ruta('/grados/')} class="cta-turq mt-8">Explorar grados →</a>
     </div>
   </section>
 
+  <!-- Primero: qué puedes estudiar -->
   <section class="contenedor ritmo">
-    <h2 class="text-h2 font-bold text-ink">Cómo será tu vida allí</h2>
-    <div class="mt-8 grid gap-5 sm:grid-cols-2">
-      {bloques.map((b, i) => (
-        <div class="tarjeta tarjeta-hover bg-paper p-6">
-          <span class="flex h-11 w-11 items-center justify-center rounded-full bg-marine font-display text-lg font-bold text-white">{i + 1}</span>
-          <p class="mt-4 font-display text-lg font-bold text-ink">{b.t}</p>
-          <p class="mt-2 text-slate">{b.d}</p>
-        </div>
-      ))}
+    <h2 class="text-h2 font-bold text-ink">Primero: qué puedes estudiar</h2>
+    <p class="prosa mt-3 text-slate">
+      Hay grados en negocios, ingeniería, tecnología, diseño, ciencia de datos,
+      ciencias sociales y otras áreas. Revisar las opciones es el mejor punto de
+      partida.
+    </p>
+    <a href={ruta('/grados/')} class="link-sub mt-4 inline-block">Explorar grados →</a>
+  </section>
+
+  <!-- Después: cómo se estudia -->
+  <section class="bg-frost">
+    <div class="contenedor py-14 lg:py-20">
+      <h2 class="text-h2 font-bold text-ink">Después: cómo se estudia</h2>
+      <div class="mt-8 grid gap-5 sm:grid-cols-2">
+        {bloques.map((b, i) => (
+          <div class="tarjeta tarjeta-hover bg-paper p-6">
+            <span class="flex h-11 w-11 items-center justify-center rounded-full bg-marine font-display text-lg font-bold text-white">{i + 1}</span>
+            <p class="mt-4 font-display text-lg font-bold text-ink">{b.t}</p>
+            <p class="mt-2 text-slate">{b.d}</p>
+          </div>
+        ))}
+      </div>
     </div>
+  </section>
+
+  <!-- Y el proceso de admisión -->
+  <section class="contenedor ritmo">
+    <h2 class="text-h2 font-bold text-ink">Y el proceso de admisión</h2>
+    <p class="prosa mt-3 text-slate">
+      Ahí entra Study and Beyond. Revisamos tu perfil, identificamos opciones,
+      preparamos la estrategia de solicitudes y gestionamos contigo la documentación
+      y la admisión.
+    </p>
+    <a href={ruta('/servicios/')} class="link-sub mt-4 inline-block">Ver cómo funciona →</a>
   </section>
 
   <section class="bg-frost">
-    <div class="contenedor py-14">
-      <h2 class="text-2xl font-bold text-ink">Empieza por lo fácil</h2>
-      <p class="prosa mt-3 text-slate">
-        Mira las carreras que puedes estudiar y, si algo te encaja, hablamos. La
-        primera sesión es gratuita.
+    <div class="contenedor py-14 text-center">
+      <h2 class="text-2xl font-bold text-ink">Empieza por saber qué opciones tienes</h2>
+      <p class="mx-auto mt-3 max-w-prosa text-slate">
+        La primera sesión es gratuita. Revisamos tu situación y te decimos qué
+        caminos merece la pena explorar.
       </p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href={ruta('/grados/')} class="cta">Explora los grados</a>
-        <a href={ruta('/estudiar-en-dinamarca/')} class="cta-secundario">Lee las guías</a>
-      </div>
+      <a href={ruta('/contacto/')} class="cta mt-6">Reservar sesión →</a>
     </div>
   </section>
 </Base>

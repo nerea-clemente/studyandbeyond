@@ -33,19 +33,19 @@ export const SITIO = {
 
 // Navegación principal.
 export const NAV = [
+  { texto: 'Grados', href: '/grados/' },
   {
     texto: 'Estudiar en Dinamarca',
     href: '/estudiar-en-dinamarca/',
     hijos: [
-      { texto: 'Para el estudiante', href: '/para-estudiantes/' },
-      { texto: 'Para las familias', href: '/para-familias/' },
-      { texto: 'Guías paso a paso', href: '/estudiar-en-dinamarca/' },
+      { texto: 'Para estudiantes', href: '/para-estudiantes/' },
+      { texto: 'Para familias', href: '/para-familias/' },
+      { texto: 'Guías', href: '/estudiar-en-dinamarca/' },
     ],
   },
-  { texto: 'Grados', href: '/grados/' },
-  { texto: 'Servicios y precio', href: '/servicios/' },
+  { texto: 'Servicios', href: '/servicios/' },
   { texto: 'Historias', href: '/historias/' },
-  { texto: 'Sobre mí', href: '/sobre-mi/' },
+  { texto: 'Sobre Study and Beyond', href: '/sobre-mi/' },
 ] as const;
 
 // Enlaces solo en el pie (hasta que el blog tenga más contenido).

@@ -3,83 +3,73 @@ import Base from '@/layouts/Base.astro';
 import Imagen from '@/components/Imagen.astro';
 import { ruta } from '@/lib/ruta';
 import { SITIO } from '@/config/sitio';
-import { HISTORIAS } from '@/config/historias';
-
-const testimonios = HISTORIAS.map((h) => ({
-  nombre: h.nombre,
-  perfil: [h.carrera, h.ciudad].filter(Boolean).join(' · '),
-  cita: h.cita,
-}));
 ---
 
 <Base
-  titulo="Sobre mí"
-  descripcion="Llegué a Aarhus en 2020 sin ninguna referencia. De ahí nació Study and Beyond: para que ningún otro estudiante se sienta tan perdido."
+  titulo="Sobre Study and Beyond"
+  descripcion="Study and Beyond es una empresa danesa con base en Aarhus dedicada exclusivamente a asesorar a estudiantes que quieren estudiar en Dinamarca."
 >
   <section class="contenedor py-10 lg:py-14">
     <div class="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:items-start">
       <!-- Retrato pendiente (foto real, nada de banco de imágenes). Ver PENDIENTE.md. -->
       <div class="lg:sticky lg:top-24">
-        <Imagen alt="Retrato de Nerea, fundadora de Study and Beyond, en Aarhus" ratio="4/5" />
+        <Imagen alt="Nerea Clemente, fundadora de Study and Beyond, en Aarhus" ratio="4/5" rotulo="Aarhus, Dinamarca" />
       </div>
 
       <div>
-        <p class="etiqueta text-marine">Sobre mí</p>
-        <h1 class="mt-3 text-h1 font-bold text-ink">Empezó por no dejar a nadie perdido</h1>
+        <p class="etiqueta text-marine">Sobre Study &amp; Beyond</p>
+        <h1 class="mt-3 text-h1 font-bold text-ink">Especialistas en estudiar en Dinamarca</h1>
+        <p class="prosa mt-4 text-lg text-slate">
+          {SITIO.nombre} es una empresa danesa con base en {SITIO.ciudadOrigen}
+          dedicada exclusivamente a asesorar a estudiantes que quieren estudiar aquí.
+        </p>
 
-        <div class="prosa mt-6 space-y-4 text-ink">
-          <p>
-            Llegué a {SITIO.ciudadOrigen} en {SITIO.anioFundacion} a empezar mis
-            estudios y me encontré sin ninguna referencia a la que acudir. Todo el
-            proceso (admisión, papeles, alojamiento, los primeros meses) lo hice a
-            ciegas, tropezando en cada paso.
-          </p>
-          <p>
-            De ahí salió una idea sencilla: que ningún otro estudiante tuviera que
-            sentirse igual de perdido. En 2022 la convertí en proyecto y hoy es una
-            empresa. Sigo en Dinamarca, y acompaño el camino de un grupo pequeño de
-            estudiantes cada curso.
-          </p>
-          <p>
-            No colaboro con alguien de allí: estoy aquí. Solo trabajo con Dinamarca,
-            porque prefiero conocer un país a fondo que repartirme entre muchos. Te
-            cuento las cosas con claridad y te acompaño en cada decisión.
-          </p>
-          <p class="font-display text-lg font-semibold text-ink">Nerea</p>
+        <div class="prosa mt-8 space-y-8 text-ink">
+          <div>
+            <h2 class="font-display text-xl font-bold text-ink">Un solo destino</h2>
+            <p class="mt-2">
+              No trabajamos con una lista de países. Nos centramos en Dinamarca para
+              conocer bien sus universidades, sus programas, sus procesos de admisión
+              y los trámites que afectan a un estudiante cuando llega.
+            </p>
+          </div>
+          <div>
+            <h2 class="font-display text-xl font-bold text-ink">Cómo empezó</h2>
+            <p class="mt-2">
+              {SITIO.nombre} nació en 2022 después de varios años de experiencia
+              directa con el sistema educativo danés. La idea era sencilla: convertir
+              toda esa información dispersa sobre grados, admisiones, alojamiento,
+              trabajo y SU en un proceso claro para otros estudiantes.
+            </p>
+          </div>
+          <div>
+            <h2 class="font-display text-xl font-bold text-ink">Quién está detrás</h2>
+            <p class="mt-2">
+              Nerea Clemente llegó a {SITIO.ciudadOrigen} en 2020 para estudiar en
+              Dinamarca. Desde entonces ha estudiado y trabajado en el país y ha
+              desarrollado {SITIO.nombre} desde {SITIO.ciudadOrigen}. Su experiencia
+              personal es el origen del proyecto, pero el servicio se basa en algo
+              más importante: especialización, procesos y conocimiento actualizado
+              del sistema danés.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- Testimonios -->
-    <section aria-labelledby="testimonios" class="mt-16">
-      <h2 id="testimonios" class="text-2xl font-bold text-ink">Quién ha pasado por aquí</h2>
-      <ul class="mt-6 grid gap-5 sm:grid-cols-3">
-        {testimonios.map((t) => (
-          <li class="flex h-full flex-col rounded-tarjeta bg-aqua p-6">
-            <blockquote class="text-sm text-ink">«{t.cita}»</blockquote>
-            <div class="mt-4 border-t border-cielo/40 pt-4">
-              <p class="font-display font-bold text-ink">{t.nombre}</p>
-              <p class="dato text-xs text-slate">{t.perfil}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
 
     <!-- La empresa -->
     <section aria-labelledby="empresa" class="mt-14 rounded-3xl bg-aqua p-8 lg:p-12">
       <h2 id="empresa" class="text-xl font-bold text-ink">La empresa</h2>
       <p class="prosa mt-3 text-sm text-slate">
-        {SITIO.entidadLegal} es una empresa danesa (CVR {SITIO.cvr}) con base en
-        {' '}{SITIO.ciudadOrigen}. Estar en Dinamarca me da contacto directo con las
-        universidades y con el proceso real, no de oídas.
+        {SITIO.entidadLegal} es una empresa registrada en Dinamarca (CVR {SITIO.cvr})
+        con base en {SITIO.ciudadOrigen}.
       </p>
     </section>
 
     <div class="mt-14 rounded-3xl bg-ink p-8 text-center text-white lg:p-12">
       <h2 class="text-2xl font-bold">¿Hablamos de tu caso?</h2>
       <p class="mx-auto mt-3 max-w-prosa text-white/85">La primera sesión es gratuita y sin compromiso.</p>
-      <a href={ruta('/contacto/')} class="cta-turq mt-6">Reserva tu sesión</a>
+      <a href={ruta('/servicios/')} class="cta-turq mt-6">Ver cómo funciona el servicio →</a>
     </div>
   </section>
 </Base>

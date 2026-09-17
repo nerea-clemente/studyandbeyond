@@ -8,40 +8,40 @@ const guias = (await getCollection('guias', ({ data }) => !data.borrador))
 ---
 
 <Base
-  titulo="Estudiar en Dinamarca: guías paso a paso"
-  descripcion="Admisión, beca SU, alojamiento, coste de vida, trabajo y primeros pasos. Todo lo que necesitas saber para estudiar un grado en Dinamarca, explicado de forma sencilla."
+  titulo="Estudiar en Dinamarca, explicado desde Dinamarca"
+  descripcion="Admisión, SU, alojamiento, coste de vida, trabajo y primeros trámites. Lo que necesitas saber para valorar la opción y entender cómo funciona el proceso."
 >
   <section class="contenedor py-10 lg:py-14">
-    <p class="etiqueta text-marine">Estudiar en Dinamarca</p>
+    <p class="etiqueta text-marine">Guías</p>
     <h1 class="mt-3 text-display font-bold text-ink">
-      Todo lo que necesitas saber, explicado con claridad
+      Estudiar en Dinamarca, explicado desde Dinamarca
     </h1>
     <p class="prosa mt-4 text-slate">
-      Cómo es la admisión, qué es la beca SU, cuánto cuesta vivir y qué papeles
-      necesitas al llegar. Y en cada paso, cómo te acompañamos.
+      Admisión, SU, alojamiento, coste de vida, trabajo y primeros trámites. Lo que
+      necesitas saber para valorar la opción y entender cómo funciona el proceso.
     </p>
 
-    <!-- Dos puntos de vista -->
-    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+    <h2 class="mt-12 text-2xl font-bold text-ink">Antes de decidir</h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2">
       <a href={ruta('/para-estudiantes/')} class="group flex flex-col justify-between bg-ink p-6 text-white transition-colors hover:bg-ink-900">
         <div>
-          <p class="etiqueta text-marine-300">Para ti</p>
-          <p class="mt-2 font-display text-xl font-bold">Si eres el estudiante</p>
-          <p class="mt-1 text-sm text-white/75">Cómo será tu vida allí y por dónde empezar.</p>
+          <p class="etiqueta text-marine-300">Para estudiantes</p>
+          <p class="mt-2 font-display text-xl font-bold">Cómo se estudia</p>
+          <p class="mt-1 text-sm text-white/75">Qué opciones hay y qué cambia respecto a estudiar en España.</p>
         </div>
         <span class="mt-4 text-sm font-semibold text-marine-300 group-hover:text-white">Entrar →</span>
       </a>
       <a href={ruta('/para-familias/')} class="group flex flex-col justify-between bg-crema p-6 transition-colors hover:bg-deadline-100">
         <div>
-          <p class="etiqueta text-deadline-700">Para la familia</p>
-          <p class="mt-2 font-display text-xl font-bold text-ink">Si eres madre o padre</p>
-          <p class="mt-1 text-sm text-slate">Presupuesto, dudas y todo lo que necesitas saber.</p>
+          <p class="etiqueta text-deadline-700">Para familias</p>
+          <p class="mt-2 font-display text-xl font-bold text-ink">Las preguntas prácticas</p>
+          <p class="mt-1 text-sm text-slate">Costes, ayudas, alojamiento, sanidad y lo que conviene resolver antes de empezar.</p>
         </div>
         <span class="mt-4 text-sm font-semibold text-deadline-700">Entrar →</span>
       </a>
     </div>
 
-    <h2 class="mt-14 text-2xl font-bold text-ink">Guías paso a paso</h2>
+    <h2 class="mt-14 text-2xl font-bold text-ink">Guías</h2>
 
     <ul class="mt-10 grid gap-4 sm:grid-cols-2">
       {guias.map((g) => (

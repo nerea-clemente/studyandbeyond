@@ -11,11 +11,12 @@ import { SITIO } from '@/config/sitio';
   <section class="contenedor py-10 lg:py-14">
     <div class="lg:grid lg:grid-cols-[1fr_20rem] lg:gap-12">
       <div class="min-w-0">
-        <p class="text-sm font-semibold uppercase tracking-wide text-marine">Contacto</p>
-        <h1 class="mt-3 text-display font-semibold text-ink">Reserva tu sesión de asesoramiento</h1>
+        <p class="text-sm font-semibold uppercase tracking-wide text-marine">Primera sesión</p>
+        <h1 class="mt-3 text-display font-semibold text-ink">Cuéntanos qué quieres estudiar</h1>
         <p class="prosa mt-4">
-          Gratuita y sin compromiso. Cuéntanos tu situación y te escribimos para
-          concretar. Los campos con * son obligatorios.
+          La primera sesión es gratuita y sin compromiso. Revisamos tu situación, qué
+          opciones pueden encajar en Dinamarca y cuáles serían los siguientes pasos.
+          Los campos con * son obligatorios.
         </p>
 
         <!--
@@ -78,7 +79,7 @@ import { SITIO } from '@/config/sitio';
           </label>
 
           <div>
-            <button type="submit" class="cta">Enviar solicitud</button>
+            <button type="submit" class="cta">Enviar solicitud →</button>
           </div>
         </form>
       </div>
@@ -92,8 +93,8 @@ import { SITIO } from '@/config/sitio';
             <li><a class="text-ink hover:text-marine" href={`tel:${SITIO.telefonoPlano}`}>{SITIO.telefono}</a></li>
           </ul>
           <p class="mt-3 text-xs text-slate">
-            Atiendo desde Dinamarca; el teléfono es español para que te salga como
-            una llamada nacional.
+            Study and Beyond está en Dinamarca. El número de teléfono es español para
+            facilitar el contacto desde España.
           </p>
           <p class="mt-4 text-xs text-slate">
             {SITIO.entidadLegal} · CVR {SITIO.cvr}

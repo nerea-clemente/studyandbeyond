@@ -4,69 +4,83 @@ import { ruta } from '@/lib/ruta';
 
 const preguntas = [
   {
-    q: '¿Encontrará trabajo a tiempo parcial?',
-    a: 'La mayoría lo consigue: hay bastante empleo de estudiante y le enviamos ofertas y le ayudamos con el proceso. Es buena idea llegar con un pequeño colchón para las primeras semanas, mientras encuentra ese trabajo y llega la beca SU.',
+    q: '¿Podrá trabajar?',
+    a: 'Existe un mercado amplio de trabajos de estudiante, pero ningún empleo puede garantizarse. Orientamos sobre búsqueda, proceso y requisitos administrativos.',
   },
   {
-    q: '¿Y si no se adapta y decide volver?',
-    a: 'También pasa, y no es un fracaso. La matrícula es gratuita, así que el mayor coste hundido no existe. Lo que no se recupera es el alojamiento ya pagado y los vuelos. Por eso empezamos con calma y hablamos de expectativas antes de que se mude, no después.',
+    q: '¿Qué es la SU?',
+    a: 'Es una ayuda mensual del Estado danés. Los estudiantes europeos pueden acceder si cumplen las condiciones aplicables, entre ellas los requisitos relacionados con el trabajo.',
   },
   {
-    q: '¿En qué idioma son las clases?',
-    a: 'Íntegramente en inglés. No hace falta saber danés para estudiar, aunque aprender lo básico ayuda a la vida diaria y, sobre todo, a encontrar trabajo.',
+    q: '¿En qué idioma estudiará?',
+    a: 'Los programas que presentamos en el buscador se imparten en inglés. No es necesario saber danés para comenzar esos estudios.',
   },
   {
-    q: '¿Y la sanidad?',
-    a: 'La sanidad pública danesa es gratuita una vez tiene el número CPR y la tarjeta sanitaria (la tarjeta amarilla), y se le asigna un médico de cabecera. Lo tramitamos entre los primeros pasos al llegar.',
+    q: '¿Cómo funciona el alojamiento?',
+    a: 'Depende de la ciudad. Asesoramos sobre residencias, plataformas, zonas, precios y plazos de solicitud.',
   },
   {
-    q: '¿Quién responde si hay una urgencia?',
-    a: 'Es un servicio personal y cercano. Si en algún momento no hay disponibilidad inmediata, dejamos una vía de contacto alternativa y nos comprometemos a responder en menos de 48 horas.',
+    q: '¿Qué pasa cuando llega a Dinamarca?',
+    a: 'Orientamos al estudiante con los principales trámites de llegada: registro, CPR, banco, sanidad, trabajo y SU.',
   },
 ];
 ---
 
 <Base
   titulo="Para familias"
-  descripcion="La información que busca quien paga: presupuesto mensual, la beca SU, el idioma de las clases, la sanidad y respuestas claras a las dudas más habituales."
+  descripcion="Qué cuesta, cómo funciona la admisión, dónde vivirá, si puede trabajar, qué es la SU y qué ocurre cuando llega. Las preguntas que conviene resolver antes de decidir."
 >
   <section class="contenedor py-10 lg:py-14">
     <p class="etiqueta text-marine">Para familias</p>
-    <h1 class="mt-3 text-h1 font-bold text-ink">Que tu hijo estudie fuera genera dudas. Es normal.</h1>
+    <h1 class="mt-3 text-h1 font-bold text-ink">Estudiar en Dinamarca: los datos antes de tomar la decisión</h1>
     <p class="prosa mt-4 text-slate">
-      Entendemos que la idea de que tu hijo o hija se vaya a estudiar a otro país
-      te genere muchas preguntas. Esta página es para ti: te contamos con calma
-      los números, el día a día y las respuestas a las dudas más habituales.
+      Qué cuesta, cómo funciona la admisión, dónde vivirá, si puede trabajar, qué es
+      la SU y qué ocurre cuando llega. Aquí reunimos las preguntas que normalmente
+      hay que resolver antes de decidir.
     </p>
+
+    <!-- Estudiar en Dinamarca -->
+    <section aria-labelledby="estudiar" class="mt-12">
+      <h2 id="estudiar" class="text-2xl font-bold text-ink">Estudiar en Dinamarca</h2>
+      <p class="prosa mt-3 text-slate">
+        Dinamarca permite estudiar numerosos grados en inglés y los estudiantes de la
+        UE no pagan matrícula en los programas públicos. Además, el sistema danés
+        permite combinar los estudios con trabajo a tiempo parcial y, si se cumplen
+        los requisitos, solicitar la SU.
+      </p>
+    </section>
 
     <!-- Presupuesto -->
     <section aria-labelledby="presupuesto" class="mt-12">
-      <h2 id="presupuesto" class="text-2xl font-bold text-ink">Presupuesto mensual</h2>
+      <h2 id="presupuesto" class="text-2xl font-bold text-ink">Presupuesto</h2>
       <p class="prosa mt-3 text-slate">
-        La partida grande es el alojamiento. El resto depende de la ciudad y del
-        estilo de vida, así que preferimos no darte una cifra inventada: la
-        calculamos con tu caso real.
+        El alojamiento suele ser la partida principal. El resto depende de la ciudad
+        y del estilo de vida. Preferimos trabajar con un presupuesto realista para
+        cada estudiante en lugar de presentar una cifra universal que luego no se
+        parece a su situación.
       </p>
       <dl class="ficha-datos mt-6 max-w-lg rounded-2xl bg-aqua px-6 py-2">
-        <div><dt>Alojamiento (residencia)</dt><dd>300–550 €</dd></div>
-        <div><dt>Comida</dt><dd>según estilo</dd></div>
-        <div><dt>Transporte (bici)</dt><dd>según ciudad</dd></div>
-        <div><dt>Sanidad (con CPR)</dt><dd>0 €</dd></div>
-        <div><dt>Móvil e internet</dt><dd>reducido</dd></div>
+        <div><dt>Alojamiento (referencia, residencia)</dt><dd>300–550 €/mes</dd></div>
+        <div><dt>Matrícula (estudiantes de la UE, grados públicos)</dt><dd>0 €</dd></div>
+        <div><dt>Sanidad (una vez completado el registro)</dt><dd>pública</dd></div>
       </dl>
+      <p class="mt-3 text-sm text-slate">
+        La referencia de alojamiento corresponde al material actual de la web; la
+        cifra real depende de ciudad, ubicación y tipo de habitación.
+      </p>
 
       <div class="bloque-condicion mt-6">
-        <strong>A esto se suma la beca SU.</strong> El Gobierno danés da una ayuda
-        mensual a los estudiantes que, junto a un trabajo a tiempo parcial, en la
-        mayoría de los casos cubre de sobra estos gastos. Aun así, conviene llegar
-        con un pequeño colchón para las primeras semanas.
+        <strong>La SU se solicita, no es automática.</strong> Los estudiantes
+        europeos pueden acceder a esta ayuda mensual del Estado danés si cumplen las
+        condiciones aplicables, entre ellas los requisitos relacionados con el
+        trabajo.
         {' '}<a href={ruta('/estudiar-en-dinamarca/su-beca-estudiantes/')} class="text-marine underline underline-offset-2">Cómo funciona la SU</a>.
       </div>
     </section>
 
-    <!-- Preguntas incómodas -->
+    <!-- Preguntas habituales -->
     <section aria-labelledby="preguntas" class="mt-14">
-      <h2 id="preguntas" class="text-2xl font-bold text-ink">Las dudas más habituales</h2>
+      <h2 id="preguntas" class="text-2xl font-bold text-ink">Preguntas habituales</h2>
       <div class="mt-6 grid max-w-prosa gap-4">
         {preguntas.map((p) => (
           <div class="tarjeta bg-paper p-5">
@@ -77,13 +91,23 @@ const preguntas = [
       </div>
     </section>
 
+    <!-- Study and Beyond está en Dinamarca -->
+    <section aria-labelledby="danesa" class="mt-14 rounded-3xl bg-sage p-8 lg:p-10">
+      <h2 id="danesa" class="text-2xl font-bold text-ink">Study and Beyond está en Dinamarca</h2>
+      <p class="prosa mt-3 text-ink">
+        Somos una empresa danesa con base en Aarhus y trabajamos exclusivamente con
+        Dinamarca. Esto nos permite especializarnos en un solo sistema educativo y
+        seguir de cerca los procesos que afectan a nuestros estudiantes.
+      </p>
+    </section>
+
     <div class="mt-14 rounded-3xl bg-ink p-8 text-center text-white lg:p-12">
       <h2 class="text-2xl font-bold">Hablemos con calma</h2>
       <p class="mx-auto mt-3 max-w-prosa text-white/85">
-        La primera sesión es gratuita y sin compromiso. También para madres y
-        padres con dudas.
+        La primera sesión es gratuita y sin compromiso. También para madres y padres
+        con dudas.
       </p>
-      <a href={ruta('/contacto/')} class="cta-turq mt-6">Reserva tu sesión</a>
+      <a href={ruta('/contacto/')} class="cta-turq mt-6">Reservar una primera sesión →</a>
     </div>
   </section>
 </Base>
