@@ -237,9 +237,9 @@ const bgArea = (a: string): string =>
     </div>
   </section>
 
-  <!-- ╌╌ CÓMO FUNCIONA · recorrido editorial con numerales gigantes ╌╌ -->
-  <section aria-labelledby="proceso" class="ritmo">
-    <div class="contenedor">
+  <!-- ╌╌ CÓMO FUNCIONA · itinerario vertical con conector ╌╌ -->
+  <section aria-labelledby="proceso" class="bg-aqua">
+    <div class="contenedor ritmo">
       <div class="max-w-prosa">
         <p class="etiqueta text-rojo">El proceso</p>
         <h2 id="proceso" class="reveal mt-3 text-h2 font-bold text-ink">Cómo funciona el proceso</h2>
@@ -251,49 +251,41 @@ const bgArea = (a: string): string =>
         </p>
       </div>
 
-      <ol class="mt-12">
-        {pasos.slice(0, 3).map((p, i) => (
-          <li class="reveal grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-1 border-t border-hairline py-7 sm:gap-x-10 lg:grid-cols-12">
-            <span class="font-display text-cifra font-extrabold text-rojo lg:col-span-2">{String(i + 1).padStart(2, '0')}</span>
-            <div class:list={['min-w-0', i % 2 === 0 ? 'lg:col-span-6 lg:col-start-4' : 'lg:col-span-6 lg:col-start-7']}>
-              <h3 class="font-display text-2xl font-bold text-ink">{p.t}</h3>
-              <p class="mt-2 text-slate">{p.d}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </div>
+      <div class="mt-12 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-16">
+        <ol>
+          {pasos.map((p, i) => (
+            <li class="reveal grid grid-cols-[auto_1fr] gap-5 sm:gap-7">
+              <div class="flex flex-col items-center">
+                <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-rojo font-display text-2xl font-extrabold text-white sm:h-16 sm:w-16 sm:text-3xl">{i + 1}</span>
+                {i < pasos.length - 1 && <span class="my-2 w-[3px] flex-1 rounded-full bg-rojo/20" aria-hidden="true"></span>}
+              </div>
+              <div class:list={['pt-2.5 sm:pt-3.5', i < pasos.length - 1 ? 'pb-8' : 'pb-0']}>
+                <h3 class="font-display text-xl font-bold text-ink sm:text-2xl">
+                  {p.t}{i === pasos.length - 1 ? <span class="text-rojo"> ↗</span> : null}
+                </h3>
+                <p class="mt-2 text-slate">{p.d}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
 
-    <!-- Interrupción visual: fotografía a sangre -->
-    <figure class="relative my-10 h-[34vh] min-h-[240px] w-full overflow-hidden lg:h-[42vh]">
-      <img
-        src={ruta('/img/banner-nyhavn-1920.webp')}
-        srcset={`${ruta('/img/banner-nyhavn-1200.webp')} 1200w, ${ruta('/img/banner-nyhavn-1920.webp')} 1920w`}
-        sizes="100vw"
-        width="1920"
-        height="1080"
-        alt="Nyhavn al atardecer, Copenhague"
-        loading="lazy"
-        decoding="async"
-        class="h-full w-full object-cover"
-      />
-    </figure>
+        <figure class="lg:sticky lg:top-24">
+          <img
+            src={ruta('/img/dk-vertical-1000.webp')}
+            srcset={`${ruta('/img/dk-vertical-800.webp')} 800w, ${ruta('/img/dk-vertical-1000.webp')} 1000w`}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            width="1000"
+            height="1250"
+            alt="Un canal de Copenhague al atardecer"
+            loading="lazy"
+            decoding="async"
+            class="aspect-[4/5] w-full rounded-blanda object-cover"
+          />
+          <figcaption class="anotacion mt-3">de la primera sesión a tu llegada ↗</figcaption>
+        </figure>
+      </div>
 
-    <div class="contenedor">
-      <ol start="4">
-        {pasos.slice(3).map((p, i) => (
-          <li class="reveal grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-1 border-t border-hairline py-7 sm:gap-x-10 lg:grid-cols-12">
-            <span class="font-display text-cifra font-extrabold text-rojo lg:col-span-2">{String(i + 4).padStart(2, '0')}</span>
-            <div class:list={['min-w-0', i % 2 === 0 ? 'lg:col-span-6 lg:col-start-4' : 'lg:col-span-6 lg:col-start-7']}>
-              <h3 class="font-display text-2xl font-bold text-ink">
-                {p.t}{i === 1 ? <span class="text-rojo"> ↗</span> : null}
-              </h3>
-              <p class="mt-2 text-slate">{p.d}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-      <a href={ruta("/servicios/")} class="enlace mt-8">Ver el servicio completo →</a>
+      <a href={ruta("/servicios/")} class="enlace mt-10">Ver el servicio completo →</a>
     </div>
   </section>
 
