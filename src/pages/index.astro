@@ -4,6 +4,9 @@ import { ruta } from '@/lib/ruta';
 import Base from '@/layouts/Base.astro';
 import JsonLd from '@/components/JsonLd.astro';
 import Imagen from '@/components/Imagen.astro';
+import Itinerario from '@/components/Itinerario.astro';
+import CtaFinal from '@/components/CtaFinal.astro';
+import { bgArea } from '@/lib/areas';
 import { SITIO } from '@/config/sitio';
 import { HISTORIAS } from '@/config/historias';
 import { ETIQUETA_AREA, ETIQUETA_NIVEL, formatoDuracion } from '@/lib/grados';
@@ -64,9 +67,6 @@ const fechas = [
 // Cita corta para la portada (la historia completa vive en /historias/).
 const acorta = (s: string) => (s.length > 150 ? s.slice(0, s.lastIndexOf(' ', 150)) + '…' : s);
 
-// Color por familia académica (mismo sistema que el buscador).
-const bgArea = (a: string): string =>
-  ({ negocios: 'bg-nordic', 'ciencias-ingenieria': 'bg-sand', 'sociales-humanidades': 'bg-rosa', 'diseno-creativo': 'bg-sage' } as Record<string, string>)[a] ?? 'bg-lavanda';
 ---
 
 <Base
@@ -252,22 +252,7 @@ const bgArea = (a: string): string =>
       </div>
 
       <div class="mt-12 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-16">
-        <ol>
-          {pasos.map((p, i) => (
-            <li class="reveal grid grid-cols-[auto_1fr] gap-5 sm:gap-7">
-              <div class="flex flex-col items-center">
-                <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-rojo font-display text-2xl font-extrabold text-white sm:h-16 sm:w-16 sm:text-3xl">{i + 1}</span>
-                {i < pasos.length - 1 && <span class="my-2 w-[3px] flex-1 rounded-full bg-rojo/20" aria-hidden="true"></span>}
-              </div>
-              <div class:list={['pt-2.5 sm:pt-3.5', i < pasos.length - 1 ? 'pb-8' : 'pb-0']}>
-                <h3 class="font-display text-xl font-bold text-ink sm:text-2xl">
-                  {p.t}{i === pasos.length - 1 ? <span class="text-rojo"> ↗</span> : null}
-                </h3>
-                <p class="mt-2 text-slate">{p.d}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <Itinerario pasos={pasos} flechaFinal />
 
         <figure class="lg:sticky lg:top-24">
           <img
@@ -393,24 +378,10 @@ const bgArea = (a: string): string =>
     </ul>
   </section>
 
-  <!-- ╌╌ CTA FINAL · cierre en Copenhagen Red ╌╌ -->
-  <section class="bg-rojo text-white">
-    <div class="contenedor py-20 lg:py-28">
-      <p class="etiqueta text-white/90">Primera sesión</p>
-      <h2 class="mt-5 max-w-[18ch] text-monumento font-extrabold">
-        ¿Quieres saber qué opciones tienes en Dinamarca?
-      </h2>
-      <div class="mt-8 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
-        <p class="max-w-prosa text-lg text-white/90">
-          La primera sesión es gratuita. Revisamos tu situación, qué grados pueden
-          encajar y cómo sería el proceso en tu caso.
-        </p>
-        <div class="lg:text-right">
-          <a href={ruta("/contacto/")} class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-white px-7 py-3 font-bold text-rojo transition-colors hover:bg-white/90">
-            Reservar una sesión ↗
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ╌╌ CTA FINAL · cierre en Copenhagen Red (componente común) ╌╌ -->
+  <CtaFinal
+    grande
+    titulo="¿Quieres saber qué opciones tienes en Dinamarca?"
+    texto="La primera sesión es gratuita. Revisamos tu situación, qué grados pueden encajar y cómo sería el proceso en tu caso."
+  />
 </Base>

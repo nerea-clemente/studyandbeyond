@@ -33,13 +33,13 @@ const activo = (href: string) =>
           <a
             href={ruta(item.href)}
             aria-current={activo(item.href) ? 'page' : undefined}
-            class:list={['rounded px-3 py-2 text-sm font-medium transition-colors', activo(item.href) ? 'text-marine' : 'text-slate hover:text-ink']}
+            class:list={['rounded px-3 py-2 text-sm font-medium transition-colors', activo(item.href) ? 'text-rojo' : 'text-slate hover:text-ink']}
           >{item.texto}</a>
         )
       ))}
     </nav>
 
-    <a href={ruta("/contacto/")} class="hidden md:inline-flex cta-turq py-2 text-sm">Primera sesión →</a>
+    <a href={ruta("/contacto/")} class="hidden md:inline-flex cta py-2 text-sm">Primera sesión →</a>
 
     <!-- Menú móvil -->
     <details class="md:hidden">
@@ -60,11 +60,11 @@ const activo = (href: string) =>
               <a
                 href={ruta(item.href)}
                 aria-current={activo(item.href) ? 'page' : undefined}
-                class:list={['rounded px-3 py-3 text-base font-medium', activo(item.href) ? 'bg-frost text-marine' : 'text-ink']}
+                class:list={['rounded px-3 py-3 text-base font-medium', activo(item.href) ? 'bg-frost text-rojo' : 'text-ink']}
               >{item.texto}</a>
             )
           ))}
-          <a href={ruta("/contacto/")} class="cta-turq mt-2">Primera sesión →</a>
+          <a href={ruta("/contacto/")} class="cta mt-2">Primera sesión →</a>
         </nav>
       </div>
     </details>

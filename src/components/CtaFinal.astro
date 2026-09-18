@@ -1,0 +1,41 @@
+---
+import { ruta } from '@/lib/ruta';
+
+// Cierre único de todas las páginas: banda completa en Copenhagen Red con
+// tipografía grande y un solo CTA blanco. Sustituye a las cajas oscuras
+// sueltas que cada página tenía antes.
+interface Props {
+  titulo: string;
+  texto: string;
+  etiqueta?: string;
+  cta?: string;
+  href?: string;
+  grande?: boolean; // portada: escala monumental
+}
+const {
+  titulo,
+  texto,
+  etiqueta = 'Primera sesión',
+  cta = 'Reservar una sesión ↗',
+  href = '/contacto/',
+  grande = false,
+} = Astro.props;
+---
+
+<section class="bg-rojo text-white">
+  <div class:list={['contenedor', grande ? 'py-20 lg:py-28' : 'py-16 lg:py-24']}>
+    <p class="etiqueta text-white/90">{etiqueta}</p>
+    <h2 class:list={['mt-5 max-w-[18ch] font-extrabold', grande ? 'text-monumento' : 'text-titulo']}>
+      {titulo}
+    </h2>
+    <div class="mt-8 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+      <p class="max-w-prosa text-lg text-white/90">{texto}</p>
+      <div class="lg:text-right">
+        <a
+          href={ruta(href)}
+          class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-white px-7 py-3 font-bold text-rojo transition-colors hover:bg-white/90"
+        >{cta}</a>
+      </div>
+    </div>
+  </div>
+</section>

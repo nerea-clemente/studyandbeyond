@@ -71,6 +71,8 @@ export default {
         'cifra': ['clamp(2.75rem, 6vw, 4.5rem)', { lineHeight: '0.9', letterSpacing: '-0.03em' }],
         // Titular monumental (portada editorial) y numeral gigante como grafismo.
         'monumento': ['clamp(3rem, 9vw, 8rem)', { lineHeight: '0.92', letterSpacing: '-0.04em' }],
+        // Título de página interior: una única escala para todo el sitio.
+        'titulo': ['clamp(2rem, 4.2vw, 3.5rem)', { lineHeight: '1.02', letterSpacing: '-0.025em' }],
         'numeral': ['clamp(4.5rem, 15vw, 12rem)', { lineHeight: '0.82', letterSpacing: '-0.05em' }],
         'display-lg': ['clamp(2.5rem, 6vw, 4.75rem)', { lineHeight: '0.98', letterSpacing: '-0.03em' }],
         display: ['clamp(1.75rem, 3vw, 2.75rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],

@@ -2,6 +2,8 @@
 import Base from '@/layouts/Base.astro';
 import Imagen from '@/components/Imagen.astro';
 import { ruta } from '@/lib/ruta';
+import CtaFinal from '@/components/CtaFinal.astro';
+import { tono } from '@/lib/areas';
 import { HISTORIAS } from '@/config/historias';
 ---
 
@@ -12,7 +14,7 @@ import { HISTORIAS } from '@/config/historias';
   <section class="bg-ink text-white">
     <div class="contenedor py-16 lg:py-24">
       <p class="etiqueta text-cielo-300">Estudiantes</p>
-      <h1 class="mt-4 text-h1 font-bold text-white">Estudiar en Dinamarca, contado por quienes ya lo hicieron</h1>
+      <h1 class="mt-4 text-titulo font-bold text-white">Estudiar en Dinamarca, contado por <span class="acento">quienes ya lo hicieron</span></h1>
       <p class="mt-6 max-w-prosa text-lg text-white/85 lg:text-xl">
         Carreras distintas, ciudades distintas y experiencias distintas. Estas son
         algunas de las personas que eligieron Dinamarca para estudiar.
@@ -22,12 +24,12 @@ import { HISTORIAS } from '@/config/historias';
 
   <section class="contenedor ritmo">
     <ul class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {HISTORIAS.map((h) => (
-        <li class="reveal flex h-full flex-col overflow-hidden rounded-tarjeta border border-hairline bg-paper">
+      {HISTORIAS.map((h, i) => (
+        <li class="reveal flex h-full flex-col overflow-hidden rounded-blanda border border-hairline bg-paper">
           <!-- Foto real pendiente (nada de banco de imágenes). Ver PENDIENTE.md. -->
-          <Imagen alt={`Foto de ${h.nombre}, estudiante en Dinamarca`} ratio="1/1" rotulo={h.nombre} class="!rounded-none" />
+          <Imagen alt={`Foto de ${h.nombre}, estudiante en Dinamarca`} ratio="1/1" rotulo={h.nombre} tono={(["nordic","sand","sage"] as const)[i % 3]} class="!rounded-none" />
           <div class="flex flex-1 flex-col p-6">
-            <blockquote class="text-ink">«{h.cita}»</blockquote>
+            <blockquote class="font-serif text-lg italic text-ink">«{h.cita}»</blockquote>
             <div class="mt-4 border-t border-hairline pt-4">
               <p class="font-display text-lg font-bold text-ink">{h.nombre}</p>
               <p class="dato text-sm text-slate">
@@ -39,9 +41,12 @@ import { HISTORIAS } from '@/config/historias';
       ))}
     </ul>
 
-    <div class="mt-14 rounded-tarjeta bg-aqua p-10 text-center">
-      <p class="font-display text-2xl font-bold text-ink">¿Quieres ser la próxima historia?</p>
-      <a href={ruta('/grados/')} class="cta-turq mt-6">Ver qué podrías estudiar tú →</a>
-    </div>
   </section>
+
+  <CtaFinal
+    titulo="¿Quieres ser la próxima historia?"
+    texto="La primera sesión es gratuita. Revisamos tu perfil y qué grados podrías estudiar en Dinamarca."
+    cta="Ver qué podrías estudiar tú ↗"
+    href="/grados/"
+  />
 </Base>

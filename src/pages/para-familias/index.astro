@@ -1,6 +1,9 @@
 ---
 import Base from '@/layouts/Base.astro';
 import { ruta } from '@/lib/ruta';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import CtaFinal from '@/components/CtaFinal.astro';
+import { tono } from '@/lib/areas';
 
 const preguntas = [
   {
@@ -31,13 +34,13 @@ const preguntas = [
   descripcion="Qué cuesta, cómo funciona la admisión, dónde vivirá, si puede trabajar, qué es la SU y qué ocurre cuando llega. Las preguntas que conviene resolver antes de decidir."
 >
   <section class="contenedor py-10 lg:py-14">
-    <p class="etiqueta text-marine">Para familias</p>
-    <h1 class="mt-3 text-h1 font-bold text-ink">Estudiar en Dinamarca: los datos antes de tomar la decisión</h1>
-    <p class="prosa mt-4 text-slate">
-      Qué cuesta, cómo funciona la admisión, dónde vivirá, si puede trabajar, qué es
-      la SU y qué ocurre cuando llega. Aquí reunimos las preguntas que normalmente
-      hay que resolver antes de decidir.
-    </p>
+    <CabeceraPagina
+      etiqueta="Para familias"
+      titulo="Estudiar en Dinamarca: los datos antes de tomar la decisión"
+      lead="Qué cuesta, cómo funciona la admisión, dónde vivirá, si puede trabajar, qué es la SU y qué ocurre cuando llega. Aquí reunimos las preguntas que normalmente hay que resolver antes de decidir."
+    >
+      <Fragment slot="titulo">Estudiar en Dinamarca: los <span class="acento text-rojo">datos</span> antes de decidir</Fragment>
+    </CabeceraPagina>
 
     <!-- Estudiar en Dinamarca -->
     <section aria-labelledby="estudiar" class="mt-12">
@@ -59,7 +62,7 @@ const preguntas = [
         cada estudiante en lugar de presentar una cifra universal que luego no se
         parece a su situación.
       </p>
-      <dl class="ficha-datos mt-6 max-w-lg rounded-2xl bg-aqua px-6 py-2">
+      <dl class="ficha-datos mt-6 max-w-lg rounded-blanda bg-aqua px-6 py-2">
         <div><dt>Alojamiento (referencia, residencia)</dt><dd>300–550 €/mes</dd></div>
         <div><dt>Matrícula (estudiantes de la UE, grados públicos)</dt><dd>0 €</dd></div>
         <div><dt>Sanidad (una vez completado el registro)</dt><dd>pública</dd></div>
@@ -74,25 +77,25 @@ const preguntas = [
         europeos pueden acceder a esta ayuda mensual del Estado danés si cumplen las
         condiciones aplicables, entre ellas los requisitos relacionados con el
         trabajo.
-        {' '}<a href={ruta('/estudiar-en-dinamarca/su-beca-estudiantes/')} class="text-marine underline underline-offset-2">Cómo funciona la SU</a>.
+        {' '}<a href={ruta('/estudiar-en-dinamarca/su-beca-estudiantes/')} class="text-rojo underline underline-offset-2">Cómo funciona la SU</a>.
       </div>
     </section>
 
     <!-- Preguntas habituales -->
     <section aria-labelledby="preguntas" class="mt-14">
       <h2 id="preguntas" class="text-2xl font-bold text-ink">Preguntas habituales</h2>
-      <div class="mt-6 grid max-w-prosa gap-4">
-        {preguntas.map((p) => (
-          <div class="tarjeta bg-paper p-5">
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {preguntas.map((p, i) => (
+          <div class:list={['reveal rounded-blanda p-6', tono(i)]}>
             <h3 class="font-display text-lg font-bold text-ink">{p.q}</h3>
-            <p class="mt-2 text-slate">{p.a}</p>
+            <p class="mt-2 text-ink/80">{p.a}</p>
           </div>
         ))}
       </div>
     </section>
 
     <!-- Study and Beyond está en Dinamarca -->
-    <section aria-labelledby="danesa" class="mt-14 rounded-3xl bg-sage p-8 lg:p-10">
+    <section aria-labelledby="danesa" class="mt-14 rounded-blanda bg-sage p-8 lg:p-10">
       <h2 id="danesa" class="text-2xl font-bold text-ink">Study and Beyond está en Dinamarca</h2>
       <p class="prosa mt-3 text-ink">
         Somos una empresa danesa con base en Aarhus y trabajamos exclusivamente con
@@ -101,13 +104,11 @@ const preguntas = [
       </p>
     </section>
 
-    <div class="mt-14 rounded-3xl bg-ink p-8 text-center text-white lg:p-12">
-      <h2 class="text-2xl font-bold">Hablemos con calma</h2>
-      <p class="mx-auto mt-3 max-w-prosa text-white/85">
-        La primera sesión es gratuita y sin compromiso. También para madres y padres
-        con dudas.
-      </p>
-      <a href={ruta('/contacto/')} class="cta-turq mt-6">Reservar una primera sesión →</a>
-    </div>
   </section>
+
+  <CtaFinal
+    titulo="Hablemos con calma"
+    texto="La primera sesión es gratuita y sin compromiso. También para madres y padres con dudas."
+    cta="Reservar una primera sesión ↗"
+  />
 </Base>

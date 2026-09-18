@@ -19,9 +19,9 @@ const hitos = [
 
 // Estilo de cada círculo según tono y tamaño.
 const circulo = (t: string) => {
-  const base = 'flex items-center justify-center rounded-full font-display font-bold ring-4 ' + (grande ? 'ring-aqua' : 'ring-paper');
+  const base = 'flex items-center justify-center rounded-xl font-display font-bold ring-4 ' + (grande ? 'ring-aqua' : 'ring-paper');
   const color =
-    t === 'plazo' ? 'bg-sun text-white'
+    t === 'plazo' ? 'bg-rojo text-white'
     : t === 'inicio' ? 'bg-ink text-white'
     : 'bg-paper text-ink border border-hairline';
   const tam =
@@ -35,8 +35,8 @@ const lineaTop = grande ? 'top-[30px]' : 'top-[21px]';
 
 <figure class:list={['not-prose', grande ? 'mt-12' : 'my-6']} data-calendario>
   <figcaption class="mb-8 flex flex-wrap items-baseline justify-between gap-2">
-    <span class:list={['etiqueta text-marine', grande && 'text-sm']}>Calendario de admisión</span>
-    <span class="fecha-mono rounded-full bg-sun-100 px-3 py-1 text-xs text-deadline-700" data-cuenta hidden></span>
+    <span class:list={["etiqueta text-rojo", grande && "text-sm"]}>Calendario de admisión</span>
+    <span class="fecha-mono rounded-full bg-rojo-100 px-3 py-1 text-xs text-rojo-700" data-cuenta hidden></span>
   </figcaption>
 
   <!-- Escritorio: eje horizontal con línea en degradado -->
@@ -48,7 +48,7 @@ const lineaTop = grande ? 'top-[30px]' : 'top-[21px]';
           <div class:list={['flex items-center justify-center', cajaH]}>
             <span data-punto={h.tono} class={circulo(h.tono)}>{i + 1}</span>
           </div>
-          <span class:list={['fecha-mono mt-4', h.tono === 'plazo' ? 'text-deadline-700' : 'text-ink', grande ? 'text-lg font-medium sm:text-xl' : 'text-sm']}>{h.etiqueta}</span>
+          <span class:list={['fecha-mono mt-4', h.tono === 'plazo' ? 'text-rojo-700' : 'text-ink', grande ? 'text-lg font-medium sm:text-xl' : 'text-sm']}>{h.etiqueta}</span>
           <span class:list={['mt-1 text-slate', grande ? 'text-sm sm:text-base' : 'text-xs']}>{h.detalle}</span>
         </li>
       ))}
@@ -64,7 +64,7 @@ const lineaTop = grande ? 'top-[30px]' : 'top-[21px]';
           {i < hitos.length - 1 && <span class="w-1 flex-1 rounded-full bg-ink/15" aria-hidden="true"></span>}
         </div>
         <div class="pb-8 pt-1.5">
-          <span class:list={['fecha-mono block', h.tono === 'plazo' ? 'text-deadline-700' : 'text-ink', grande ? 'text-lg' : 'text-base']}>{h.etiqueta}</span>
+          <span class:list={['fecha-mono block', h.tono === 'plazo' ? 'text-rojo-700' : 'text-ink', grande ? 'text-lg' : 'text-base']}>{h.etiqueta}</span>
           <span class="text-sm text-slate">{h.detalle}</span>
         </div>
       </li>

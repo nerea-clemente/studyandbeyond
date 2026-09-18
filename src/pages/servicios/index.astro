@@ -2,6 +2,10 @@
 import Base from '@/layouts/Base.astro';
 import { ruta } from '@/lib/ruta';
 import JsonLd from '@/components/JsonLd.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import Itinerario from '@/components/Itinerario.astro';
+import CtaFinal from '@/components/CtaFinal.astro';
+import { tono } from '@/lib/areas';
 import { SITIO } from '@/config/sitio';
 
 // Separador de miles manual (independiente de la disponibilidad de ICU).
@@ -19,12 +23,12 @@ const servicios = [
 ];
 
 const pasos = [
-  { n: 1, t: 'Primera sesión', d: 'Revisamos tu perfil y las opciones disponibles. Gratuita y sin compromiso.' },
-  { n: 2, t: 'Plan', d: 'Si decides continuar, definimos los grados, requisitos y calendario.' },
-  { n: 3, t: 'Solicitudes', d: 'Preparamos documentación y gestionamos las admisiones.' },
-  { n: 4, t: 'Alojamiento', d: 'Te asesoramos sobre el proceso y las opciones de tu ciudad.' },
-  { n: 5, t: 'Admisión', d: 'Con la plaza confirmada, preparamos los siguientes pasos.' },
-  { n: 6, t: 'Dinamarca', d: 'Te orientamos con los principales trámites de llegada.' },
+  { t: 'Primera sesión', d: 'Revisamos tu perfil y las opciones disponibles. Gratuita y sin compromiso.' },
+  { t: 'Plan', d: 'Si decides continuar, definimos los grados, requisitos y calendario.' },
+  { t: 'Solicitudes', d: 'Preparamos documentación y gestionamos las admisiones.' },
+  { t: 'Alojamiento', d: 'Te asesoramos sobre el proceso y las opciones de tu ciudad.' },
+  { t: 'Admisión', d: 'Con la plaza confirmada, preparamos los siguientes pasos.' },
+  { t: 'Dinamarca', d: 'Te orientamos con los principales trámites de llegada.' },
 ];
 
 const faqs = [
@@ -53,97 +57,107 @@ const faqLd = {
 >
   <JsonLd slot="head" datos={faqLd} />
 
-  <section class="contenedor py-10 lg:py-14">
-    <p class="text-sm font-semibold uppercase tracking-wide text-marine">Servicio</p>
-    <h1 class="mt-3 text-display font-semibold text-ink">Te ayudamos con todo el proceso</h1>
-    <p class="prosa mt-4">
-      Study and Beyond gestiona el proceso completo: orientación académica, estrategia
-      de solicitudes, admisión, documentación y asesoramiento práctico para empezar
-      en Dinamarca.
-    </p>
+  <!-- Cabecera -->
+  <section class="contenedor pb-4 pt-10 lg:pt-14">
+    <CabeceraPagina
+      etiqueta="Servicio"
+      titulo="Te ayudamos con todo el proceso"
+      lead="Study and Beyond gestiona el proceso completo: orientación académica, estrategia de solicitudes, admisión, documentación y asesoramiento práctico para empezar en Dinamarca."
+    >
+      <Fragment slot="titulo">Te ayudamos con <span class="acento text-rojo">todo</span> el proceso</Fragment>
+    </CabeceraPagina>
+  </section>
 
-    <!-- Qué incluye -->
-    <h2 class="mt-12 text-2xl font-semibold text-ink">Qué incluye</h2>
-    <ul class="mt-6 grid gap-5 sm:grid-cols-2">
+  <!-- Qué incluye · tarjetas de color -->
+  <section aria-labelledby="incluye" class="contenedor ritmo">
+    <h2 id="incluye" class="text-h2 font-bold text-ink">Qué incluye</h2>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {servicios.map((s, i) => (
-        <li class="tarjeta tarjeta-hover bg-paper p-6">
-          <span class="fecha-mono text-sm text-marine">{String(i + 1).padStart(2, '0')}</span>
+        <li class:list={['reveal flex h-full flex-col rounded-blanda p-6', tono(i)]}>
+          <span class="font-mono text-sm text-ink/70">{String(i + 1).padStart(2, '0')}</span>
           <h3 class="mt-2 font-display text-lg font-bold text-ink">{s.t}</h3>
-          <p class="mt-2 text-sm text-slate">{s.d}</p>
+          <p class="mt-2 text-sm text-ink/80">{s.d}</p>
         </li>
       ))}
     </ul>
+  </section>
 
-    <!-- Precio y condiciones -->
-    <section aria-labelledby="precio" class="mt-14 rounded-3xl bg-aqua p-8 lg:p-12">
-      <h2 id="precio" class="text-2xl font-semibold text-ink">Precio y condiciones</h2>
-      <p class="mt-4 max-w-prosa text-ink">
-        Un precio único, sin importar a cuántas carreras solicites plaza, en dos
-        pagos del 50 %.
-      </p>
+  <!-- Precio · banda cálida con la cifra grande -->
+  <section aria-labelledby="precio" class="bg-aqua">
+    <div class="contenedor py-16 lg:py-24">
+      <div class="grid gap-10 lg:grid-cols-[auto_1fr] lg:gap-16">
+        <div>
+          <p class="etiqueta text-rojo">Precio</p>
+          <p class="mt-4 font-display text-cifra font-extrabold leading-none text-ink">{precio} €</p>
+          <p class="etiqueta mt-2 text-slate">IVA incluido</p>
+        </div>
+        <div class="max-w-prosa">
+          <h2 id="precio" class="text-h2 font-bold text-ink">Precio y condiciones</h2>
+          <p class="mt-4 text-lg text-slate">
+            Un precio único, sin importar a cuántas carreras solicites plaza, en dos
+            pagos del 50 %.
+          </p>
 
-      <dl class="ficha-datos mt-6 max-w-md">
-        <div><dt>Precio total (IVA incl.)</dt><dd>{precio} €</dd></div>
-        <div><dt>Primer pago · al firmar el contrato</dt><dd>{mitad} €</dd></div>
-        <div><dt>Segundo pago · solo si hay plaza</dt><dd>{mitad} €</dd></div>
-      </dl>
-      <p class="mt-3 text-sm text-slate">
-        El primer pago cubre el trabajo de orientación, preparación y gestión
-        realizado durante el proceso. El segundo se activa cuando existe una
-        admisión, en firme o condicionada, en una de las opciones acordadas.
-      </p>
+          <dl class="ficha-datos mt-6">
+            <div><dt>Primer pago · al firmar el contrato</dt><dd>{mitad} €</dd></div>
+            <div><dt>Segundo pago · solo si hay plaza</dt><dd>{mitad} €</dd></div>
+          </dl>
+          <p class="mt-3 text-sm text-slate">
+            El primer pago cubre el trabajo de orientación, preparación y gestión
+            realizado durante el proceso. El segundo se activa cuando existe una
+            admisión, en firme o condicionada, en una de las opciones acordadas.
+          </p>
 
-      <div class="bloque-condicion mt-6">
-        <strong>¿Qué pasa si no entras?</strong> Si no consigues admisión en
-        ninguna de las opciones solicitadas, <strong>no abonas el segundo pago</strong>.
-        El primer pago no se devuelve, porque corresponde al trabajo y las
-        gestiones ya realizadas. No prometemos una plaza: nos comprometemos a
-        gestionar bien tu proceso para que tengas buenas opciones delante.
+          <div class="bloque-condicion mt-6">
+            <strong>¿Qué pasa si no entras?</strong> Si no consigues admisión en
+            ninguna de las opciones solicitadas, <strong>no abonas el segundo pago</strong>.
+            El primer pago no se devuelve, porque corresponde al trabajo y las
+            gestiones ya realizadas. No prometemos una plaza: nos comprometemos a
+            gestionar bien tu proceso para que tengas buenas opciones delante.
+          </div>
+
+          <p class="mt-4 text-sm text-slate">
+            <strong class="text-ink">Derecho de desistimiento.</strong> Como
+            consumidor en España, dispones de 14 días naturales para desistir del
+            contrato desde su firma. Si el servicio empieza a tu petición dentro de
+            ese plazo, puede corresponderte abonar la parte ya prestada.
+            <span class="text-slate">(Redacción pendiente de revisión legal.)</span>
+          </p>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <p class="mt-4 text-sm text-slate">
-        <strong class="text-ink">Derecho de desistimiento.</strong> Como
-        consumidor en España, dispones de 14 días naturales para desistir del
-        contrato desde su firma. Si el servicio empieza a tu petición dentro de
-        ese plazo, puede corresponderte abonar la parte ya prestada.
-        <span class="text-slate">(Redacción pendiente de revisión legal.)</span>
-      </p>
-    </section>
+  <!-- El proceso · itinerario común -->
+  <section aria-labelledby="proceso" class="contenedor ritmo">
+    <h2 id="proceso" class="text-h2 font-bold text-ink">El proceso, paso a paso</h2>
+    <div class="mt-10 max-w-3xl">
+      <Itinerario pasos={pasos} flechaFinal />
+    </div>
+    <a href={ruta("/grados/")} class="enlace mt-10">Explorar los grados →</a>
+  </section>
 
-    <!-- Proceso -->
-    <section aria-labelledby="proceso" class="mt-14">
-      <h2 id="proceso" class="text-2xl font-semibold text-ink">El proceso, paso a paso</h2>
-      <ol class="mt-6 grid gap-5 sm:grid-cols-2">
-        {pasos.map((p) => (
-          <li class="tarjeta tarjeta-hover bg-paper p-6">
-            <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-marine text-sm font-bold text-white tabular">{p.n}</span>
-            <h3 class="mt-3 font-display text-lg font-bold text-ink">{p.t}</h3>
-            <p class="mt-2 text-sm text-slate">{p.d}</p>
-          </li>
-        ))}
-      </ol>
-    </section>
-
-    <!-- FAQ -->
-    <section aria-labelledby="faq" class="mt-14">
-      <h2 id="faq" class="text-2xl font-semibold text-ink">Preguntas frecuentes</h2>
-      <div class="mt-6 max-w-prosa divide-y divide-hairline border-y border-hairline">
+  <!-- FAQ -->
+  <section aria-labelledby="faq" class="bg-hueso">
+    <div class="contenedor ritmo">
+      <h2 id="faq" class="text-h2 font-bold text-ink">Preguntas frecuentes</h2>
+      <div class="mt-8 grid max-w-3xl gap-3">
         {faqs.map((f) => (
-          <details class="group py-3">
-            <summary class="flex cursor-pointer items-center justify-between gap-4 font-semibold text-ink">
+          <details class="group rounded-blanda border border-hairline bg-paper px-5 py-4">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-bold text-ink [&::-webkit-details-marker]:hidden">
               {f.q}
-              <span class="text-marine transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              <span class="shrink-0 text-xl text-rojo transition-transform group-open:rotate-45" aria-hidden="true">+</span>
             </summary>
-            <p class="mt-2 text-slate">{f.a}</p>
+            <p class="mt-3 text-slate">{f.a}</p>
           </details>
         ))}
       </div>
-    </section>
-
-    <div class="mt-14 rounded-3xl bg-ink p-8 text-center text-white lg:p-12">
-      <h2 class="text-2xl font-bold">Empecemos por la primera sesión</h2>
-      <p class="mx-auto mt-3 max-w-prosa text-white/85">Gratuita y sin compromiso. Revisamos tu situación, qué grados pueden encajar y cómo sería el proceso en tu caso.</p>
-      <a href={ruta("/contacto/")} class="cta-turq mt-6">Reservar la primera sesión →</a>
     </div>
   </section>
+
+  <CtaFinal
+    titulo="Empecemos por la primera sesión"
+    texto="Gratuita y sin compromiso. Revisamos tu situación, qué grados pueden encajar y cómo sería el proceso en tu caso."
+    cta="Reservar la primera sesión ↗"
+  />
 </Base>

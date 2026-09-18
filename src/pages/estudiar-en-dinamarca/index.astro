@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import { ruta } from '@/lib/ruta';
 import Base from '@/layouts/Base.astro';
+import CtaFinal from '@/components/CtaFinal.astro';
+import { tono } from '@/lib/areas';
 
 const guias = (await getCollection('guias', ({ data }) => !data.borrador))
   .sort((a, b) => a.data.orden - b.data.orden);
@@ -12,8 +14,8 @@ const guias = (await getCollection('guias', ({ data }) => !data.borrador))
   descripcion="Admisión, SU, alojamiento, coste de vida, trabajo y primeros trámites. Lo que necesitas saber para valorar la opción y entender cómo funciona el proceso."
 >
   <section class="contenedor py-10 lg:py-14">
-    <p class="etiqueta text-marine">Guías</p>
-    <h1 class="mt-3 text-display font-bold text-ink">
+    <p class="etiqueta text-rojo">Guías</p>
+    <h1 class="mt-3 text-titulo font-bold text-ink">
       Estudiar en Dinamarca, explicado desde Dinamarca
     </h1>
     <p class="prosa mt-4 text-slate">
@@ -25,11 +27,11 @@ const guias = (await getCollection('guias', ({ data }) => !data.borrador))
     <div class="mt-6 grid gap-4 sm:grid-cols-2">
       <a href={ruta('/para-estudiantes/')} class="group flex flex-col justify-between bg-ink p-6 text-white transition-colors hover:bg-ink-900">
         <div>
-          <p class="etiqueta text-marine-300">Para estudiantes</p>
+          <p class="etiqueta text-rojo-300">Para estudiantes</p>
           <p class="mt-2 font-display text-xl font-bold">Cómo se estudia</p>
           <p class="mt-1 text-sm text-white/75">Qué opciones hay y qué cambia respecto a estudiar en España.</p>
         </div>
-        <span class="mt-4 text-sm font-semibold text-marine-300 group-hover:text-white">Entrar →</span>
+        <span class="mt-4 text-sm font-semibold text-rojo-300 group-hover:text-white">Entrar →</span>
       </a>
       <a href={ruta('/para-familias/')} class="group flex flex-col justify-between bg-crema p-6 transition-colors hover:bg-deadline-100">
         <div>
@@ -43,19 +45,28 @@ const guias = (await getCollection('guias', ({ data }) => !data.borrador))
 
     <h2 class="mt-14 text-2xl font-bold text-ink">Guías</h2>
 
-    <ul class="mt-10 grid gap-4 sm:grid-cols-2">
-      {guias.map((g) => (
-        <li>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {guias.map((g, i) => (
+        <li class="reveal">
           <a
             href={ruta(`/estudiar-en-dinamarca/${g.id}/`)}
-            class="flex h-full flex-col rounded-2xl border border-hairline bg-white p-6 transition-colors hover:border-marine"
+            class:list={['group flex h-full flex-col rounded-blanda p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-flotante', tono(i)]}
           >
-            <h2 class="font-display text-xl font-semibold text-ink">{g.data.titulo}</h2>
-            <p class="mt-2 text-sm text-slate">{g.data.descripcion}</p>
-            <span class="mt-4 text-sm font-semibold text-marine">Leer la guía →</span>
+            <span class="font-mono text-sm text-ink/70">{String(i + 1).padStart(2, '0')}</span>
+            <h2 class="mt-2 font-display text-xl font-bold text-ink">{g.data.titulo}</h2>
+            <p class="mt-2 text-sm text-ink/80">{g.data.descripcion}</p>
+            <span class="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-bold text-ink">
+              Leer la guía
+              <span class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true">↗</span>
+            </span>
           </a>
         </li>
       ))}
     </ul>
   </section>
+
+  <CtaFinal
+    titulo="¿Dudas con tu caso concreto?"
+    texto="La primera sesión es gratuita. Revisamos tu perfil, los requisitos que te afectan y cómo sería el proceso."
+  />
 </Base>

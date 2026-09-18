@@ -2,6 +2,7 @@
 import Base from '@/layouts/Base.astro';
 import Imagen from '@/components/Imagen.astro';
 import { ruta } from '@/lib/ruta';
+import CtaFinal from '@/components/CtaFinal.astro';
 import { SITIO } from '@/config/sitio';
 ---
 
@@ -17,8 +18,8 @@ import { SITIO } from '@/config/sitio';
       </div>
 
       <div>
-        <p class="etiqueta text-marine">Sobre Study &amp; Beyond</p>
-        <h1 class="mt-3 text-h1 font-bold text-ink">Especialistas en estudiar en Dinamarca</h1>
+        <p class="etiqueta text-rojo">Sobre Study &amp; Beyond</p>
+        <h1 class="mt-3 text-titulo font-bold text-ink">Especialistas en estudiar en <span class="acento text-rojo">Dinamarca</span></h1>
         <p class="prosa mt-4 text-lg text-slate">
           {SITIO.nombre} es una empresa danesa con base en {SITIO.ciudadOrigen}
           dedicada exclusivamente a asesorar a estudiantes que quieren estudiar aquí.
@@ -58,7 +59,7 @@ import { SITIO } from '@/config/sitio';
     </div>
 
     <!-- La empresa -->
-    <section aria-labelledby="empresa" class="mt-14 rounded-3xl bg-aqua p-8 lg:p-12">
+    <section aria-labelledby="empresa" class="mt-14 rounded-blanda bg-aqua p-8 lg:p-12">
       <h2 id="empresa" class="text-xl font-bold text-ink">La empresa</h2>
       <p class="prosa mt-3 text-sm text-slate">
         {SITIO.entidadLegal} es una empresa registrada en Dinamarca (CVR {SITIO.cvr})
@@ -66,10 +67,12 @@ import { SITIO } from '@/config/sitio';
       </p>
     </section>
 
-    <div class="mt-14 rounded-3xl bg-ink p-8 text-center text-white lg:p-12">
-      <h2 class="text-2xl font-bold">¿Hablamos de tu caso?</h2>
-      <p class="mx-auto mt-3 max-w-prosa text-white/85">La primera sesión es gratuita y sin compromiso.</p>
-      <a href={ruta('/servicios/')} class="cta-turq mt-6">Ver cómo funciona el servicio →</a>
-    </div>
   </section>
+
+  <CtaFinal
+    titulo="¿Hablamos de tu caso?"
+    texto="La primera sesión es gratuita y sin compromiso. Revisamos tu situación y qué opciones tienes en Dinamarca."
+    cta="Ver cómo funciona el servicio ↗"
+    href="/servicios/"
+  />
 </Base>
